@@ -74,9 +74,29 @@ export function filterEvents(events, filters = {}) {
     return [];
   }
 
-  const { status = 'all', type = 'all' } = filters;
+  const {
+    status = 'all',
+    type = 'all',
+    search = '',
+  } = filters;
 
-  return filterEventType(filterEventStatus(events, status), type);
+  const normalizedSearch = search.trim();
+  const filteredBySearch =
+    normalizedSearch === ''
+      ? events
+      : events.filter((event) => {
+          const searchableText = [event.name, event.city, event.state]
+            .join(' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+
+          return searchableText.includes(normalizedSearch);
+        });
+
+  return filterEventType(
+    filterEventStatus(filteredBySearch, status),
+    type,
+  );
 }
 
 export default function EventFilter({ id, label, value, onChange, count, options }) {

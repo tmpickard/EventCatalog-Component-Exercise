@@ -197,6 +197,41 @@
   font-weight: 600;
 }
 
+.event-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.event-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: end;
+}
+
+.event-filter,
+.search-and-sort-controls {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.search-and-sort-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+}
+
+.search-field,
+.sort-field,
+.event-filter {
+  display: grid;
+  gap: 0.35rem;
+}
+
 .event-form {
   display: grid;
   gap: 1rem;
@@ -213,7 +248,10 @@
 
 .event-form input,
 .event-form select,
-.event-form button {
+.event-form button,
+.search-field input,
+.sort-field select,
+.event-filter select {
   padding: 0.7rem 0.8rem;
   font: inherit;
 }

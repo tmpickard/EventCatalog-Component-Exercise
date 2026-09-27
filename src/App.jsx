@@ -10,6 +10,9 @@ import EventFilter, {
   typeFilterOptions,
 } from './components/EventFilter.jsx';
 import EventSummary from './components/EventSummary.jsx';
+import SearchAndSortControls, {
+  sortEvents,
+} from './components/SearchAndSortControls.jsx';
 
 const initialEvents = [
   {
@@ -107,11 +110,17 @@ const initialEvents = [
 function DashboardPage({ events }) {
   const [statusFilter, setStatusFilter] = useState('all');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState('default');
 
-  const visibleEvents = filterEvents(events, {
-    status: statusFilter,
-    type: typeFilter,
-  });
+  const visibleEvents = sortEvents(
+    filterEvents(events, {
+      status: statusFilter,
+      type: typeFilter,
+      search: searchQuery,
+    }),
+    sortBy,
+  );
 
   return (
     <>
@@ -123,6 +132,13 @@ function DashboardPage({ events }) {
       <section id="events">
         <div className="event-toolbar">
           <div className="event-filters">
+            <SearchAndSortControls
+              value={searchQuery}
+              onSearchChange={setSearchQuery}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+              count={visibleEvents.length}
+            />
             <EventFilter
               id="status-filter"
               label="Status"
