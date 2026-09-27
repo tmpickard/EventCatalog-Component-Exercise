@@ -1,35 +1,28 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { emptyForm, normalizeEvent } from './CreateEventForm.jsx';
 
-export const emptyForm = {
-  name: '',
-  city: '',
-  state: '',
-  date: '',
-  capacity: '',
-  format: 'League',
-};
-
-export function normalizeEvent(event, id = Date.now()) {
+function buildFormState(event) {
   return {
-    id,
-    name: event.name.trim(),
-    city: event.city.trim(),
-    state: event.state.trim().toUpperCase(),
-    date: event.date,
-    capacity: Number(event.capacity),
-    registered: Number(event.registered ?? 0),
-    format: event.format,
+    ...event,
+    capacity: String(event.capacity),
   };
 }
 
-export function createEvent(event) {
-  return normalizeEvent(event, Date.now());
-}
-
-export default function CreateEventForm({ onCreateEvent }) {
+export default function EditEventForm({ events, onUpdateEvent }) {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState(emptyForm);
+  const { eventId } = useParams();
+  const eventToEdit = events.find((event) => event.id === Number(eventId));
+
+  const [formData, setFormData] = useState(() =>
+    eventToEdit ? buildFormState(eventToEdit) : emptyForm,
+  );
+
+  useEffect(() => {
+    if (eventToEdit) {
+      setFormData(buildFormState(eventToEdit));
+    }
+  }, [eventToEdit]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,7 +36,7 @@ export default function CreateEventForm({ onCreateEvent }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const normalizedEvent = createEvent(formData);
+    const normalizedEvent = normalizeEvent(formData, eventToEdit.id);
 
     if (
       !normalizedEvent.name ||
@@ -57,14 +50,29 @@ export default function CreateEventForm({ onCreateEvent }) {
       return;
     }
 
-    onCreateEvent(normalizedEvent);
-    setFormData(emptyForm);
+    onUpdateEvent({
+      ...eventToEdit,
+      ...normalizedEvent,
+      registered: eventToEdit.registered,
+    });
+
     navigate('/');
   };
 
+  if (!eventToEdit) {
+    return (
+      <section className="create-event-page">
+        <h2>Event not found</h2>
+        <button type="button" onClick={() => navigate('/')}>
+          Back to Dashboard
+        </button>
+      </section>
+    );
+  }
+
   return (
     <section className="create-event-page">
-      <h2>Create a New Event</h2>
+      <h2>Edit Event</h2>
 
       <form onSubmit={handleSubmit} className="event-form">
         <label>
@@ -137,7 +145,7 @@ export default function CreateEventForm({ onCreateEvent }) {
         </label>
 
         <div className="form-actions">
-          <button type="submit">Create Event</button>
+          <button type="submit">Save Changes</button>
           <button
             type="button"
             className="secondary-button"
