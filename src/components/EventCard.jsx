@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import StatusLabels, { getEventStatus } from './StatusLabels.jsx';
 
 function EventCard({ event }) {
@@ -16,6 +17,12 @@ function EventCard({ event }) {
       <p>{event.format}</p>
 
       <p>Status: {status}</p>
+
+      <div className="form-actions">
+        <Link to={`/edit/${event.id}`} className="button-link">
+          Edit Event
+        </Link>
+      </div>
     </article>
   );
 }

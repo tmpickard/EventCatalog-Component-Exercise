@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import CreateEventForm from './components/CreateEventForm.jsx';
+import EditEventForm from './components/EditEventForm.jsx';
 import EventCatalog from './components/EventCatalog.jsx';
 import EventFilter, {
   filterEvents,
@@ -158,6 +159,14 @@ function App() {
     setEvents((currentEvents) => [newEvent, ...currentEvents]);
   };
 
+  const handleUpdateEvent = (updatedEvent) => {
+    setEvents((currentEvents) =>
+      currentEvents.map((event) =>
+        event.id === updatedEvent.id ? updatedEvent : event,
+      ),
+    );
+  };
+
   return (
     <>
       <header className="app-header">
@@ -172,6 +181,10 @@ function App() {
         <Route
           path="/create"
           element={<CreateEventForm onCreateEvent={handleCreateEvent} />}
+        />
+        <Route
+          path="/edit/:eventId"
+          element={<EditEventForm events={events} onUpdateEvent={handleUpdateEvent} />}
         />
       </Routes>
     </>
