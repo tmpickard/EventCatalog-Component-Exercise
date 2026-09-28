@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import CreateEventForm from './components/CreateEventForm.jsx';
@@ -13,6 +13,34 @@ import EventSummary from './components/EventSummary.jsx';
 import SearchAndSortControls, {
   sortEvents,
 } from './components/SearchAndSortControls.jsx';
+
+const defaultCatalogPreferences = {
+  formatFilter: 'all',
+  searchQuery: '',
+  sortOption: 'date-asc',
+  resultsDensity: 'compact',
+};
+
+function loadCatalogPreferences() {
+  if (typeof window === 'undefined') {
+    return defaultCatalogPreferences;
+  }
+
+  try {
+    const storedPreferences = window.localStorage.getItem('catalogPreferences');
+
+    if (!storedPreferences) {
+      return defaultCatalogPreferences;
+    }
+
+    return {
+      ...defaultCatalogPreferences,
+      ...JSON.parse(storedPreferences),
+    };
+  } catch {
+    return defaultCatalogPreferences;
+  }
+}
 
 const initialEvents = [
   {
@@ -107,19 +135,19 @@ const initialEvents = [
   },
 ];
 
-function DashboardPage({ events }) {
+function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }) {
   const [statusFilter, setStatusFilter] = useState('all');
-  const [typeFilter, setTypeFilter] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState('default');
+
+  const { formatFilter, searchQuery, sortOption, resultsDensity } =
+    catalogPreferences;
 
   const visibleEvents = sortEvents(
     filterEvents(events, {
       status: statusFilter,
-      type: typeFilter,
+      type: formatFilter,
       search: searchQuery,
     }),
-    sortBy,
+    sortOption,
   );
 
   return (
@@ -134,9 +162,17 @@ function DashboardPage({ events }) {
           <div className="event-filters">
             <SearchAndSortControls
               value={searchQuery}
-              onSearchChange={setSearchQuery}
-              sortBy={sortBy}
-              onSortChange={setSortBy}
+              onSearchChange={(nextSearch) =>
+                onCatalogPreferenceChange('searchQuery', nextSearch)
+              }
+              sortBy={sortOption}
+              onSortChange={(nextSort) =>
+                onCatalogPreferenceChange('sortOption', nextSort)
+              }
+              density={resultsDensity}
+              onDensityChange={(nextDensity) =>
+                onCatalogPreferenceChange('resultsDensity', nextDensity)
+              }
               count={visibleEvents.length}
             />
             <EventFilter
@@ -149,9 +185,11 @@ function DashboardPage({ events }) {
             />
             <EventFilter
               id="type-filter"
-              label="Type"
-              value={typeFilter}
-              onChange={setTypeFilter}
+              label="Format"
+              value={formatFilter}
+              onChange={(nextFormat) =>
+                onCatalogPreferenceChange('formatFilter', nextFormat)
+              }
               count={visibleEvents.length}
               options={typeFilterOptions}
             />
@@ -162,7 +200,7 @@ function DashboardPage({ events }) {
           </Link>
         </div>
 
-        <EventCatalog events={visibleEvents} />
+        <EventCatalog events={visibleEvents} density={resultsDensity} />
       </section>
     </>
   );
@@ -170,6 +208,23 @@ function DashboardPage({ events }) {
 
 function App() {
   const [events, setEvents] = useState(initialEvents);
+  const [catalogPreferences, setCatalogPreferences] = useState(
+    loadCatalogPreferences,
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      'catalogPreferences',
+      JSON.stringify(catalogPreferences),
+    );
+  }, [catalogPreferences]);
+
+  const handleCatalogPreferenceChange = (key, value) => {
+    setCatalogPreferences((currentPreferences) => ({
+      ...currentPreferences,
+      [key]: value,
+    }));
+  };
 
   const handleCreateEvent = (newEvent) => {
     setEvents((currentEvents) => [newEvent, ...currentEvents]);
@@ -193,7 +248,16 @@ function App() {
       </header>
 
       <Routes>
-        <Route path="/" element={<DashboardPage events={events} />} />
+        <Route
+          path="/"
+          element={
+            <DashboardPage
+              events={events}
+              catalogPreferences={catalogPreferences}
+              onCatalogPreferenceChange={handleCatalogPreferenceChange}
+            />
+          }
+        />
         <Route
           path="/create"
           element={<CreateEventForm onCreateEvent={handleCreateEvent} />}

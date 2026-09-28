@@ -1,22 +1,32 @@
 import { Link } from 'react-router-dom';
 import StatusLabels, { getEventStatus } from './StatusLabels.jsx';
 
-function EventCard({ event }) {
+function EventCard({ event, density = 'compact' }) {
   const status = getEventStatus(event);
+  const isCompact = density === 'compact';
 
   return (
     <article>
       <h3>{event.name}</h3>
 
-      <StatusLabels event={event} />
+      {!isCompact && <StatusLabels event={event} />}
 
       <p>
         {event.city}, {event.state}
       </p>
       <p>{event.date}</p>
-      <p>{event.format}</p>
 
-      <p>Status: {status}</p>
+      {isCompact ? (
+        <p>Status: {status}</p>
+      ) : (
+        <>
+          <p>{event.format}</p>
+          <p>
+            Capacity: {event.registered}/{event.capacity}
+          </p>
+          <p>Status: {status}</p>
+        </>
+      )}
 
       <div className="form-actions">
         <Link to={`/edit/${event.id}`} className="button-link">

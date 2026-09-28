@@ -1,6 +1,6 @@
-import EventCard from "./EventCard";
+import EventCard from './EventCard';
 
-function EventCatalog({ events }) {
+function EventCatalog({ events, density = 'compact' }) {
   return (
     <section>
       <h2>Upcoming Events</h2>
@@ -9,6 +9,7 @@ function EventCatalog({ events }) {
         <EventCard
           key={event.id}
           event={event}
+          density={density}
         />
       ))}
     </section>
