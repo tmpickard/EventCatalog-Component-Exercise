@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import CreateEventForm from './components/CreateEventForm.jsx';
@@ -13,34 +13,7 @@ import EventSummary from './components/EventSummary.jsx';
 import SearchAndSortControls, {
   sortEvents,
 } from './components/SearchAndSortControls.jsx';
-
-const defaultCatalogPreferences = {
-  formatFilter: 'all',
-  searchQuery: '',
-  sortOption: 'date-asc',
-  resultsDensity: 'compact',
-};
-
-function loadCatalogPreferences() {
-  if (typeof window === 'undefined') {
-    return defaultCatalogPreferences;
-  }
-
-  try {
-    const storedPreferences = window.localStorage.getItem('catalogPreferences');
-
-    if (!storedPreferences) {
-      return defaultCatalogPreferences;
-    }
-
-    return {
-      ...defaultCatalogPreferences,
-      ...JSON.parse(storedPreferences),
-    };
-  } catch {
-    return defaultCatalogPreferences;
-  }
-}
+import useCatalogPreferences from './hooks/useCatalogPreferences.jsx';
 
 const initialEvents = [
   {
@@ -138,13 +111,13 @@ const initialEvents = [
 function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }) {
   const [statusFilter, setStatusFilter] = useState('all');
 
-  const { formatFilter, searchQuery, sortOption, resultsDensity } =
+  const { selectedFormat, searchQuery, sortOption, resultsDensity } =
     catalogPreferences;
 
   const visibleEvents = sortEvents(
     filterEvents(events, {
       status: statusFilter,
-      type: formatFilter,
+      type: selectedFormat,
       search: searchQuery,
     }),
     sortOption,
@@ -186,9 +159,9 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
             <EventFilter
               id="type-filter"
               label="Format"
-              value={formatFilter}
+              value={selectedFormat}
               onChange={(nextFormat) =>
-                onCatalogPreferenceChange('formatFilter', nextFormat)
+                onCatalogPreferenceChange('selectedFormat', nextFormat)
               }
               count={visibleEvents.length}
               options={typeFilterOptions}
@@ -208,23 +181,10 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
 
 function App() {
   const [events, setEvents] = useState(initialEvents);
-  const [catalogPreferences, setCatalogPreferences] = useState(
-    loadCatalogPreferences,
-  );
-
-  useEffect(() => {
-    window.localStorage.setItem(
-      'catalogPreferences',
-      JSON.stringify(catalogPreferences),
-    );
-  }, [catalogPreferences]);
-
-  const handleCatalogPreferenceChange = (key, value) => {
-    setCatalogPreferences((currentPreferences) => ({
-      ...currentPreferences,
-      [key]: value,
-    }));
-  };
+  const {
+    catalogPreferences,
+    updateCatalogPreference: handleCatalogPreferenceChange,
+  } = useCatalogPreferences();
 
   const handleCreateEvent = (newEvent) => {
     setEvents((currentEvents) => [newEvent, ...currentEvents]);

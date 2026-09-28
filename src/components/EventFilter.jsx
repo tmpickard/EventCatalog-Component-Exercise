@@ -80,7 +80,7 @@ export function filterEvents(events, filters = {}) {
     search = '',
   } = filters;
 
-  const normalizedSearch = search.trim();
+  const normalizedSearch = search.trim().toLowerCase();
   const filteredBySearch =
     normalizedSearch === ''
       ? events
@@ -88,7 +88,8 @@ export function filterEvents(events, filters = {}) {
           const searchableText = [event.name, event.city, event.state]
             .join(' ')
             .replace(/\s+/g, ' ')
-            .trim();
+            .trim()
+            .toLowerCase();
 
           return searchableText.includes(normalizedSearch);
         });
