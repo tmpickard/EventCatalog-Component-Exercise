@@ -1,3 +1,5 @@
+import type { Event, ResultsDensity, SortOption } from '../types/event';
+
 export const sortOptions = [
   { value: 'date-asc', label: 'Date - Earliest First' },
   { value: 'date-desc', label: 'Date - Latest First' },
@@ -5,7 +7,7 @@ export const sortOptions = [
   { value: 'name-desc', label: 'Name Z-A' },
 ];
 
-export function sortEvents(events, sortBy = 'date-asc') {
+export function sortEvents(events: Event[], sortBy: SortOption | 'default' = 'date-asc'): Event[] {
   if (!Array.isArray(events)) {
     return [];
   }
@@ -20,14 +22,24 @@ export function sortEvents(events, sortBy = 'date-asc') {
       return sortedEvents.sort((a, b) => b.name.localeCompare(a.name));
     case 'date-desc':
       return sortedEvents.sort(
-        (a, b) => new Date(b.date) - new Date(a.date),
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
       );
     case 'date-asc':
     default:
       return sortedEvents.sort(
-        (a, b) => new Date(a.date) - new Date(b.date),
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
       );
   }
+}
+
+interface SearchAndSortControlsProps {
+  value: string;
+  onSearchChange: (value: string) => void;
+  sortBy: SortOption;
+  onSortChange: (value: SortOption) => void;
+  density: ResultsDensity;
+  onDensityChange: (value: ResultsDensity) => void;
+  count: number;
 }
 
 export default function SearchAndSortControls({
@@ -38,7 +50,7 @@ export default function SearchAndSortControls({
   density,
   onDensityChange,
   count,
-}) {
+}: SearchAndSortControlsProps) {
   return (
     <div className="search-and-sort-controls">
       <div className="search-field">
@@ -57,7 +69,7 @@ export default function SearchAndSortControls({
         <select
           id="event-sort"
           value={sortBy}
-          onChange={(event) => onSortChange(event.target.value)}
+          onChange={(event) => onSortChange(event.currentTarget.value as SortOption)}
         >
           {sortOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -72,7 +84,7 @@ export default function SearchAndSortControls({
         <select
           id="event-density"
           value={density}
-          onChange={(event) => onDensityChange(event.target.value)}
+          onChange={(event) => onDensityChange(event.currentTarget.value as ResultsDensity)}
         >
           <option value="compact">Compact</option>
           <option value="comfortable">Comfortable</option>

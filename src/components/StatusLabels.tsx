@@ -1,4 +1,6 @@
-export function getEventStatus(event) {
+import type { Event } from '../types/event';
+
+export function getEventStatus(event: Event) {
   if (!event || !event.capacity) {
     return 'Spots Available';
   }
@@ -16,6 +18,10 @@ export function getEventStatus(event) {
   return 'Spots Available';
 }
 
-export default function StatusLabels({ event }) {
+interface StatusLabelsProps {
+  event: Event;
+}
+
+export default function StatusLabels({ event }: StatusLabelsProps) {
   return <span>{getEventStatus(event)}</span>;
 }
