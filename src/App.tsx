@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
-import CreateEventForm from './components/CreateEventForm.jsx';
-import EditEventForm from './components/EditEventForm.jsx';
-import EventCatalog from './components/EventCatalog.jsx';
+import type { CatalogPreferences, Event, EventStatusFilter } from './types/event';
+import CreateEventForm from './components/CreateEventForm';
+import EditEventForm from './components/EditEventForm';
+import EventCatalog from './components/EventCatalog';
 import EventFilter, {
   filterEvents,
   statusFilterOptions,
   typeFilterOptions,
-} from './components/EventFilter.jsx';
-import EventSummary from './components/EventSummary.jsx';
+} from './components/EventFilter';
+import EventSummary from './components/EventSummary';
 import SearchAndSortControls, {
   sortEvents,
-} from './components/SearchAndSortControls.jsx';
-import useCatalogPreferences from './hooks/useCatalogPreferences.jsx';
+} from './components/SearchAndSortControls';
+import useCatalogPreferences from './hooks/useCatalogPreferences';
 
-const initialEvents = [
+const initialEvents: Event[] = [
   {
     id: 1,
     name: 'Seattle Trainer League',
@@ -108,8 +109,17 @@ const initialEvents = [
   },
 ];
 
-function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }) {
-  const [statusFilter, setStatusFilter] = useState('all');
+interface DashboardPageProps {
+  events: Event[];
+  catalogPreferences: CatalogPreferences;
+  onCatalogPreferenceChange: <K extends keyof CatalogPreferences>(
+    key: K,
+    value: CatalogPreferences[K],
+  ) => void;
+}
+
+function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }: DashboardPageProps) {
+  const [statusFilter, setStatusFilter] = useState<EventStatusFilter>('all');
 
   const { selectedFormat, searchQuery, sortOption, resultsDensity } =
     catalogPreferences;
@@ -127,7 +137,7 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
     <>
       <section id="dashboard">
         <h2>Event Dashboard</h2>
-        <EventSummary event={visibleEvents} />
+        <EventSummary events={visibleEvents} />
       </section>
 
       <section id="events">
@@ -180,17 +190,17 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
 }
 
 function App() {
-  const [events, setEvents] = useState(initialEvents);
+  const [events, setEvents] = useState<Event[]>(initialEvents);
   const {
     catalogPreferences,
     updateCatalogPreference: handleCatalogPreferenceChange,
   } = useCatalogPreferences();
 
-  const handleCreateEvent = (newEvent) => {
+  const handleCreateEvent = (newEvent: Event) => {
     setEvents((currentEvents) => [newEvent, ...currentEvents]);
   };
 
-  const handleUpdateEvent = (updatedEvent) => {
+  const handleUpdateEvent = (updatedEvent: Event) => {
     setEvents((currentEvents) =>
       currentEvents.map((event) =>
         event.id === updatedEvent.id ? updatedEvent : event,

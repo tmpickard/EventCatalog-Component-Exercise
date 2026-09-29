@@ -57,25 +57,29 @@ This gives the project a realistic product feel while remaining small enough to 
 - React
 - Vite
 - React Router DOM
-- JavaScript
+- TypeScript
 - CSS
 
 ## Project structure
 
 ```text
 src/
-├── App.jsx
+├── App.tsx
 ├── App.css
 ├── index.css
-├── main.jsx
+├── main.tsx
+├── types/
+│   └── event.ts
 ├── assets/
 └── components/
-    ├── CreateEventForm.jsx
-    ├── EventCard.jsx
-    ├── EventCatalog.jsx
-    ├── EventFilter.jsx
-    ├── EventSummary.jsx
-    └── StatusLabels.jsx
+    ├── CreateEventForm.tsx
+    ├── EditEventForm.tsx
+    ├── EventCard.tsx
+    ├── EventCatalog.tsx
+    ├── EventFilter.tsx
+    ├── EventSummary.tsx
+    ├── SearchAndSortControls.tsx
+    └── StatusLabels.tsx
 ```
 
 ## Getting started
@@ -110,7 +114,6 @@ This project is intentionally designed to grow. Future enhancements could includ
 - API integration
 - Input validation and error handling
 - Unit and UI testing
-- TypeScript migration
 - More advanced dashboard analytics
 
 ## Summary

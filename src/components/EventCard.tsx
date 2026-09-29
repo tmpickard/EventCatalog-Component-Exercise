@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
-import StatusLabels, { getEventStatus } from './StatusLabels.jsx';
+import type { Event, ResultsDensity } from '../types/event';
+import StatusLabels, { getEventStatus } from './StatusLabels';
 
-function EventCard({ event, density = 'compact' }) {
+interface EventCardProps {
+  event: Event;
+  density?: ResultsDensity;
+}
+
+function EventCard({ event, density = 'compact' }: EventCardProps) {
   const status = getEventStatus(event);
   const isCompact = density === 'compact';
 

@@ -1,42 +1,56 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { emptyForm, normalizeEvent } from './CreateEventForm.jsx';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import type { Event, EventFormat, EventFormData } from '../types/event';
 
-function buildFormState(event) {
+export const emptyForm: EventFormData = {
+  name: '',
+  city: '',
+  state: '',
+  date: '',
+  capacity: '',
+  format: 'League',
+};
+
+export function normalizeEvent(event: EventFormData, id = Date.now()): Event {
   return {
-    ...event,
-    capacity: String(event.capacity),
+    id,
+    name: event.name.trim(),
+    city: event.city.trim(),
+    state: event.state.trim().toUpperCase(),
+    date: event.date,
+    capacity: Number(event.capacity),
+    registered: Number(event.registered ?? 0),
+    format: event.format,
   };
 }
 
-export default function EditEventForm({ events, onUpdateEvent }) {
+export function createEvent(event: EventFormData): Event {
+  return normalizeEvent(event, Date.now());
+}
+
+interface CreateEventFormProps {
+  onCreateEvent: (event: Event) => void;
+}
+
+export default function CreateEventForm({ onCreateEvent }: CreateEventFormProps) {
   const navigate = useNavigate();
-  const { eventId } = useParams();
-  const eventToEdit = events.find((event) => event.id === Number(eventId));
+  const [formData, setFormData] = useState(emptyForm);
 
-  const [formData, setFormData] = useState(() =>
-    eventToEdit ? buildFormState(eventToEdit) : emptyForm,
-  );
-
-  useEffect(() => {
-    if (eventToEdit) {
-      setFormData(buildFormState(eventToEdit));
-    }
-  }, [eventToEdit]);
-
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
 
     setFormData((current) => ({
       ...current,
       [name]: value,
+      format: name === 'format' ? (value as EventFormat) : current.format,
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const normalizedEvent = normalizeEvent(formData, eventToEdit.id);
+    const normalizedEvent = createEvent(formData);
 
     if (
       !normalizedEvent.name ||
@@ -50,29 +64,14 @@ export default function EditEventForm({ events, onUpdateEvent }) {
       return;
     }
 
-    onUpdateEvent({
-      ...eventToEdit,
-      ...normalizedEvent,
-      registered: eventToEdit.registered,
-    });
-
+    onCreateEvent(normalizedEvent);
+    setFormData(emptyForm);
     navigate('/');
   };
 
-  if (!eventToEdit) {
-    return (
-      <section className="create-event-page">
-        <h2>Event not found</h2>
-        <button type="button" onClick={() => navigate('/')}>
-          Back to Dashboard
-        </button>
-      </section>
-    );
-  }
-
   return (
     <section className="create-event-page">
-      <h2>Edit Event</h2>
+      <h2>Create a New Event</h2>
 
       <form onSubmit={handleSubmit} className="event-form">
         <label>
@@ -145,7 +144,7 @@ export default function EditEventForm({ events, onUpdateEvent }) {
         </label>
 
         <div className="form-actions">
-          <button type="submit">Save Changes</button>
+          <button type="submit">Create Event</button>
           <button
             type="button"
             className="secondary-button"

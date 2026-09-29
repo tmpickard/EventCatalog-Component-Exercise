@@ -1,19 +1,25 @@
+import type { Event, EventFormatFilter, EventStatusFilter } from '../types/event';
 
-export const statusFilterOptions = [
+interface FilterOption<T extends string> {
+  value: T;
+  label: string;
+}
+
+export const statusFilterOptions: FilterOption<EventStatusFilter>[] = [
   { value: 'all', label: 'All Statuses' },
   { value: 'spots-available', label: 'Spots Available' },
   { value: 'almost-full', label: 'Almost Full' },
   { value: 'full', label: 'Full' },
 ];
 
-export const typeFilterOptions = [
+export const typeFilterOptions: FilterOption<EventFormatFilter>[] = [
   { value: 'all', label: 'All Types' },
   { value: 'league', label: 'League' },
   { value: 'tournament', label: 'Tournament' },
   { value: 'casual', label: 'Casual' },
 ];
 
-export function getEventStatus(event) {
+export function getEventStatus(event: Event): 'Full' | 'Almost Full' | 'Spots Available' {
   const percentRegistered = (event.registered / event.capacity) * 100;
 
   if (percentRegistered >= 100) {
@@ -27,7 +33,7 @@ export function getEventStatus(event) {
   return 'Spots Available';
 }
 
-export function filterEventStatus(events, status) {
+export function filterEventStatus(events: Event[], status: EventStatusFilter): Event[] {
   if (!Array.isArray(events)) {
     return [];
   }
@@ -48,7 +54,7 @@ export function filterEventStatus(events, status) {
   }
 }
 
-export function filterEventType(events, type) {
+export function filterEventType(events: Event[], type: EventFormatFilter): Event[] {
   if (!Array.isArray(events)) {
     return [];
   }
@@ -69,7 +75,13 @@ export function filterEventType(events, type) {
   }
 }
 
-export function filterEvents(events, filters = {}) {
+interface EventFilters {
+  status?: EventStatusFilter;
+  type?: EventFormatFilter;
+  search?: string;
+}
+
+export function filterEvents(events: Event[], filters: EventFilters = {}): Event[] {
   if (!Array.isArray(events)) {
     return [];
   }
@@ -100,14 +112,30 @@ export function filterEvents(events, filters = {}) {
   );
 }
 
-export default function EventFilter({ id, label, value, onChange, count, options }) {
+interface EventFilterProps<T extends string> {
+  id: string;
+  label: string;
+  value: T;
+  onChange: (value: T) => void;
+  count: number;
+  options: FilterOption<T>[];
+}
+
+export default function EventFilter<T extends string>({
+  id,
+  label,
+  value,
+  onChange,
+  count,
+  options,
+}: EventFilterProps<T>) {
   return (
     <div className="event-filter">
       <label htmlFor={id}>{label}</label>
       <select
         id={id}
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onChange={(event) => onChange(event.currentTarget.value as T)}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

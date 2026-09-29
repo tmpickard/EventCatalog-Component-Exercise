@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import type { CatalogPreferences, EventFormatFilter } from '../types/event';
 
-const defaultCatalogPreferences = {
+const defaultCatalogPreferences: CatalogPreferences = {
 	selectedFormat: 'all',
 	searchQuery: '',
 	sortOption: 'date-asc',
@@ -19,7 +20,9 @@ function loadCatalogPreferences() {
 			return defaultCatalogPreferences;
 		}
 
-		const { formatFilter, ...savedPreferences } = JSON.parse(storedPreferences);
+		const { formatFilter, ...savedPreferences } = JSON.parse(storedPreferences) as Partial<CatalogPreferences> & {
+			formatFilter?: EventFormatFilter;
+		};
 
 		return {
 			...defaultCatalogPreferences,
@@ -45,7 +48,10 @@ export default function useCatalogPreferences() {
 		);
 	}, [catalogPreferences]);
 
-	const updateCatalogPreference = (key, value) => {
+	const updateCatalogPreference = <K extends keyof CatalogPreferences>(
+		key: K,
+		value: CatalogPreferences[K],
+	) => {
 		setCatalogPreferences((currentPreferences) => ({
 			...currentPreferences,
 			[key]: value,
