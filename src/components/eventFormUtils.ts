@@ -1,5 +1,9 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
-import type { CreateEventInput, EventFormat } from '../types/event';
+import type { CreateEventInput, Event, EventFormat } from '../types/event';
+
+export type EventFormMode =
+  | { type: 'create' }
+  | { type: 'edit'; event: Event };
 
 export type EventFormValues = Omit<CreateEventInput, 'capacity'> & {
   capacity: string;
