@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import type { Event, EventFormat, EventFormData } from '../types/event';
-import { emptyForm, normalizeEvent } from './CreateEventForm';
+import type { Event } from '../types/event';
+import {
+  emptyForm,
+  handleEventFormChange,
+  toCreateEventInput,
+  type EventFormValues,
+} from './eventForm';
 
-function buildFormState(event: Event): EventFormData {
+function buildFormState(event: Event): EventFormValues {
   return {
     ...event,
     capacity: String(event.capacity),
@@ -21,7 +26,7 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
   const { eventId } = useParams();
   const eventToEdit = events.find((event) => event.id === Number(eventId));
 
-  const [formData, setFormData] = useState(() =>
+  const [formData, setFormData] = useState<EventFormValues>(() =>
     eventToEdit ? buildFormState(eventToEdit) : emptyForm,
   );
 
@@ -31,15 +36,9 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
     }
   }, [eventToEdit]);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = event.target;
-
-    setFormData((current) => ({
-      ...current,
-      [name]: value,
-      format: name === 'format' ? (value as EventFormat) : current.format,
-    }));
-  };
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => handleEventFormChange(event, setFormData);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,15 +47,15 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
       return;
     }
 
-    const normalizedEvent = normalizeEvent(formData, eventToEdit.id);
+    const eventInput = toCreateEventInput(formData);
 
     if (
-      !normalizedEvent.name ||
-      !normalizedEvent.city ||
-      !normalizedEvent.state ||
-      !normalizedEvent.date ||
-      !normalizedEvent.capacity ||
-      normalizedEvent.capacity <= 0
+      !eventInput.name ||
+      !eventInput.city ||
+      !eventInput.state ||
+      !eventInput.date ||
+      !Number.isFinite(eventInput.capacity) ||
+      eventInput.capacity <= 0
     ) {
       window.alert('Please complete all required fields with a valid capacity.');
       return;
@@ -64,8 +63,7 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
 
     onUpdateEvent({
       ...eventToEdit,
-      ...normalizedEvent,
-      registered: eventToEdit.registered,
+      ...eventInput,
     });
 
     navigate('/');
@@ -149,7 +147,11 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
 
         <label>
           Format
-          <select name="format" value={formData.format} onChange={handleChange}>
+          <select
+            name="format"
+            value={formData.format}
+            onChange={handleChange}
+          >
             <option value="League">League</option>
             <option value="Tournament">Tournament</option>
             <option value="Casual">Casual</option>
