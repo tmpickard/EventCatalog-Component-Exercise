@@ -1,70 +1,43 @@
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { Event, EventFormat, EventFormData } from '../types/event';
-
-export const emptyForm: EventFormData = {
-  name: '',
-  city: '',
-  state: '',
-  date: '',
-  capacity: '',
-  format: 'League',
-};
-
-export function normalizeEvent(event: EventFormData, id = Date.now()): Event {
-  return {
-    id,
-    name: event.name.trim(),
-    city: event.city.trim(),
-    state: event.state.trim().toUpperCase(),
-    date: event.date,
-    capacity: Number(event.capacity),
-    registered: Number(event.registered ?? 0),
-    format: event.format,
-  };
-}
-
-export function createEvent(event: EventFormData): Event {
-  return normalizeEvent(event, Date.now());
-}
+import type { CreateEventInput } from '../types/event';
+import {
+  emptyForm,
+  handleEventFormChange,
+  toCreateEventInput,
+  type EventFormValues,
+} from './eventForm';
 
 interface CreateEventFormProps {
-  onCreateEvent: (event: Event) => void;
+  onCreateEvent: (event: CreateEventInput) => void;
 }
 
 export default function CreateEventForm({ onCreateEvent }: CreateEventFormProps) {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState(emptyForm);
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = event.target;
-
-    setFormData((current) => ({
-      ...current,
-      [name]: value,
-      format: name === 'format' ? (value as EventFormat) : current.format,
-    }));
-  };
+  const [formData, setFormData] = useState<EventFormValues>(emptyForm);
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => handleEventFormChange(event, setFormData);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const normalizedEvent = createEvent(formData);
+    const eventInput = toCreateEventInput(formData);
 
     if (
-      !normalizedEvent.name ||
-      !normalizedEvent.city ||
-      !normalizedEvent.state ||
-      !normalizedEvent.date ||
-      !normalizedEvent.capacity ||
-      normalizedEvent.capacity <= 0
+      !eventInput.name ||
+      !eventInput.city ||
+      !eventInput.state ||
+      !eventInput.date ||
+      !Number.isFinite(eventInput.capacity) ||
+      eventInput.capacity <= 0
     ) {
       window.alert('Please complete all required fields with a valid capacity.');
       return;
     }
 
-    onCreateEvent(normalizedEvent);
+    onCreateEvent(eventInput);
     setFormData(emptyForm);
     navigate('/');
   };
@@ -136,7 +109,11 @@ export default function CreateEventForm({ onCreateEvent }: CreateEventFormProps)
 
         <label>
           Format
-          <select name="format" value={formData.format} onChange={handleChange}>
+          <select
+            name="format"
+            value={formData.format}
+            onChange={handleChange}
+          >
             <option value="League">League</option>
             <option value="Tournament">Tournament</option>
             <option value="Casual">Casual</option>

@@ -11,14 +11,13 @@ export interface Event {
   format: EventFormat;
 }
 
-export interface EventFormData {
+export interface CreateEventInput {
   name: string;
   city: string;
   state: string;
   date: string;
-  capacity: string;
+  capacity: number;
   format: EventFormat;
-  registered?: number;
 }
 
 export type EventFormatFilter = 'all' | 'league' | 'tournament' | 'casual';

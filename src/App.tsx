@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
-import type { CatalogPreferences, Event, EventStatusFilter } from './types/event';
+import type {
+  CatalogPreferences,
+  CreateEventInput,
+  Event,
+  EventStatusFilter,
+} from './types/event';
 import CreateEventForm from './components/CreateEventForm';
 import EditEventForm from './components/EditEventForm';
 import EventCatalog from './components/EventCatalog';
@@ -196,7 +201,13 @@ function App() {
     updateCatalogPreference: handleCatalogPreferenceChange,
   } = useCatalogPreferences();
 
-  const handleCreateEvent = (newEvent: Event) => {
+  const handleCreateEvent = (eventInput: CreateEventInput) => {
+    const newEvent: Event = {
+      id: Date.now(),
+      ...eventInput,
+      registered: 0,
+    };
+
     setEvents((currentEvents) => [newEvent, ...currentEvents]);
   };
 
