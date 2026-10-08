@@ -60,7 +60,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
       setFormData(emptyForm);
     }
 
-    navigate('/');
+    navigate('/events');
   };
 
   const isEditing = mode.type === 'edit';
@@ -150,7 +150,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
           <button
             type="button"
             className="secondary-button"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/events')}
           >
             Cancel
           </button>

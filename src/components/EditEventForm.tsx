@@ -16,8 +16,8 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
     return (
       <section className="create-event-page">
         <h2>Event not found</h2>
-        <button type="button" onClick={() => navigate('/')}>
-          Back to Dashboard
+        <button type="button" onClick={() => navigate('/events')}>
+          Back to Event Catalog
         </button>
       </section>
     );
