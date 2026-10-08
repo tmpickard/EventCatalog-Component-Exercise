@@ -197,6 +197,15 @@
   font-weight: 600;
 }
 
+.app-content {
+  padding: 1.5rem;
+}
+
+.request-state {
+  max-width: 36rem;
+  margin: 3rem auto;
+}
+
 .event-toolbar {
   display: flex;
   justify-content: space-between;
