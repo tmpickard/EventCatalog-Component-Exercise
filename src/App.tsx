@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import './App.css';
 import type {
   CatalogPreferences,
   CreateEventInput,
   Event,
+  EventRequestState,
   EventStatusFilter,
 } from './types/event';
 import CreateEventForm from './components/CreateEventForm';
@@ -21,98 +22,62 @@ import SearchAndSortControls, {
 } from './components/SearchAndSortControls';
 import useCatalogPreferences from './hooks/useCatalogPreferences';
 
-const initialEvents: Event[] = [
-  {
-    id: 1,
-    name: 'Seattle Trainer League',
-    city: 'Seattle',
-    state: 'WA',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 27,
-    format: 'League',
-  },
-  {
-    id: 2,
-    name: 'Portland Trainer League',
-    city: 'Portland',
-    state: 'OR',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 31,
-    format: 'League',
-  },
-  {
-    id: 3,
-    name: 'San Francisco Trainer League',
-    city: 'San Francisco',
-    state: 'CA',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 5,
-    format: 'League',
-  },
-  {
-    id: 4,
-    name: 'Los Angeles Trainer League',
-    city: 'Los Angeles',
-    state: 'CA',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 0,
-    format: 'League',
-  },
-  {
-    id: 5,
-    name: 'New York Weekend Tournament',
-    city: 'New York',
-    state: 'NY',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 5,
-    format: 'Tournament',
-  },
-  {
-    id: 6,
-    name: 'Chicago Weekend Tournament',
-    city: 'Chicago',
-    state: 'IL',
-    date: '2026-09-30',
-    capacity: 32,
-    registered: 32,
-    format: 'Tournament',
-  },
-  {
-    id: 7,
-    name: 'Miami Weekend Tournament',
-    city: 'Miami',
-    state: 'FL',
-    date: '2026-09-30',
-    capacity: 32,
-    registered: 25,
-    format: 'Tournament',
-  },
-  {
-    id: 8,
-    name: 'Dallas Weekend Tournament',
-    city: 'Dallas',
-    state: 'TX',
-    date: '2026-10-01',
-    capacity: 32,
-    registered: 0,
-    format: 'Tournament',
-  },
-  {
-    id: 9,
-    name: 'Boston Weekend Meetup',
-    city: 'Boston',
-    state: 'MA',
-    date: '2026-10-02',
-    capacity: 32,
-    registered: 15,
-    format: 'Casual',
-  },
-];
+function isEventFormat(value: unknown): value is Event['format'] {
+  return value === 'League' || value === 'Tournament' || value === 'Casual';
+}
+
+function isEvent(value: unknown): value is Event {
+  if (typeof value !== 'object' || value === null) {
+    return false;
+  }
+
+  const event = value as Record<string, unknown>;
+  const date = event.date;
+  const validDate =
+    typeof date === 'string' &&
+    /^\d{4}-\d{2}-\d{2}$/.test(date) &&
+    !Number.isNaN(Date.parse(date)) &&
+    new Date(date).toISOString().slice(0, 10) === date;
+
+  return (
+    Number.isSafeInteger(event.id) &&
+    typeof event.name === 'string' &&
+    event.name.trim().length > 0 &&
+    typeof event.city === 'string' &&
+    event.city.trim().length > 0 &&
+    typeof event.state === 'string' &&
+    event.state.trim().length > 0 &&
+    validDate &&
+    Number.isSafeInteger(event.capacity) &&
+    Number(event.capacity) > 0 &&
+    Number.isSafeInteger(event.registered) &&
+    Number(event.registered) >= 0 &&
+    Number(event.registered) <= Number(event.capacity) &&
+    isEventFormat(event.format)
+  );
+}
+
+function isEventCollection(value: unknown): value is Event[] {
+  if (!Array.isArray(value) || !value.every(isEvent)) {
+    return false;
+  }
+
+  return new Set(value.map((event) => event.id)).size === value.length;
+}
+
+async function retrieveEvents(signal: AbortSignal): Promise<Event[]> {
+  const response = await fetch('/events.json', { signal });
+  if (!response.ok) {
+    throw new Error(`The events request failed with status ${response.status}.`);
+  }
+
+  const responseData: unknown = await response.json();
+  if (!isEventCollection(responseData)) {
+    throw new Error('The events response did not contain valid event records.');
+  }
+
+  return responseData;
+}
 
 interface DashboardPageProps {
   events: Event[];
@@ -195,11 +160,42 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
 }
 
 function App() {
-  const [events, setEvents] = useState<Event[]>(initialEvents);
+  const [eventRequest, setEventRequest] = useState<EventRequestState>({
+    status: 'loading',
+  });
+  const [retryCount, setRetryCount] = useState(0);
   const {
     catalogPreferences,
     updateCatalogPreference: handleCatalogPreferenceChange,
   } = useCatalogPreferences();
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadEvents() {
+      setEventRequest({ status: 'loading' });
+
+      try {
+        const events = await retrieveEvents(controller.signal);
+        setEventRequest({ status: 'success', events });
+      } catch (error: unknown) {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        setEventRequest({
+          status: 'error',
+          error:
+            error instanceof Error
+              ? error
+              : new Error('An unexpected error occurred while loading events.'),
+        });
+      }
+    }
+
+    void loadEvents();
+    return () => controller.abort();
+  }, [retryCount]);
 
   const handleCreateEvent = (eventInput: CreateEventInput) => {
     const newEvent: Event = {
@@ -208,14 +204,23 @@ function App() {
       registered: 0,
     };
 
-    setEvents((currentEvents) => [newEvent, ...currentEvents]);
+    setEventRequest((current) =>
+      current.status === 'success'
+        ? { status: 'success', events: [newEvent, ...current.events] }
+        : current,
+    );
   };
 
   const handleUpdateEvent = (updatedEvent: Event) => {
-    setEvents((currentEvents) =>
-      currentEvents.map((event) =>
-        event.id === updatedEvent.id ? updatedEvent : event,
-      ),
+    setEventRequest((current) =>
+      current.status === 'success'
+        ? {
+            status: 'success',
+            events: current.events.map((event) =>
+              event.id === updatedEvent.id ? updatedEvent : event,
+            ),
+          }
+        : current,
     );
   };
 
@@ -228,27 +233,98 @@ function App() {
         </nav>
       </header>
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <DashboardPage
-              events={events}
-              catalogPreferences={catalogPreferences}
-              onCatalogPreferenceChange={handleCatalogPreferenceChange}
-            />
-          }
-        />
-        <Route
-          path="/create"
-          element={<CreateEventForm onCreateEvent={handleCreateEvent} />}
-        />
-        <Route
-          path="/edit/:eventId"
-          element={<EditEventForm events={events} onUpdateEvent={handleUpdateEvent} />}
-        />
-      </Routes>
+      <main className="app-content">
+        {eventRequest.status === 'loading' && (
+          <section className="request-state" aria-live="polite">
+            <h1>Community Events</h1>
+            <p>Loading upcoming events...</p>
+          </section>
+        )}
+        {eventRequest.status === 'error' && (
+          <section className="request-state" role="alert">
+            <h1>Unable to Load Events</h1>
+            <p>We couldn&apos;t retrieve the upcoming community events.</p>
+            <p>Please try again.</p>
+            <button type="button" onClick={() => setRetryCount((count) => count + 1)}>
+              Retry
+            </button>
+          </section>
+        )}
+        {eventRequest.status === 'success' && (
+          <>
+            <h1>Community Events</h1>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <DashboardPage
+                    events={eventRequest.events}
+                    catalogPreferences={catalogPreferences}
+                    onCatalogPreferenceChange={handleCatalogPreferenceChange}
+                  />
+                }
+              />
+              <Route
+                path="/create"
+                element={<CreateEventForm onCreateEvent={handleCreateEvent} />}
+              />
+              <Route
+                path="/edit/:eventId"
+                element={
+                  <EditEventForm
+                    events={eventRequest.events}
+                    onUpdateEvent={handleUpdateEvent}
+                  />
+                }
+              />
+              <Route
+                path="/events/:eventId"
+                element={<EventDetailsPage events={eventRequest.events} />}
+              />
+            </Routes>
+          </>
+        )}
+      </main>
     </>
+  );
+}
+
+function EventDetailsPage({ events }: { events: Event[] }) {
+  const navigate = useNavigate();
+  const { eventId } = useParams();
+  const event = events.find((item) => item.id === Number(eventId));
+
+  if (!event) {
+    return (
+      <section className="event-details">
+        <h2>Event not found</h2>
+        <button type="button" onClick={() => navigate('/')}>
+          Back to Dashboard
+        </button>
+      </section>
+    );
+  }
+
+  return (
+    <section className="event-details">
+      <h2>{event.name}</h2>
+      <p>
+        {event.city}, {event.state}
+      </p>
+      <p>{event.date}</p>
+      <p>{event.format}</p>
+      <p>
+        Capacity: {event.registered}/{event.capacity}
+      </p>
+      <div className="form-actions">
+        <Link to={`/edit/${event.id}`} className="button-link">
+          Edit Event
+        </Link>
+        <Link to="/" className="button-link">
+          Back to Dashboard
+        </Link>
+      </div>
+    </section>
   );
 }
 

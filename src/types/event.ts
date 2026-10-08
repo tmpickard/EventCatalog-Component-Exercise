@@ -11,6 +11,11 @@ export interface Event {
   format: EventFormat;
 }
 
+export type EventRequestState =
+  | { status: 'loading' }
+  | { status: 'success'; events: Event[] }
+  | { status: 'error'; error: Error };
+
 export interface CreateEventInput {
   name: string;
   city: string;
