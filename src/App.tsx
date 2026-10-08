@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import type {
   CatalogPreferences,
@@ -11,6 +11,7 @@ import type {
 import CreateEventForm from './components/CreateEventForm';
 import EditEventForm from './components/EditEventForm';
 import EventCatalog from './components/EventCatalog';
+import EventDetails from './components/EventDetails';
 import EventFilter, {
   filterEvents,
   statusFilterOptions,
@@ -228,7 +229,7 @@ function App() {
     <>
       <header className="app-header">
         <nav>
-          <Link to="/">Dashboard</Link>
+          <Link to="/events">Event Catalog</Link>
           <Link to="/create">Create Event</Link>
         </nav>
       </header>
@@ -252,16 +253,19 @@ function App() {
         )}
         {eventRequest.status === 'success' && (
           <>
-            <h1>Community Events</h1>
             <Routes>
+              <Route path="/" element={<Navigate to="/events" replace />} />
               <Route
-                path="/"
+                path="/events"
                 element={
-                  <DashboardPage
-                    events={eventRequest.events}
-                    catalogPreferences={catalogPreferences}
-                    onCatalogPreferenceChange={handleCatalogPreferenceChange}
-                  />
+                  <>
+                    <h1>Community Events</h1>
+                    <DashboardPage
+                      events={eventRequest.events}
+                      catalogPreferences={catalogPreferences}
+                      onCatalogPreferenceChange={handleCatalogPreferenceChange}
+                    />
+                  </>
                 }
               />
               <Route
@@ -279,52 +283,13 @@ function App() {
               />
               <Route
                 path="/events/:eventId"
-                element={<EventDetailsPage events={eventRequest.events} />}
+                element={<EventDetails events={eventRequest.events} />}
               />
             </Routes>
           </>
         )}
       </main>
     </>
-  );
-}
-
-function EventDetailsPage({ events }: { events: Event[] }) {
-  const navigate = useNavigate();
-  const { eventId } = useParams();
-  const event = events.find((item) => item.id === Number(eventId));
-
-  if (!event) {
-    return (
-      <section className="event-details">
-        <h2>Event not found</h2>
-        <button type="button" onClick={() => navigate('/')}>
-          Back to Dashboard
-        </button>
-      </section>
-    );
-  }
-
-  return (
-    <section className="event-details">
-      <h2>{event.name}</h2>
-      <p>
-        {event.city}, {event.state}
-      </p>
-      <p>{event.date}</p>
-      <p>{event.format}</p>
-      <p>
-        Capacity: {event.registered}/{event.capacity}
-      </p>
-      <div className="form-actions">
-        <Link to={`/edit/${event.id}`} className="button-link">
-          Edit Event
-        </Link>
-        <Link to="/" className="button-link">
-          Back to Dashboard
-        </Link>
-      </div>
-    </section>
   );
 }
 
