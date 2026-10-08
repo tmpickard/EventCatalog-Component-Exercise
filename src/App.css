@@ -197,6 +197,25 @@
   font-weight: 600;
 }
 
+.request-status {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+}
+
+.request-status h1 {
+  margin-bottom: 0.5rem;
+}
+
+.request-status button {
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .event-toolbar {
   display: flex;
   justify-content: space-between;

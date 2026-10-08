@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Seattle Trainer League",
+    "city": "Seattle",
+    "state": "WA",
+    "date": "2026-10-17",
+    "capacity": 32,
+    "registered": 27,
+    "format": "League"
+  },
+  {
+    "id": 2,
+    "name": "Portland Trainer League",
+    "city": "Portland",
+    "state": "OR",
+    "date": "2026-10-18",
+    "capacity": 24,
+    "registered": 18,
+    "format": "League"
+  },
+  {
+    "id": 3,
+    "name": "San Francisco Weekend Tournament",
+    "city": "San Francisco",
+    "state": "CA",
+    "date": "2026-10-24",
+    "capacity": 48,
+    "registered": 42,
+    "format": "Tournament"
+  },
+  {
+    "id": 4,
+    "name": "Los Angeles Casual Play",
+    "city": "Los Angeles",
+    "state": "CA",
+    "date": "2026-10-25",
+    "capacity": 20,
+    "registered": 7,
+    "format": "Casual"
+  },
+  {
+    "id": 5,
+    "name": "New York City Trainer League",
+    "city": "New York",
+    "state": "NY",
+    "date": "2026-11-01",
+    "capacity": 36,
+    "registered": 36,
+    "format": "League"
+  },
+  {
+    "id": 6,
+    "name": "Chicago Autumn Championship",
+    "city": "Chicago",
+    "state": "IL",
+    "date": "2026-11-07",
+    "capacity": 64,
+    "registered": 51,
+    "format": "Tournament"
+  },
+  {
+    "id": 7,
+    "name": "Miami Casual Meetup",
+    "city": "Miami",
+    "state": "FL",
+    "date": "2026-11-08",
+    "capacity": 16,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 8,
+    "name": "Dallas Trainer League",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2026-11-14",
+    "capacity": 28,
+    "registered": 12,
+    "format": "League"
+  },
+  {
+    "id": 9,
+    "name": "Boston Weekend Tournament",
+    "city": "Boston",
+    "state": "MA",
+    "date": "2026-11-21",
+    "capacity": 40,
+    "registered": 0,
+    "format": "Tournament"
+  }
+]

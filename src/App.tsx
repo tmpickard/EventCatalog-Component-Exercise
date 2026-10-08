@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import type {
@@ -6,6 +6,7 @@ import type {
   CreateEventInput,
   Event,
   EventStatusFilter,
+  EventsRequestState,
 } from './types/event';
 import CreateEventForm from './components/CreateEventForm';
 import EditEventForm from './components/EditEventForm';
@@ -21,99 +22,7 @@ import SearchAndSortControls, {
   sortEvents,
 } from './components/SearchAndSortControls';
 import useCatalogPreferences from './hooks/useCatalogPreferences';
-
-const initialEvents: Event[] = [
-  {
-    id: 1,
-    name: 'Seattle Trainer League',
-    city: 'Seattle',
-    state: 'WA',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 27,
-    format: 'League',
-  },
-  {
-    id: 2,
-    name: 'Portland Trainer League',
-    city: 'Portland',
-    state: 'OR',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 31,
-    format: 'League',
-  },
-  {
-    id: 3,
-    name: 'San Francisco Trainer League',
-    city: 'San Francisco',
-    state: 'CA',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 5,
-    format: 'League',
-  },
-  {
-    id: 4,
-    name: 'Los Angeles Trainer League',
-    city: 'Los Angeles',
-    state: 'CA',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 0,
-    format: 'League',
-  },
-  {
-    id: 5,
-    name: 'New York Weekend Tournament',
-    city: 'New York',
-    state: 'NY',
-    date: '2026-09-19',
-    capacity: 32,
-    registered: 5,
-    format: 'Tournament',
-  },
-  {
-    id: 6,
-    name: 'Chicago Weekend Tournament',
-    city: 'Chicago',
-    state: 'IL',
-    date: '2026-09-30',
-    capacity: 32,
-    registered: 32,
-    format: 'Tournament',
-  },
-  {
-    id: 7,
-    name: 'Miami Weekend Tournament',
-    city: 'Miami',
-    state: 'FL',
-    date: '2026-09-30',
-    capacity: 32,
-    registered: 25,
-    format: 'Tournament',
-  },
-  {
-    id: 8,
-    name: 'Dallas Weekend Tournament',
-    city: 'Dallas',
-    state: 'TX',
-    date: '2026-10-01',
-    capacity: 32,
-    registered: 0,
-    format: 'Tournament',
-  },
-  {
-    id: 9,
-    name: 'Boston Weekend Meetup',
-    city: 'Boston',
-    state: 'MA',
-    date: '2026-10-02',
-    capacity: 32,
-    registered: 15,
-    format: 'Casual',
-  },
-];
+import validateEvents from './utils/validateEvents';
 
 interface DashboardPageProps {
   events: Event[];
@@ -196,11 +105,51 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
 }
 
 function App() {
-  const [events, setEvents] = useState<Event[]>(initialEvents);
+  const [requestState, setRequestState] = useState<EventsRequestState>({
+    status: 'loading',
+  });
+  const [retryAttempt, setRetryAttempt] = useState(0);
   const {
     catalogPreferences,
     updateCatalogPreference: handleCatalogPreferenceChange,
   } = useCatalogPreferences();
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadEvents() {
+      setRequestState({ status: 'loading' });
+
+      try {
+        const response = await fetch('/events.json', {
+          signal: controller.signal,
+        });
+        if (!response.ok) {
+          throw new Error(`Event request failed with status ${response.status}.`);
+        }
+
+        const payload: unknown = await response.json();
+        setRequestState({
+          status: 'success',
+          events: validateEvents(payload),
+        });
+      } catch (error) {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        setRequestState({
+          status: 'error',
+          error: error instanceof Error
+            ? error
+            : new Error('An unexpected error occurred while loading events.'),
+        });
+      }
+    }
+
+    void loadEvents();
+    return () => controller.abort();
+  }, [retryAttempt]);
 
   const handleCreateEvent = (eventInput: CreateEventInput) => {
     const newEvent: Event = {
@@ -209,16 +158,55 @@ function App() {
       registered: 0,
     };
 
-    setEvents((currentEvents) => [newEvent, ...currentEvents]);
+    setRequestState((currentState) =>
+      currentState.status === 'success'
+        ? { ...currentState, events: [newEvent, ...currentState.events] }
+        : currentState,
+    );
   };
 
   const handleUpdateEvent = (updatedEvent: Event) => {
-    setEvents((currentEvents) =>
-      currentEvents.map((event) =>
-        event.id === updatedEvent.id ? updatedEvent : event,
-      ),
+    setRequestState((currentState) =>
+      currentState.status === 'success'
+        ? {
+            ...currentState,
+            events: currentState.events.map((event) =>
+              event.id === updatedEvent.id ? updatedEvent : event,
+            ),
+          }
+        : currentState,
     );
   };
+
+  if (requestState.status === 'loading') {
+    return (
+      <main className="request-status" aria-live="polite">
+        <h1>Community Events</h1>
+        <p>Loading upcoming events...</p>
+      </main>
+    );
+  }
+
+  if (requestState.status === 'error') {
+    return (
+      <main className="request-status" role="alert">
+        <h1>Unable to Load Events</h1>
+        <p>We couldn't retrieve the upcoming community events.</p>
+        <p>Please try again.</p>
+        <button
+          type="button"
+          onClick={() => {
+            setRequestState({ status: 'loading' });
+            setRetryAttempt((attempt) => attempt + 1);
+          }}
+        >
+          Retry
+        </button>
+      </main>
+    );
+  }
+
+  const { events } = requestState;
 
   return (
     <>
