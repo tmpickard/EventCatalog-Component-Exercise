@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import type {
   CatalogPreferences,
@@ -10,6 +10,7 @@ import type {
 import CreateEventForm from './components/CreateEventForm';
 import EditEventForm from './components/EditEventForm';
 import EventCatalog from './components/EventCatalog';
+import EventDetails from './components/EventDetails';
 import EventFilter, {
   filterEvents,
   statusFilterOptions,
@@ -223,7 +224,7 @@ function App() {
     <>
       <header className="app-header">
         <nav>
-          <Link to="/">Dashboard</Link>
+          <Link to="/events">Event Catalog</Link>
           <Link to="/create">Create Event</Link>
         </nav>
       </header>
@@ -231,6 +232,10 @@ function App() {
       <Routes>
         <Route
           path="/"
+          element={<Navigate to="/events" replace />}
+        />
+        <Route
+          path="/events"
           element={
             <DashboardPage
               events={events}
@@ -238,6 +243,10 @@ function App() {
               onCatalogPreferenceChange={handleCatalogPreferenceChange}
             />
           }
+        />
+        <Route
+          path="/events/:eventId"
+          element={<EventDetails events={events} />}
         />
         <Route
           path="/create"
