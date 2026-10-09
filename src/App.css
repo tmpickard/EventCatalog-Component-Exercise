@@ -197,18 +197,16 @@
   font-weight: 600;
 }
 
-.request-status {
-  display: grid;
-  justify-items: center;
-  gap: 0.75rem;
-  padding: 2rem;
+.app-content {
+  padding: 1.5rem;
 }
 
-.request-status h1 {
-  margin-bottom: 0.5rem;
+.request-state {
+  max-width: 36rem;
+  margin: 3rem auto;
 }
 
-.request-status button {
+.request-state button {
   margin-top: 0.5rem;
   padding: 0.7rem 1rem;
   font: inherit;

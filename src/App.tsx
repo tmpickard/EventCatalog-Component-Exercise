@@ -5,8 +5,8 @@ import type {
   CatalogPreferences,
   CreateEventInput,
   Event,
+  EventRequestState,
   EventStatusFilter,
-  EventsRequestState,
 } from './types/event';
 import CreateEventForm from './components/CreateEventForm';
 import EditEventForm from './components/EditEventForm';
@@ -105,10 +105,10 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
 }
 
 function App() {
-  const [requestState, setRequestState] = useState<EventsRequestState>({
+  const [eventRequest, setEventRequest] = useState<EventRequestState>({
     status: 'loading',
   });
-  const [retryAttempt, setRetryAttempt] = useState(0);
+  const [retryCount, setRetryCount] = useState(0);
   const {
     catalogPreferences,
     updateCatalogPreference: handleCatalogPreferenceChange,
@@ -118,38 +118,39 @@ function App() {
     const controller = new AbortController();
 
     async function loadEvents() {
-      setRequestState({ status: 'loading' });
+      setEventRequest({ status: 'loading' });
 
       try {
         const response = await fetch('/events.json', {
           signal: controller.signal,
         });
         if (!response.ok) {
-          throw new Error(`Event request failed with status ${response.status}.`);
+          throw new Error(`The events request failed with status ${response.status}.`);
         }
 
-        const payload: unknown = await response.json();
-        setRequestState({
+        const responseData: unknown = await response.json();
+        setEventRequest({
           status: 'success',
-          events: validateEvents(payload),
+          events: validateEvents(responseData),
         });
-      } catch (error) {
+      } catch (error: unknown) {
         if (controller.signal.aborted) {
           return;
         }
 
-        setRequestState({
+        setEventRequest({
           status: 'error',
-          error: error instanceof Error
-            ? error
-            : new Error('An unexpected error occurred while loading events.'),
+          error:
+            error instanceof Error
+              ? error
+              : new Error('An unexpected error occurred while loading events.'),
         });
       }
     }
 
     void loadEvents();
     return () => controller.abort();
-  }, [retryAttempt]);
+  }, [retryCount]);
 
   const handleCreateEvent = (eventInput: CreateEventInput) => {
     const newEvent: Event = {
@@ -158,55 +159,25 @@ function App() {
       registered: 0,
     };
 
-    setRequestState((currentState) =>
-      currentState.status === 'success'
-        ? { ...currentState, events: [newEvent, ...currentState.events] }
-        : currentState,
+    setEventRequest((current) =>
+      current.status === 'success'
+        ? { status: 'success', events: [newEvent, ...current.events] }
+        : current,
     );
   };
 
   const handleUpdateEvent = (updatedEvent: Event) => {
-    setRequestState((currentState) =>
-      currentState.status === 'success'
+    setEventRequest((current) =>
+      current.status === 'success'
         ? {
-            ...currentState,
-            events: currentState.events.map((event) =>
+            status: 'success',
+            events: current.events.map((event) =>
               event.id === updatedEvent.id ? updatedEvent : event,
             ),
           }
-        : currentState,
+        : current,
     );
   };
-
-  if (requestState.status === 'loading') {
-    return (
-      <main className="request-status" aria-live="polite">
-        <h1>Community Events</h1>
-        <p>Loading upcoming events...</p>
-      </main>
-    );
-  }
-
-  if (requestState.status === 'error') {
-    return (
-      <main className="request-status" role="alert">
-        <h1>Unable to Load Events</h1>
-        <p>We couldn't retrieve the upcoming community events.</p>
-        <p>Please try again.</p>
-        <button
-          type="button"
-          onClick={() => {
-            setRequestState({ status: 'loading' });
-            setRetryAttempt((attempt) => attempt + 1);
-          }}
-        >
-          Retry
-        </button>
-      </main>
-    );
-  }
-
-  const { events } = requestState;
 
   return (
     <>
@@ -217,34 +188,67 @@ function App() {
         </nav>
       </header>
 
-      <Routes>
-        <Route
-          path="/"
-          element={<Navigate to="/events" replace />}
-        />
-        <Route
-          path="/events"
-          element={
-            <DashboardPage
-              events={events}
-              catalogPreferences={catalogPreferences}
-              onCatalogPreferenceChange={handleCatalogPreferenceChange}
-            />
-          }
-        />
-        <Route
-          path="/events/:eventId"
-          element={<EventDetails events={events} />}
-        />
-        <Route
-          path="/create"
-          element={<CreateEventForm onCreateEvent={handleCreateEvent} />}
-        />
-        <Route
-          path="/edit/:eventId"
-          element={<EditEventForm events={events} onUpdateEvent={handleUpdateEvent} />}
-        />
-      </Routes>
+      <main className="app-content">
+        {eventRequest.status === 'loading' && (
+          <section className="request-state" aria-live="polite">
+            <h1>Community Events</h1>
+            <p>Loading upcoming events...</p>
+          </section>
+        )}
+        {eventRequest.status === 'error' && (
+          <section className="request-state" role="alert">
+            <h1>Unable to Load Events</h1>
+            <p>We couldn&apos;t retrieve the upcoming community events.</p>
+            <p>Please try again.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setEventRequest({ status: 'loading' });
+                setRetryCount((count) => count + 1);
+              }}
+            >
+              Retry
+            </button>
+          </section>
+        )}
+        {eventRequest.status === 'success' && (
+          <>
+            <Routes>
+              <Route path="/" element={<Navigate to="/events" replace />} />
+              <Route
+                path="/events"
+                element={
+                  <>
+                    <h1>Community Events</h1>
+                    <DashboardPage
+                      events={eventRequest.events}
+                      catalogPreferences={catalogPreferences}
+                      onCatalogPreferenceChange={handleCatalogPreferenceChange}
+                    />
+                  </>
+                }
+              />
+              <Route
+                path="/create"
+                element={<CreateEventForm onCreateEvent={handleCreateEvent} />}
+              />
+              <Route
+                path="/edit/:eventId"
+                element={
+                  <EditEventForm
+                    events={eventRequest.events}
+                    onUpdateEvent={handleUpdateEvent}
+                  />
+                }
+              />
+              <Route
+                path="/events/:eventId"
+                element={<EventDetails events={eventRequest.events} />}
+              />
+            </Routes>
+          </>
+        )}
+      </main>
     </>
   );
 }

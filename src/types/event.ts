@@ -11,7 +11,7 @@ export interface Event {
   format: EventFormat;
 }
 
-export type EventsRequestState =
+export type EventRequestState =
   | { status: 'loading' }
   | { status: 'success'; events: Event[] }
   | { status: 'error'; error: Error };

@@ -35,9 +35,6 @@ function EventCard({ event, density = 'compact' }: EventCardProps) {
       )}
 
       <div className="form-actions">
-        <Link to={`/events/${event.id}`} className="button-link">
-          View Details
-        </Link>
         <Link to={`/edit/${event.id}`} className="button-link">
           Edit Event
         </Link>
