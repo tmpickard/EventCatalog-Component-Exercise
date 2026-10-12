@@ -11,10 +11,10 @@ export interface Event {
   format: EventFormat;
 }
 
-export type EventRequestState =
-  | { status: 'loading' }
-  | { status: 'success'; events: Event[] }
-  | { status: 'error'; error: Error };
+export type EventUpdate = Pick<
+  Event,
+  'name' | 'city' | 'state' | 'date' | 'capacity' | 'format'
+>;
 
 export interface CreateEventInput {
   name: string;
