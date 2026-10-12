@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import type {
   CatalogPreferences,
   CreateEventInput,
   Event,
-  EventRequestState,
+  EventUpdate,
   EventStatusFilter,
 } from './types/event';
 import CreateEventForm from './components/CreateEventForm';
@@ -22,18 +22,26 @@ import SearchAndSortControls, {
   sortEvents,
 } from './components/SearchAndSortControls';
 import useCatalogPreferences from './hooks/useCatalogPreferences';
+import eventReducer from './state/eventReducer';
+import type { EventState } from './state/eventReducer';
 import validateEvents from './utils/validateEvents';
 
 interface DashboardPageProps {
   events: Event[];
   catalogPreferences: CatalogPreferences;
+  onResetEvents: () => void;
   onCatalogPreferenceChange: <K extends keyof CatalogPreferences>(
     key: K,
     value: CatalogPreferences[K],
   ) => void;
 }
 
-function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }: DashboardPageProps) {
+function DashboardPage({
+  events,
+  catalogPreferences,
+  onResetEvents,
+  onCatalogPreferenceChange,
+}: DashboardPageProps) {
   const [statusFilter, setStatusFilter] = useState<EventStatusFilter>('all');
 
   const { selectedFormat, searchQuery, sortOption, resultsDensity } =
@@ -96,6 +104,9 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
           <Link to="/create" className="button-link">
             Create Event
           </Link>
+          <button type="button" className="secondary-button" onClick={onResetEvents}>
+            Reset Events
+          </button>
         </div>
 
         <EventCatalog events={visibleEvents} density={resultsDensity} />
@@ -105,10 +116,12 @@ function DashboardPage({ events, catalogPreferences, onCatalogPreferenceChange }
 }
 
 function App() {
-  const [eventRequest, setEventRequest] = useState<EventRequestState>({
-    status: 'loading',
-  });
+  const [eventRequest, dispatch] = useReducer(
+    eventReducer,
+    { status: 'loading', requestId: 0 } satisfies EventState,
+  );
   const [retryCount, setRetryCount] = useState(0);
+  const requestIdRef = useRef(0);
   const {
     catalogPreferences,
     updateCatalogPreference: handleCatalogPreferenceChange,
@@ -116,10 +129,10 @@ function App() {
 
   useEffect(() => {
     const controller = new AbortController();
+    const requestId = ++requestIdRef.current;
+    dispatch({ type: 'loadStarted', requestId });
 
     async function loadEvents() {
-      setEventRequest({ status: 'loading' });
-
       try {
         const response = await fetch('/events.json', {
           signal: controller.signal,
@@ -129,8 +142,9 @@ function App() {
         }
 
         const responseData: unknown = await response.json();
-        setEventRequest({
-          status: 'success',
+        dispatch({
+          type: 'loadSucceeded',
+          requestId,
           events: validateEvents(responseData),
         });
       } catch (error: unknown) {
@@ -138,8 +152,9 @@ function App() {
           return;
         }
 
-        setEventRequest({
-          status: 'error',
+        dispatch({
+          type: 'loadFailed',
+          requestId,
           error:
             error instanceof Error
               ? error
@@ -159,24 +174,19 @@ function App() {
       registered: 0,
     };
 
-    setEventRequest((current) =>
-      current.status === 'success'
-        ? { status: 'success', events: [newEvent, ...current.events] }
-        : current,
-    );
+    dispatch({ type: 'eventCreated', event: newEvent });
   };
 
   const handleUpdateEvent = (updatedEvent: Event) => {
-    setEventRequest((current) =>
-      current.status === 'success'
-        ? {
-            status: 'success',
-            events: current.events.map((event) =>
-              event.id === updatedEvent.id ? updatedEvent : event,
-            ),
-          }
-        : current,
-    );
+    const changes: EventUpdate = {
+      name: updatedEvent.name,
+      city: updatedEvent.city,
+      state: updatedEvent.state,
+      date: updatedEvent.date,
+      capacity: updatedEvent.capacity,
+      format: updatedEvent.format,
+    };
+    dispatch({ type: 'eventUpdated', eventId: updatedEvent.id, changes });
   };
 
   return (
@@ -202,10 +212,7 @@ function App() {
             <p>Please try again.</p>
             <button
               type="button"
-              onClick={() => {
-                setEventRequest({ status: 'loading' });
-                setRetryCount((count) => count + 1);
-              }}
+              onClick={() => setRetryCount((count) => count + 1)}
             >
               Retry
             </button>
@@ -223,6 +230,7 @@ function App() {
                     <DashboardPage
                       events={eventRequest.events}
                       catalogPreferences={catalogPreferences}
+                      onResetEvents={() => dispatch({ type: 'eventsReset' })}
                       onCatalogPreferenceChange={handleCatalogPreferenceChange}
                     />
                   </>
