@@ -117,7 +117,6 @@ interface EventFilterProps<T extends string> {
   label: string;
   value: T;
   onChange: (value: T) => void;
-  count: number;
   options: FilterOption<T>[];
 }
 
@@ -126,7 +125,6 @@ export default function EventFilter<T extends string>({
   label,
   value,
   onChange,
-  count,
   options,
 }: EventFilterProps<T>) {
   return (
@@ -143,8 +141,6 @@ export default function EventFilter<T extends string>({
           </option>
         ))}
       </select>
-
-      <span>{count} event{count === 1 ? '' : 's'}</span>
     </div>
   );
 }

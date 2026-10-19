@@ -3,13 +3,21 @@ import EventCard from './EventCard';
 
 interface EventCatalogProps {
   events: Event[];
+  totalCount: number;
   density?: ResultsDensity;
 }
 
-function EventCatalog({ events, density = 'compact' }: EventCatalogProps) {
+function EventCatalog({
+  events,
+  totalCount,
+  density = 'compact',
+}: EventCatalogProps) {
   return (
     <section>
       <h2>Upcoming Events</h2>
+      <p className="event-results-status" role="status" aria-atomic="true">
+        Showing {events.length} of {totalCount} events.
+      </p>
 
       {events.map((event) => (
         <EventCard

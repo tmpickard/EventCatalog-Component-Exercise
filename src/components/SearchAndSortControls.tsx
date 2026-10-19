@@ -39,7 +39,6 @@ interface SearchAndSortControlsProps {
   onSortChange: (value: SortOption) => void;
   density: ResultsDensity;
   onDensityChange: (value: ResultsDensity) => void;
-  count: number;
 }
 
 export default function SearchAndSortControls({
@@ -49,7 +48,6 @@ export default function SearchAndSortControls({
   onSortChange,
   density,
   onDensityChange,
-  count,
 }: SearchAndSortControlsProps) {
   return (
     <div className="search-and-sort-controls">
@@ -91,7 +89,6 @@ export default function SearchAndSortControls({
         </select>
       </div>
 
-      <span>{count} event{count === 1 ? '' : 's'}</span>
     </div>
   );
 }
