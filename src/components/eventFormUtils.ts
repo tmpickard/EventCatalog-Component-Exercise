@@ -1,4 +1,4 @@
-import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import type { ChangeEvent } from 'react';
 import type { CreateEventInput, Event, EventFormat } from '../types/event';
 
 export type EventFormMode =
@@ -8,6 +8,9 @@ export type EventFormMode =
 export type EventFormValues = Omit<CreateEventInput, 'capacity'> & {
   capacity: string;
 };
+
+export type EventFormField = 'name' | 'city' | 'state' | 'date' | 'capacity';
+export type EventFormErrors = Partial<Record<EventFormField, string>>;
 
 export const emptyForm: EventFormValues = {
   name: '',
@@ -24,23 +27,28 @@ function isEventFormat(value: string): value is EventFormat {
 
 export function handleEventFormChange(
   event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  setFormValues: Dispatch<SetStateAction<EventFormValues>>,
-) {
+  currentValues: EventFormValues,
+): EventFormValues {
   const { name, value } = event.target;
 
   switch (name) {
     case 'name':
+      return { ...currentValues, name: value };
     case 'city':
+      return { ...currentValues, city: value };
     case 'state':
+      return { ...currentValues, state: value };
     case 'date':
+      return { ...currentValues, date: value };
     case 'capacity':
-      setFormValues((current) => ({ ...current, [name]: value }));
-      break;
+      return { ...currentValues, capacity: value };
     case 'format':
       if (isEventFormat(value)) {
-        setFormValues((current) => ({ ...current, format: value }));
+        return { ...currentValues, format: value };
       }
-      break;
+      return currentValues;
+    default:
+      return currentValues;
   }
 }
 

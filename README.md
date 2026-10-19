@@ -52,6 +52,15 @@ This gives the project a realistic product feel while remaining small enough to 
 - Uses React Router to move between views
 - Keeps the app feeling like a small multi-page interface without a backend
 
+## Accessibility
+
+- Navigation and event-detail actions use links; actions such as submitting a form, retrying a request, and resetting the catalog use buttons.
+- All event form controls have associated labels. Submitting invalid data displays field-specific errors, exposes each affected control's invalid state and error description to assistive technology, and moves focus to the first invalid control. Editing a value updates its error information.
+- Keyboard users can reach and operate links, buttons, search and filter controls, and form fields using standard browser keyboard interaction. Focus indicators remain visible; route changes move focus to the new page heading, and returning from event details restores focus to that event's details link when it is still displayed.
+- Page titles reflect the current route. Loading, request failures, catalog result counts, and successful create/edit operations are announced through concise live regions.
+
+Known limitations: announcements and keyboard focus have not been tested against every browser and screen reader combination. If the originating event is no longer displayed when returning from its details page, focus falls back to the catalog heading.
+
 ## Tech stack
 
 - React

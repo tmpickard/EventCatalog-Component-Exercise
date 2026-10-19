@@ -15,7 +15,7 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
   if (!eventToEdit) {
     return (
       <section className="create-event-page">
-        <h2>Event not found</h2>
+        <h1 tabIndex={-1}>Event not found</h1>
         <button type="button" onClick={() => navigate('/events')}>
           Back to Event Catalog
         </button>
@@ -25,6 +25,7 @@ export default function EditEventForm({ events, onUpdateEvent }: EditEventFormPr
 
   return (
     <EventForm
+      key={eventToEdit.id}
       mode={{ type: 'edit', event: eventToEdit }}
       onSubmit={(eventInput) =>
         onUpdateEvent({

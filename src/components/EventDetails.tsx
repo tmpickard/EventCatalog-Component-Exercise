@@ -24,7 +24,7 @@ function EventDetails({ events }: EventDetailsProps) {
   if (!event) {
     return (
       <section className="create-event-page">
-        <h2>Event not found</h2>
+        <h1 tabIndex={-1}>Event not found</h1>
         <p>The event address may be invalid, or the event may no longer exist.</p>
         <Link to="/events" className="button-link">
           Back to Event Catalog
@@ -34,11 +34,15 @@ function EventDetails({ events }: EventDetailsProps) {
   }
 
   return (
-    <main className="event-details">
-      <Link to="/events" className="button-link">
+    <section className="event-details">
+      <Link
+        to="/events"
+        state={{ focusEventId: event.id }}
+        className="button-link"
+      >
         Back to Event Catalog
       </Link>
-      <h1>{event.name}</h1>
+      <h1 tabIndex={-1}>{event.name}</h1>
       <dl>
         <div>
           <dt>Date</dt>
@@ -65,7 +69,7 @@ function EventDetails({ events }: EventDetailsProps) {
           <dd>{event.capacity - event.registered}</dd>
         </div>
       </dl>
-    </main>
+    </section>
   );
 }
 

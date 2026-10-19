@@ -197,8 +197,21 @@
   font-weight: 600;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+h1:focus {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
+}
+
 .app-content {
   padding: 1.5rem;
+}
+
+.event-results-status {
+  margin: 0.5rem 0 1rem;
 }
 
 .request-state {
@@ -257,10 +270,24 @@
   text-align: left;
 }
 
-.event-form label {
+.event-form .form-field {
   display: grid;
   gap: 0.35rem;
+}
+
+.event-form label {
   font-weight: 600;
+}
+
+.field-error {
+  color: #b42318;
+  font-weight: 400;
+}
+
+@media (prefers-color-scheme: dark) {
+  .field-error {
+    color: #ff8a80;
+  }
 }
 
 .event-form input,

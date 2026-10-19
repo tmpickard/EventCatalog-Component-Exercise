@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { CreateEventInput, Event } from '../types/event';
@@ -7,6 +7,8 @@ import {
   handleEventFormChange,
   toCreateEventInput,
   type EventFormMode,
+  type EventFormField,
+  type EventFormErrors,
   type EventFormValues,
 } from './eventFormUtils';
 
@@ -22,38 +24,86 @@ function buildFormState(event: Event): EventFormValues {
   };
 }
 
+function validateEventForm(values: EventFormValues): EventFormErrors {
+  const errors: EventFormErrors = {};
+
+  if (!values.name.trim()) {
+    errors.name = 'Enter an event name.';
+  }
+  if (!values.city.trim()) {
+    errors.city = 'Enter a city.';
+  }
+  if (!values.state.trim()) {
+    errors.state = 'Enter a state.';
+  }
+  if (!values.date) {
+    errors.date = 'Choose a date.';
+  }
+  if (!values.capacity.trim()) {
+    errors.capacity = 'Enter a capacity.';
+  } else if (!Number.isFinite(Number(values.capacity)) || Number(values.capacity) <= 0) {
+    errors.capacity = 'Capacity must be greater than zero.';
+  }
+
+  return errors;
+}
+
+const fieldsInFormOrder: EventFormField[] = [
+  'name',
+  'city',
+  'state',
+  'date',
+  'capacity',
+];
+
 export default function EventForm({ mode, onSubmit }: EventFormProps) {
   const navigate = useNavigate();
   const editingEvent = mode.type === 'edit' ? mode.event : undefined;
   const [formData, setFormData] = useState<EventFormValues>(() =>
     editingEvent ? buildFormState(editingEvent) : emptyForm,
   );
+  const [errors, setErrors] = useState<EventFormErrors>({});
+  const [focusRequest, setFocusRequest] = useState(0);
+  const fieldRefs = useRef<
+    Partial<Record<EventFormField, HTMLInputElement>>
+  >({});
 
   useEffect(() => {
-    setFormData(editingEvent ? buildFormState(editingEvent) : emptyForm);
-  }, [editingEvent]);
+    if (focusRequest === 0) {
+      return;
+    }
+
+    const firstInvalidField = fieldsInFormOrder.find((field) => errors[field]);
+    if (firstInvalidField) {
+      fieldRefs.current[firstInvalidField]?.focus();
+    }
+  }, [errors, focusRequest]);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => handleEventFormChange(event, setFormData);
+  ) => {
+    const nextFormData = handleEventFormChange(event, formData);
+    setFormData(nextFormData);
+    setErrors((currentErrors) =>
+      Object.keys(currentErrors).length === 0
+        ? currentErrors
+        : validateEventForm(nextFormData),
+    );
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const eventInput = toCreateEventInput(formData);
-
-    if (
-      !eventInput.name ||
-      !eventInput.city ||
-      !eventInput.state ||
-      !eventInput.date ||
-      !Number.isFinite(eventInput.capacity) ||
-      eventInput.capacity <= 0
-    ) {
-      window.alert('Please complete all required fields with a valid capacity.');
+    const nextErrors = validateEventForm(formData);
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      setFocusRequest((request) => request + 1);
       return;
     }
 
+    const eventInput = toCreateEventInput(formData);
+
+    setErrors({});
     onSubmit(eventInput);
 
     if (mode.type === 'create') {
@@ -67,72 +117,128 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
 
   return (
     <section className="create-event-page">
-      <h2>{isEditing ? 'Edit Event' : 'Create a New Event'}</h2>
+      <h1 tabIndex={-1}>{isEditing ? 'Edit Event' : 'Create a New Event'}</h1>
 
-      <form onSubmit={handleSubmit} className="event-form">
-        <label>
-          Event name
+      <form onSubmit={handleSubmit} className="event-form" noValidate>
+        <div className="form-field">
+          <label htmlFor="event-name">Event name</label>
           <input
+            id="event-name"
             type="text"
             name="name"
+            ref={(element) => {
+              fieldRefs.current.name = element ?? undefined;
+            }}
             value={formData.name}
             onChange={handleChange}
             placeholder="Trainer League"
             required
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? 'event-name-error' : undefined}
           />
-        </label>
+          {errors.name && (
+            <span className="field-error" id="event-name-error">
+              Error: {errors.name}
+            </span>
+          )}
+        </div>
 
-        <label>
-          City
+        <div className="form-field">
+          <label htmlFor="event-city">City</label>
           <input
+            id="event-city"
             type="text"
             name="city"
+            ref={(element) => {
+              fieldRefs.current.city = element ?? undefined;
+            }}
             value={formData.city}
             onChange={handleChange}
             placeholder="Seattle"
             required
+            aria-invalid={errors.city ? true : undefined}
+            aria-describedby={errors.city ? 'event-city-error' : undefined}
           />
-        </label>
+          {errors.city && (
+            <span className="field-error" id="event-city-error">
+              Error: {errors.city}
+            </span>
+          )}
+        </div>
 
-        <label>
-          State
+        <div className="form-field">
+          <label htmlFor="event-state">State</label>
           <input
+            id="event-state"
             type="text"
             name="state"
+            ref={(element) => {
+              fieldRefs.current.state = element ?? undefined;
+            }}
             value={formData.state}
             onChange={handleChange}
             placeholder="WA"
             maxLength={2}
             required
+            aria-invalid={errors.state ? true : undefined}
+            aria-describedby={errors.state ? 'event-state-error' : undefined}
           />
-        </label>
+          {errors.state && (
+            <span className="field-error" id="event-state-error">
+              Error: {errors.state}
+            </span>
+          )}
+        </div>
 
-        <label>
-          Date
+        <div className="form-field">
+          <label htmlFor="event-date">Date</label>
           <input
+            id="event-date"
             type="date"
             name="date"
+            ref={(element) => {
+              fieldRefs.current.date = element ?? undefined;
+            }}
             value={formData.date}
             onChange={handleChange}
             required
+            aria-invalid={errors.date ? true : undefined}
+            aria-describedby={errors.date ? 'event-date-error' : undefined}
           />
-        </label>
+          {errors.date && (
+            <span className="field-error" id="event-date-error">
+              Error: {errors.date}
+            </span>
+          )}
+        </div>
 
-        <label>
-          Capacity
+        <div className="form-field">
+          <label htmlFor="event-capacity">Capacity</label>
           <input
+            id="event-capacity"
             type="number"
             name="capacity"
+            ref={(element) => {
+              fieldRefs.current.capacity = element ?? undefined;
+            }}
             value={formData.capacity}
             onChange={handleChange}
             min="1"
             required
+            aria-invalid={errors.capacity ? true : undefined}
+            aria-describedby={errors.capacity ? 'event-capacity-error' : undefined}
           />
-        </label>
+          {errors.capacity && (
+            <span className="field-error" id="event-capacity-error">
+              Error: {errors.capacity}
+            </span>
+          )}
+        </div>
 
-        <label>
-          Format
+        <div className="form-field">
+          <label htmlFor="event-format">Format</label>
           <select
+            id="event-format"
             name="format"
             value={formData.format}
             onChange={handleChange}
@@ -141,7 +247,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
             <option value="Tournament">Tournament</option>
             <option value="Casual">Casual</option>
           </select>
-        </label>
+        </div>
 
         <div className="form-actions">
           <button type="submit">
