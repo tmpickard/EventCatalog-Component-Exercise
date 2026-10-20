@@ -88,5 +88,4915 @@
     "capacity": 16,
     "registered": 11,
     "format": "Casual"
+  },
+  {
+    "id": 10,
+    "name": "Atlanta League 010",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2026-10-26",
+    "capacity": 56,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 11,
+    "name": "Baltimore Tournament 011",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2026-10-27",
+    "capacity": 48,
+    "registered": 45,
+    "format": "Tournament"
+  },
+  {
+    "id": 12,
+    "name": "Charlotte Casual 012",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2026-10-28",
+    "capacity": 40,
+    "registered": 33,
+    "format": "Casual"
+  },
+  {
+    "id": 13,
+    "name": "Columbus League 013",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2026-10-29",
+    "capacity": 32,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 14,
+    "name": "Dallas Tournament 014",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2026-10-30",
+    "capacity": 24,
+    "registered": 7,
+    "format": "Tournament"
+  },
+  {
+    "id": 15,
+    "name": "Detroit Casual 015",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2026-10-31",
+    "capacity": 20,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 16,
+    "name": "Honolulu League 016",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2026-11-01",
+    "capacity": 16,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 17,
+    "name": "Las Vegas Tournament 017",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2026-11-02",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 18,
+    "name": "Minneapolis Casual 018",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2026-11-03",
+    "capacity": 56,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 19,
+    "name": "Nashville League 019",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2026-11-04",
+    "capacity": 48,
+    "registered": 2,
+    "format": "League"
+  },
+  {
+    "id": 20,
+    "name": "Philadelphia Tournament 020",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2026-11-05",
+    "capacity": 40,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 21,
+    "name": "Phoenix Casual 021",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2026-11-06",
+    "capacity": 32,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 22,
+    "name": "Pittsburgh League 022",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2026-11-07",
+    "capacity": 24,
+    "registered": 11,
+    "format": "League"
+  },
+  {
+    "id": 23,
+    "name": "Raleigh Tournament 023",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2026-11-08",
+    "capacity": 20,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 24,
+    "name": "Sacramento Casual 024",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2026-11-09",
+    "capacity": 16,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 25,
+    "name": "Salt Lake City League 025",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2026-11-10",
+    "capacity": 64,
+    "registered": 0,
+    "format": "League"
+  },
+  {
+    "id": 26,
+    "name": "San Diego Tournament 026",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2026-11-11",
+    "capacity": 56,
+    "registered": 53,
+    "format": "Tournament"
+  },
+  {
+    "id": 27,
+    "name": "Tampa Casual 027",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2026-11-12",
+    "capacity": 48,
+    "registered": 8,
+    "format": "Casual"
+  },
+  {
+    "id": 28,
+    "name": "Washington League 028",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2026-11-13",
+    "capacity": 40,
+    "registered": 36,
+    "format": "League"
+  },
+  {
+    "id": 29,
+    "name": "Wichita Tournament 029",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2026-11-14",
+    "capacity": 32,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 30,
+    "name": "Atlanta Casual 030",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2026-11-15",
+    "capacity": 24,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 31,
+    "name": "Baltimore League 031",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2026-11-16",
+    "capacity": 20,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 32,
+    "name": "Charlotte Tournament 032",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2026-11-17",
+    "capacity": 16,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 33,
+    "name": "Columbus Casual 033",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2026-11-18",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Casual"
+  },
+  {
+    "id": 34,
+    "name": "Dallas League 034",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2026-11-19",
+    "capacity": 56,
+    "registered": 43,
+    "format": "League"
+  },
+  {
+    "id": 35,
+    "name": "Detroit Tournament 035",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2026-11-20",
+    "capacity": 48,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 36,
+    "name": "Honolulu Casual 036",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2026-11-21",
+    "capacity": 40,
+    "registered": 17,
+    "format": "Casual"
+  },
+  {
+    "id": 37,
+    "name": "Las Vegas League 037",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2026-11-22",
+    "capacity": 32,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 38,
+    "name": "Minneapolis Tournament 038",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2026-11-23",
+    "capacity": 24,
+    "registered": 19,
+    "format": "Tournament"
+  },
+  {
+    "id": 39,
+    "name": "Nashville Casual 039",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2026-11-24",
+    "capacity": 20,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 40,
+    "name": "Philadelphia League 040",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2026-11-25",
+    "capacity": 16,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 41,
+    "name": "Phoenix Tournament 041",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2026-11-26",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 42,
+    "name": "Pittsburgh Casual 042",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2026-11-27",
+    "capacity": 56,
+    "registered": 33,
+    "format": "Casual"
+  },
+  {
+    "id": 43,
+    "name": "Raleigh League 043",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2026-11-28",
+    "capacity": 48,
+    "registered": 20,
+    "format": "League"
+  },
+  {
+    "id": 44,
+    "name": "Sacramento Tournament 044",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2026-11-29",
+    "capacity": 40,
+    "registered": 39,
+    "format": "Tournament"
+  },
+  {
+    "id": 45,
+    "name": "Salt Lake City Casual 045",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2026-11-30",
+    "capacity": 32,
+    "registered": 24,
+    "format": "Casual"
+  },
+  {
+    "id": 46,
+    "name": "San Diego League 046",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2026-12-01",
+    "capacity": 24,
+    "registered": 23,
+    "format": "League"
+  },
+  {
+    "id": 47,
+    "name": "Tampa Tournament 047",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2026-12-02",
+    "capacity": 20,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 48,
+    "name": "Washington Casual 048",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2026-12-03",
+    "capacity": 16,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 49,
+    "name": "Wichita League 049",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2026-12-04",
+    "capacity": 64,
+    "registered": 52,
+    "format": "League"
+  },
+  {
+    "id": 50,
+    "name": "Atlanta Tournament 050",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2026-12-05",
+    "capacity": 56,
+    "registered": 23,
+    "format": "Tournament"
+  },
+  {
+    "id": 51,
+    "name": "Baltimore Casual 051",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2026-12-06",
+    "capacity": 48,
+    "registered": 26,
+    "format": "Casual"
+  },
+  {
+    "id": 52,
+    "name": "Charlotte League 052",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2026-12-07",
+    "capacity": 40,
+    "registered": 20,
+    "format": "League"
+  },
+  {
+    "id": 53,
+    "name": "Columbus Tournament 053",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2026-12-08",
+    "capacity": 32,
+    "registered": 29,
+    "format": "Tournament"
+  },
+  {
+    "id": 54,
+    "name": "Dallas Casual 054",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2026-12-09",
+    "capacity": 24,
+    "registered": 2,
+    "format": "Casual"
+  },
+  {
+    "id": 55,
+    "name": "Detroit League 055",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2026-12-10",
+    "capacity": 20,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 56,
+    "name": "Honolulu Tournament 056",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2026-12-11",
+    "capacity": 16,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 57,
+    "name": "Las Vegas Casual 057",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2026-12-12",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Casual"
+  },
+  {
+    "id": 58,
+    "name": "Minneapolis League 058",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2026-12-13",
+    "capacity": 56,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 59,
+    "name": "Nashville Tournament 059",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2026-12-14",
+    "capacity": 48,
+    "registered": 32,
+    "format": "Tournament"
+  },
+  {
+    "id": 60,
+    "name": "Philadelphia Casual 060",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2026-12-15",
+    "capacity": 40,
+    "registered": 1,
+    "format": "Casual"
+  },
+  {
+    "id": 61,
+    "name": "Phoenix League 061",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2026-12-16",
+    "capacity": 32,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 62,
+    "name": "Pittsburgh Tournament 062",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2026-12-17",
+    "capacity": 24,
+    "registered": 6,
+    "format": "Tournament"
+  },
+  {
+    "id": 63,
+    "name": "Raleigh Casual 063",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2026-12-18",
+    "capacity": 20,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 64,
+    "name": "Sacramento League 064",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2026-12-19",
+    "capacity": 16,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 65,
+    "name": "Salt Lake City Tournament 065",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2026-12-20",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Tournament"
+  },
+  {
+    "id": 66,
+    "name": "San Diego Casual 066",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2026-12-21",
+    "capacity": 56,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 67,
+    "name": "Tampa League 067",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2026-12-22",
+    "capacity": 48,
+    "registered": 38,
+    "format": "League"
+  },
+  {
+    "id": 68,
+    "name": "Washington Tournament 068",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2026-12-23",
+    "capacity": 40,
+    "registered": 23,
+    "format": "Tournament"
+  },
+  {
+    "id": 69,
+    "name": "Wichita Casual 069",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2026-12-24",
+    "capacity": 32,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 70,
+    "name": "Atlanta League 070",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2026-12-25",
+    "capacity": 24,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 71,
+    "name": "Baltimore Tournament 071",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2026-12-26",
+    "capacity": 20,
+    "registered": 20,
+    "format": "Tournament"
+  },
+  {
+    "id": 72,
+    "name": "Charlotte Casual 072",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2026-12-27",
+    "capacity": 16,
+    "registered": 1,
+    "format": "Casual"
+  },
+  {
+    "id": 73,
+    "name": "Columbus League 073",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2026-12-28",
+    "capacity": 64,
+    "registered": 39,
+    "format": "League"
+  },
+  {
+    "id": 74,
+    "name": "Dallas Tournament 074",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2026-12-29",
+    "capacity": 56,
+    "registered": 50,
+    "format": "Tournament"
+  },
+  {
+    "id": 75,
+    "name": "Detroit Casual 075",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2026-12-30",
+    "capacity": 48,
+    "registered": 44,
+    "format": "Casual"
+  },
+  {
+    "id": 76,
+    "name": "Honolulu League 076",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2026-12-31",
+    "capacity": 40,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 77,
+    "name": "Las Vegas Tournament 077",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-01-01",
+    "capacity": 32,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 78,
+    "name": "Minneapolis Casual 078",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-01-02",
+    "capacity": 24,
+    "registered": 14,
+    "format": "Casual"
+  },
+  {
+    "id": 79,
+    "name": "Nashville League 079",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-01-03",
+    "capacity": 20,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 80,
+    "name": "Philadelphia Tournament 080",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-01-04",
+    "capacity": 16,
+    "registered": 3,
+    "format": "Tournament"
+  },
+  {
+    "id": 81,
+    "name": "Phoenix Casual 081",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-01-05",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Casual"
+  },
+  {
+    "id": 82,
+    "name": "Pittsburgh League 082",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-01-06",
+    "capacity": 56,
+    "registered": 40,
+    "format": "League"
+  },
+  {
+    "id": 83,
+    "name": "Raleigh Tournament 083",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-01-07",
+    "capacity": 48,
+    "registered": 1,
+    "format": "Tournament"
+  },
+  {
+    "id": 84,
+    "name": "Sacramento Casual 084",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-01-08",
+    "capacity": 40,
+    "registered": 26,
+    "format": "Casual"
+  },
+  {
+    "id": 85,
+    "name": "Salt Lake City League 085",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-01-09",
+    "capacity": 32,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 86,
+    "name": "San Diego Tournament 086",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-01-10",
+    "capacity": 24,
+    "registered": 18,
+    "format": "Tournament"
+  },
+  {
+    "id": 87,
+    "name": "Tampa Casual 087",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-01-11",
+    "capacity": 20,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 88,
+    "name": "Washington League 088",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-01-12",
+    "capacity": 16,
+    "registered": 5,
+    "format": "League"
+  },
+  {
+    "id": 89,
+    "name": "Wichita Tournament 089",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-01-13",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Tournament"
+  },
+  {
+    "id": 90,
+    "name": "Atlanta Casual 090",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-01-14",
+    "capacity": 56,
+    "registered": 30,
+    "format": "Casual"
+  },
+  {
+    "id": 91,
+    "name": "Baltimore League 091",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-01-15",
+    "capacity": 48,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 92,
+    "name": "Charlotte Tournament 092",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-01-16",
+    "capacity": 40,
+    "registered": 7,
+    "format": "Tournament"
+  },
+  {
+    "id": 93,
+    "name": "Columbus Casual 093",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-01-17",
+    "capacity": 32,
+    "registered": 21,
+    "format": "Casual"
+  },
+  {
+    "id": 94,
+    "name": "Dallas League 094",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-01-18",
+    "capacity": 24,
+    "registered": 22,
+    "format": "League"
+  },
+  {
+    "id": 95,
+    "name": "Detroit Tournament 095",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-01-19",
+    "capacity": 20,
+    "registered": 17,
+    "format": "Tournament"
+  },
+  {
+    "id": 96,
+    "name": "Honolulu Casual 096",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-01-20",
+    "capacity": 16,
+    "registered": 7,
+    "format": "Casual"
+  },
+  {
+    "id": 97,
+    "name": "Las Vegas League 097",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-01-21",
+    "capacity": 64,
+    "registered": 26,
+    "format": "League"
+  },
+  {
+    "id": 98,
+    "name": "Minneapolis Tournament 098",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-01-22",
+    "capacity": 56,
+    "registered": 20,
+    "format": "Tournament"
+  },
+  {
+    "id": 99,
+    "name": "Nashville Casual 099",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-01-23",
+    "capacity": 48,
+    "registered": 13,
+    "format": "Casual"
+  },
+  {
+    "id": 100,
+    "name": "Philadelphia League 100",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-01-24",
+    "capacity": 40,
+    "registered": 29,
+    "format": "League"
+  },
+  {
+    "id": 101,
+    "name": "Phoenix Tournament 101",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-01-25",
+    "capacity": 32,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 102,
+    "name": "Pittsburgh Casual 102",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-01-26",
+    "capacity": 24,
+    "registered": 1,
+    "format": "Casual"
+  },
+  {
+    "id": 103,
+    "name": "Raleigh League 103",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-01-27",
+    "capacity": 20,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 104,
+    "name": "Sacramento Tournament 104",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-01-28",
+    "capacity": 16,
+    "registered": 9,
+    "format": "Tournament"
+  },
+  {
+    "id": 105,
+    "name": "Salt Lake City Casual 105",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-01-29",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 106,
+    "name": "San Diego League 106",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-01-30",
+    "capacity": 56,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 107,
+    "name": "Tampa Tournament 107",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-01-31",
+    "capacity": 48,
+    "registered": 19,
+    "format": "Tournament"
+  },
+  {
+    "id": 108,
+    "name": "Washington Casual 108",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-02-01",
+    "capacity": 40,
+    "registered": 10,
+    "format": "Casual"
+  },
+  {
+    "id": 109,
+    "name": "Wichita League 109",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-02-02",
+    "capacity": 32,
+    "registered": 31,
+    "format": "League"
+  },
+  {
+    "id": 110,
+    "name": "Atlanta Tournament 110",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-02-03",
+    "capacity": 24,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 111,
+    "name": "Baltimore Casual 111",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-02-04",
+    "capacity": 20,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 112,
+    "name": "Charlotte League 112",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-02-05",
+    "capacity": 16,
+    "registered": 11,
+    "format": "League"
+  },
+  {
+    "id": 113,
+    "name": "Columbus Tournament 113",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-02-06",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Tournament"
+  },
+  {
+    "id": 114,
+    "name": "Dallas Casual 114",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-02-07",
+    "capacity": 56,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 115,
+    "name": "Detroit League 115",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-02-08",
+    "capacity": 48,
+    "registered": 25,
+    "format": "League"
+  },
+  {
+    "id": 116,
+    "name": "Honolulu Tournament 116",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-02-09",
+    "capacity": 40,
+    "registered": 32,
+    "format": "Tournament"
+  },
+  {
+    "id": 117,
+    "name": "Las Vegas Casual 117",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-02-10",
+    "capacity": 32,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 118,
+    "name": "Minneapolis League 118",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-02-11",
+    "capacity": 24,
+    "registered": 9,
+    "format": "League"
+  },
+  {
+    "id": 119,
+    "name": "Nashville Tournament 119",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-02-12",
+    "capacity": 20,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 120,
+    "name": "Philadelphia Casual 120",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-02-13",
+    "capacity": 16,
+    "registered": 13,
+    "format": "Casual"
+  },
+  {
+    "id": 121,
+    "name": "Phoenix League 121",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-02-14",
+    "capacity": 64,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 122,
+    "name": "Pittsburgh Tournament 122",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-02-15",
+    "capacity": 56,
+    "registered": 47,
+    "format": "Tournament"
+  },
+  {
+    "id": 123,
+    "name": "Raleigh Casual 123",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-02-16",
+    "capacity": 48,
+    "registered": 31,
+    "format": "Casual"
+  },
+  {
+    "id": 124,
+    "name": "Sacramento League 124",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-02-17",
+    "capacity": 40,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 125,
+    "name": "Salt Lake City Tournament 125",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-02-18",
+    "capacity": 32,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 126,
+    "name": "San Diego Casual 126",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-02-19",
+    "capacity": 24,
+    "registered": 13,
+    "format": "Casual"
+  },
+  {
+    "id": 127,
+    "name": "Tampa League 127",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-02-20",
+    "capacity": 20,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 128,
+    "name": "Washington Tournament 128",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-02-21",
+    "capacity": 16,
+    "registered": 15,
+    "format": "Tournament"
+  },
+  {
+    "id": 129,
+    "name": "Wichita Casual 129",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-02-22",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Casual"
+  },
+  {
+    "id": 130,
+    "name": "Atlanta League 130",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-02-23",
+    "capacity": 56,
+    "registered": 37,
+    "format": "League"
+  },
+  {
+    "id": 131,
+    "name": "Baltimore Tournament 131",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-02-24",
+    "capacity": 48,
+    "registered": 37,
+    "format": "Tournament"
+  },
+  {
+    "id": 132,
+    "name": "Charlotte Casual 132",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-02-25",
+    "capacity": 40,
+    "registered": 35,
+    "format": "Casual"
+  },
+  {
+    "id": 133,
+    "name": "Columbus League 133",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-02-26",
+    "capacity": 32,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 134,
+    "name": "Dallas Tournament 134",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-02-27",
+    "capacity": 24,
+    "registered": 17,
+    "format": "Tournament"
+  },
+  {
+    "id": 135,
+    "name": "Detroit Casual 135",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-02-28",
+    "capacity": 20,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 136,
+    "name": "Honolulu League 136",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-03-01",
+    "capacity": 16,
+    "registered": 0,
+    "format": "League"
+  },
+  {
+    "id": 137,
+    "name": "Las Vegas Tournament 137",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-03-02",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 138,
+    "name": "Minneapolis Casual 138",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-03-03",
+    "capacity": 56,
+    "registered": 27,
+    "format": "Casual"
+  },
+  {
+    "id": 139,
+    "name": "Nashville League 139",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-03-04",
+    "capacity": 48,
+    "registered": 43,
+    "format": "League"
+  },
+  {
+    "id": 140,
+    "name": "Philadelphia Tournament 140",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-03-05",
+    "capacity": 40,
+    "registered": 16,
+    "format": "Tournament"
+  },
+  {
+    "id": 141,
+    "name": "Phoenix Casual 141",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-03-06",
+    "capacity": 32,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 142,
+    "name": "Pittsburgh League 142",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-03-07",
+    "capacity": 24,
+    "registered": 21,
+    "format": "League"
+  },
+  {
+    "id": 143,
+    "name": "Raleigh Tournament 143",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-03-08",
+    "capacity": 20,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 144,
+    "name": "Sacramento Casual 144",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-03-09",
+    "capacity": 16,
+    "registered": 2,
+    "format": "Casual"
+  },
+  {
+    "id": 145,
+    "name": "Salt Lake City League 145",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-03-10",
+    "capacity": 64,
+    "registered": 0,
+    "format": "League"
+  },
+  {
+    "id": 146,
+    "name": "San Diego Tournament 146",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-03-11",
+    "capacity": 56,
+    "registered": 17,
+    "format": "Tournament"
+  },
+  {
+    "id": 147,
+    "name": "Tampa Casual 147",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-03-12",
+    "capacity": 48,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 148,
+    "name": "Washington League 148",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-03-13",
+    "capacity": 40,
+    "registered": 38,
+    "format": "League"
+  },
+  {
+    "id": 149,
+    "name": "Wichita Tournament 149",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-03-14",
+    "capacity": 32,
+    "registered": 23,
+    "format": "Tournament"
+  },
+  {
+    "id": 150,
+    "name": "Atlanta Casual 150",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-03-15",
+    "capacity": 24,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 151,
+    "name": "Baltimore League 151",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-03-16",
+    "capacity": 20,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 152,
+    "name": "Charlotte Tournament 152",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-03-17",
+    "capacity": 16,
+    "registered": 4,
+    "format": "Tournament"
+  },
+  {
+    "id": 153,
+    "name": "Columbus Casual 153",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-03-18",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Casual"
+  },
+  {
+    "id": 154,
+    "name": "Dallas League 154",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-03-19",
+    "capacity": 56,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 155,
+    "name": "Detroit Tournament 155",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-03-20",
+    "capacity": 48,
+    "registered": 6,
+    "format": "Tournament"
+  },
+  {
+    "id": 156,
+    "name": "Honolulu Casual 156",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-03-21",
+    "capacity": 40,
+    "registered": 19,
+    "format": "Casual"
+  },
+  {
+    "id": 157,
+    "name": "Las Vegas League 157",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-03-22",
+    "capacity": 32,
+    "registered": 28,
+    "format": "League"
+  },
+  {
+    "id": 158,
+    "name": "Minneapolis Tournament 158",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-03-23",
+    "capacity": 24,
+    "registered": 4,
+    "format": "Tournament"
+  },
+  {
+    "id": 159,
+    "name": "Nashville Casual 159",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-03-24",
+    "capacity": 20,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 160,
+    "name": "Philadelphia League 160",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-03-25",
+    "capacity": 16,
+    "registered": 6,
+    "format": "League"
+  },
+  {
+    "id": 161,
+    "name": "Phoenix Tournament 161",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-03-26",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 162,
+    "name": "Pittsburgh Casual 162",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-03-27",
+    "capacity": 56,
+    "registered": 54,
+    "format": "Casual"
+  },
+  {
+    "id": 163,
+    "name": "Raleigh League 163",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-03-28",
+    "capacity": 48,
+    "registered": 12,
+    "format": "League"
+  },
+  {
+    "id": 164,
+    "name": "Sacramento Tournament 164",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-03-29",
+    "capacity": 40,
+    "registered": 0,
+    "format": "Tournament"
+  },
+  {
+    "id": 165,
+    "name": "Salt Lake City Casual 165",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-03-30",
+    "capacity": 32,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 166,
+    "name": "San Diego League 166",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-03-31",
+    "capacity": 24,
+    "registered": 8,
+    "format": "League"
+  },
+  {
+    "id": 167,
+    "name": "Tampa Tournament 167",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-04-01",
+    "capacity": 20,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 168,
+    "name": "Washington Casual 168",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-04-02",
+    "capacity": 16,
+    "registered": 8,
+    "format": "Casual"
+  },
+  {
+    "id": 169,
+    "name": "Wichita League 169",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-04-03",
+    "capacity": 64,
+    "registered": 52,
+    "format": "League"
+  },
+  {
+    "id": 170,
+    "name": "Atlanta Tournament 170",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-04-04",
+    "capacity": 56,
+    "registered": 44,
+    "format": "Tournament"
+  },
+  {
+    "id": 171,
+    "name": "Baltimore Casual 171",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-04-05",
+    "capacity": 48,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 172,
+    "name": "Charlotte League 172",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-04-06",
+    "capacity": 40,
+    "registered": 22,
+    "format": "League"
+  },
+  {
+    "id": 173,
+    "name": "Columbus Tournament 173",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-04-07",
+    "capacity": 32,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 174,
+    "name": "Dallas Casual 174",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-04-08",
+    "capacity": 24,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 175,
+    "name": "Detroit League 175",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-04-09",
+    "capacity": 20,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 176,
+    "name": "Honolulu Tournament 176",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-04-10",
+    "capacity": 16,
+    "registered": 10,
+    "format": "Tournament"
+  },
+  {
+    "id": 177,
+    "name": "Las Vegas Casual 177",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-04-11",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Casual"
+  },
+  {
+    "id": 178,
+    "name": "Minneapolis League 178",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-04-12",
+    "capacity": 56,
+    "registered": 34,
+    "format": "League"
+  },
+  {
+    "id": 179,
+    "name": "Nashville Tournament 179",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-04-13",
+    "capacity": 48,
+    "registered": 24,
+    "format": "Tournament"
+  },
+  {
+    "id": 180,
+    "name": "Philadelphia Casual 180",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-04-14",
+    "capacity": 40,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 181,
+    "name": "Phoenix League 181",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-04-15",
+    "capacity": 32,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 182,
+    "name": "Pittsburgh Tournament 182",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-04-16",
+    "capacity": 24,
+    "registered": 16,
+    "format": "Tournament"
+  },
+  {
+    "id": 183,
+    "name": "Raleigh Casual 183",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-04-17",
+    "capacity": 20,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 184,
+    "name": "Sacramento League 184",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-04-18",
+    "capacity": 16,
+    "registered": 12,
+    "format": "League"
+  },
+  {
+    "id": 185,
+    "name": "Salt Lake City Tournament 185",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-04-19",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Tournament"
+  },
+  {
+    "id": 186,
+    "name": "San Diego Casual 186",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-04-20",
+    "capacity": 56,
+    "registered": 24,
+    "format": "Casual"
+  },
+  {
+    "id": 187,
+    "name": "Tampa League 187",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-04-21",
+    "capacity": 48,
+    "registered": 30,
+    "format": "League"
+  },
+  {
+    "id": 188,
+    "name": "Washington Tournament 188",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-04-22",
+    "capacity": 40,
+    "registered": 25,
+    "format": "Tournament"
+  },
+  {
+    "id": 189,
+    "name": "Wichita Casual 189",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-04-23",
+    "capacity": 32,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 190,
+    "name": "Atlanta League 190",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-04-24",
+    "capacity": 24,
+    "registered": 20,
+    "format": "League"
+  },
+  {
+    "id": 191,
+    "name": "Baltimore Tournament 191",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-04-25",
+    "capacity": 20,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 192,
+    "name": "Charlotte Casual 192",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-04-26",
+    "capacity": 16,
+    "registered": 14,
+    "format": "Casual"
+  },
+  {
+    "id": 193,
+    "name": "Columbus League 193",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-04-27",
+    "capacity": 64,
+    "registered": 39,
+    "format": "League"
+  },
+  {
+    "id": 194,
+    "name": "Dallas Tournament 194",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-04-28",
+    "capacity": 56,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 195,
+    "name": "Detroit Casual 195",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-04-29",
+    "capacity": 48,
+    "registered": 36,
+    "format": "Casual"
+  },
+  {
+    "id": 196,
+    "name": "Honolulu League 196",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-04-30",
+    "capacity": 40,
+    "registered": 6,
+    "format": "League"
+  },
+  {
+    "id": 197,
+    "name": "Las Vegas Tournament 197",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-05-01",
+    "capacity": 32,
+    "registered": 20,
+    "format": "Tournament"
+  },
+  {
+    "id": 198,
+    "name": "Minneapolis Casual 198",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-05-02",
+    "capacity": 24,
+    "registered": 24,
+    "format": "Casual"
+  },
+  {
+    "id": 199,
+    "name": "Nashville League 199",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-05-03",
+    "capacity": 20,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 200,
+    "name": "Philadelphia Tournament 200",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-05-04",
+    "capacity": 16,
+    "registered": 16,
+    "format": "Tournament"
+  },
+  {
+    "id": 201,
+    "name": "Phoenix Casual 201",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-05-05",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Casual"
+  },
+  {
+    "id": 202,
+    "name": "Pittsburgh League 202",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-05-06",
+    "capacity": 56,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 203,
+    "name": "Raleigh Tournament 203",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-05-07",
+    "capacity": 48,
+    "registered": 42,
+    "format": "Tournament"
+  },
+  {
+    "id": 204,
+    "name": "Sacramento Casual 204",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-05-08",
+    "capacity": 40,
+    "registered": 28,
+    "format": "Casual"
+  },
+  {
+    "id": 205,
+    "name": "Salt Lake City League 205",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-05-09",
+    "capacity": 32,
+    "registered": 25,
+    "format": "League"
+  },
+  {
+    "id": 206,
+    "name": "San Diego Tournament 206",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-05-10",
+    "capacity": 24,
+    "registered": 3,
+    "format": "Tournament"
+  },
+  {
+    "id": 207,
+    "name": "Tampa Casual 207",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-05-11",
+    "capacity": 20,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 208,
+    "name": "Washington League 208",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-05-12",
+    "capacity": 16,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 209,
+    "name": "Wichita Tournament 209",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-05-13",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Tournament"
+  },
+  {
+    "id": 210,
+    "name": "Atlanta Casual 210",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-05-14",
+    "capacity": 56,
+    "registered": 51,
+    "format": "Casual"
+  },
+  {
+    "id": 211,
+    "name": "Baltimore League 211",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-05-15",
+    "capacity": 48,
+    "registered": 48,
+    "format": "League"
+  },
+  {
+    "id": 212,
+    "name": "Charlotte Tournament 212",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-05-16",
+    "capacity": 40,
+    "registered": 9,
+    "format": "Tournament"
+  },
+  {
+    "id": 213,
+    "name": "Columbus Casual 213",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-05-17",
+    "capacity": 32,
+    "registered": 30,
+    "format": "Casual"
+  },
+  {
+    "id": 214,
+    "name": "Dallas League 214",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-05-18",
+    "capacity": 24,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 215,
+    "name": "Detroit Tournament 215",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-05-19",
+    "capacity": 20,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 216,
+    "name": "Honolulu Casual 216",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-05-20",
+    "capacity": 16,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 217,
+    "name": "Las Vegas League 217",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-05-21",
+    "capacity": 64,
+    "registered": 26,
+    "format": "League"
+  },
+  {
+    "id": 218,
+    "name": "Minneapolis Tournament 218",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-05-22",
+    "capacity": 56,
+    "registered": 41,
+    "format": "Tournament"
+  },
+  {
+    "id": 219,
+    "name": "Nashville Casual 219",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-05-23",
+    "capacity": 48,
+    "registered": 5,
+    "format": "Casual"
+  },
+  {
+    "id": 220,
+    "name": "Philadelphia League 220",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-05-24",
+    "capacity": 40,
+    "registered": 31,
+    "format": "League"
+  },
+  {
+    "id": 221,
+    "name": "Phoenix Tournament 221",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-05-25",
+    "capacity": 32,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 222,
+    "name": "Pittsburgh Casual 222",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-05-26",
+    "capacity": 24,
+    "registered": 11,
+    "format": "Casual"
+  },
+  {
+    "id": 223,
+    "name": "Raleigh League 223",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-05-27",
+    "capacity": 20,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 224,
+    "name": "Sacramento Tournament 224",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-05-28",
+    "capacity": 16,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 225,
+    "name": "Salt Lake City Casual 225",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-05-29",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 226,
+    "name": "San Diego League 226",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-05-30",
+    "capacity": 56,
+    "registered": 31,
+    "format": "League"
+  },
+  {
+    "id": 227,
+    "name": "Tampa Tournament 227",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-05-31",
+    "capacity": 48,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 228,
+    "name": "Washington Casual 228",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-06-01",
+    "capacity": 40,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 229,
+    "name": "Wichita League 229",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-06-02",
+    "capacity": 32,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 230,
+    "name": "Atlanta Tournament 230",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-06-03",
+    "capacity": 24,
+    "registered": 15,
+    "format": "Tournament"
+  },
+  {
+    "id": 231,
+    "name": "Baltimore Casual 231",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-06-04",
+    "capacity": 20,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 232,
+    "name": "Charlotte League 232",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-06-05",
+    "capacity": 16,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 233,
+    "name": "Columbus Tournament 233",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-06-06",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Tournament"
+  },
+  {
+    "id": 234,
+    "name": "Dallas Casual 234",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-06-07",
+    "capacity": 56,
+    "registered": 21,
+    "format": "Casual"
+  },
+  {
+    "id": 235,
+    "name": "Detroit League 235",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-06-08",
+    "capacity": 48,
+    "registered": 17,
+    "format": "League"
+  },
+  {
+    "id": 236,
+    "name": "Honolulu Tournament 236",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-06-09",
+    "capacity": 40,
+    "registered": 34,
+    "format": "Tournament"
+  },
+  {
+    "id": 237,
+    "name": "Las Vegas Casual 237",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-06-10",
+    "capacity": 32,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 238,
+    "name": "Minneapolis League 238",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-06-11",
+    "capacity": 24,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 239,
+    "name": "Nashville Tournament 239",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-06-12",
+    "capacity": 20,
+    "registered": 20,
+    "format": "Tournament"
+  },
+  {
+    "id": 240,
+    "name": "Philadelphia Casual 240",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-06-13",
+    "capacity": 16,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 241,
+    "name": "Phoenix League 241",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-06-14",
+    "capacity": 64,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 242,
+    "name": "Pittsburgh Tournament 242",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-06-15",
+    "capacity": 56,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 243,
+    "name": "Raleigh Casual 243",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-06-16",
+    "capacity": 48,
+    "registered": 23,
+    "format": "Casual"
+  },
+  {
+    "id": 244,
+    "name": "Sacramento League 244",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-06-17",
+    "capacity": 40,
+    "registered": 15,
+    "format": "League"
+  },
+  {
+    "id": 245,
+    "name": "Salt Lake City Tournament 245",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-06-18",
+    "capacity": 32,
+    "registered": 17,
+    "format": "Tournament"
+  },
+  {
+    "id": 246,
+    "name": "San Diego Casual 246",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-06-19",
+    "capacity": 24,
+    "registered": 23,
+    "format": "Casual"
+  },
+  {
+    "id": 247,
+    "name": "Tampa League 247",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-06-20",
+    "capacity": 20,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 248,
+    "name": "Washington Tournament 248",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-06-21",
+    "capacity": 16,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 249,
+    "name": "Wichita Casual 249",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-06-22",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Casual"
+  },
+  {
+    "id": 250,
+    "name": "Atlanta League 250",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-06-23",
+    "capacity": 56,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 251,
+    "name": "Baltimore Tournament 251",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-06-24",
+    "capacity": 48,
+    "registered": 29,
+    "format": "Tournament"
+  },
+  {
+    "id": 252,
+    "name": "Charlotte Casual 252",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-06-25",
+    "capacity": 40,
+    "registered": 37,
+    "format": "Casual"
+  },
+  {
+    "id": 253,
+    "name": "Columbus League 253",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-06-26",
+    "capacity": 32,
+    "registered": 22,
+    "format": "League"
+  },
+  {
+    "id": 254,
+    "name": "Dallas Tournament 254",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-06-27",
+    "capacity": 24,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 255,
+    "name": "Detroit Casual 255",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-06-28",
+    "capacity": 20,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 256,
+    "name": "Honolulu League 256",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-06-29",
+    "capacity": 16,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 257,
+    "name": "Las Vegas Tournament 257",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-06-30",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 258,
+    "name": "Minneapolis Casual 258",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-07-01",
+    "capacity": 56,
+    "registered": 48,
+    "format": "Casual"
+  },
+  {
+    "id": 259,
+    "name": "Nashville League 259",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-07-02",
+    "capacity": 48,
+    "registered": 35,
+    "format": "League"
+  },
+  {
+    "id": 260,
+    "name": "Philadelphia Tournament 260",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-07-03",
+    "capacity": 40,
+    "registered": 18,
+    "format": "Tournament"
+  },
+  {
+    "id": 261,
+    "name": "Phoenix Casual 261",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-07-04",
+    "capacity": 32,
+    "registered": 27,
+    "format": "Casual"
+  },
+  {
+    "id": 262,
+    "name": "Pittsburgh League 262",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-07-05",
+    "capacity": 24,
+    "registered": 6,
+    "format": "League"
+  },
+  {
+    "id": 263,
+    "name": "Raleigh Tournament 263",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-07-06",
+    "capacity": 20,
+    "registered": 17,
+    "format": "Tournament"
+  },
+  {
+    "id": 264,
+    "name": "Sacramento Casual 264",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-07-07",
+    "capacity": 16,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 265,
+    "name": "Salt Lake City League 265",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-07-08",
+    "capacity": 64,
+    "registered": 0,
+    "format": "League"
+  },
+  {
+    "id": 266,
+    "name": "San Diego Tournament 266",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-07-09",
+    "capacity": 56,
+    "registered": 38,
+    "format": "Tournament"
+  },
+  {
+    "id": 267,
+    "name": "Tampa Casual 267",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-07-10",
+    "capacity": 48,
+    "registered": 41,
+    "format": "Casual"
+  },
+  {
+    "id": 268,
+    "name": "Washington League 268",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-07-11",
+    "capacity": 40,
+    "registered": 40,
+    "format": "League"
+  },
+  {
+    "id": 269,
+    "name": "Wichita Tournament 269",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-07-12",
+    "capacity": 32,
+    "registered": 32,
+    "format": "Tournament"
+  },
+  {
+    "id": 270,
+    "name": "Atlanta Casual 270",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-07-13",
+    "capacity": 24,
+    "registered": 10,
+    "format": "Casual"
+  },
+  {
+    "id": 271,
+    "name": "Baltimore League 271",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-07-14",
+    "capacity": 20,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 272,
+    "name": "Charlotte Tournament 272",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-07-15",
+    "capacity": 16,
+    "registered": 0,
+    "format": "Tournament"
+  },
+  {
+    "id": 273,
+    "name": "Columbus Casual 273",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-07-16",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Casual"
+  },
+  {
+    "id": 274,
+    "name": "Dallas League 274",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-07-17",
+    "capacity": 56,
+    "registered": 28,
+    "format": "League"
+  },
+  {
+    "id": 275,
+    "name": "Detroit Tournament 275",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-07-18",
+    "capacity": 48,
+    "registered": 47,
+    "format": "Tournament"
+  },
+  {
+    "id": 276,
+    "name": "Honolulu Casual 276",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-07-19",
+    "capacity": 40,
+    "registered": 21,
+    "format": "Casual"
+  },
+  {
+    "id": 277,
+    "name": "Las Vegas League 277",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-07-20",
+    "capacity": 32,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 278,
+    "name": "Minneapolis Tournament 278",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-07-21",
+    "capacity": 24,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 279,
+    "name": "Nashville Casual 279",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-07-22",
+    "capacity": 20,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 280,
+    "name": "Philadelphia League 280",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-07-23",
+    "capacity": 16,
+    "registered": 2,
+    "format": "League"
+  },
+  {
+    "id": 281,
+    "name": "Phoenix Tournament 281",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-07-24",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 282,
+    "name": "Pittsburgh Casual 282",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-07-25",
+    "capacity": 56,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 283,
+    "name": "Raleigh League 283",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-07-26",
+    "capacity": 48,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 284,
+    "name": "Sacramento Tournament 284",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-07-27",
+    "capacity": 40,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 285,
+    "name": "Salt Lake City Casual 285",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-07-28",
+    "capacity": 32,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 286,
+    "name": "San Diego League 286",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-07-29",
+    "capacity": 24,
+    "registered": 18,
+    "format": "League"
+  },
+  {
+    "id": 287,
+    "name": "Tampa Tournament 287",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-07-30",
+    "capacity": 20,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 288,
+    "name": "Washington Casual 288",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-07-31",
+    "capacity": 16,
+    "registered": 4,
+    "format": "Casual"
+  },
+  {
+    "id": 289,
+    "name": "Wichita League 289",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-08-01",
+    "capacity": 64,
+    "registered": 52,
+    "format": "League"
+  },
+  {
+    "id": 290,
+    "name": "Atlanta Tournament 290",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-08-02",
+    "capacity": 56,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 291,
+    "name": "Baltimore Casual 291",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-08-03",
+    "capacity": 48,
+    "registered": 10,
+    "format": "Casual"
+  },
+  {
+    "id": 292,
+    "name": "Charlotte League 292",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-08-04",
+    "capacity": 40,
+    "registered": 24,
+    "format": "League"
+  },
+  {
+    "id": 293,
+    "name": "Columbus Tournament 293",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-08-05",
+    "capacity": 32,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 294,
+    "name": "Dallas Casual 294",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-08-06",
+    "capacity": 24,
+    "registered": 22,
+    "format": "Casual"
+  },
+  {
+    "id": 295,
+    "name": "Detroit League 295",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-08-07",
+    "capacity": 20,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 296,
+    "name": "Honolulu Tournament 296",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-08-08",
+    "capacity": 16,
+    "registered": 6,
+    "format": "Tournament"
+  },
+  {
+    "id": 297,
+    "name": "Las Vegas Casual 297",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-08-09",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Casual"
+  },
+  {
+    "id": 298,
+    "name": "Minneapolis League 298",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-08-10",
+    "capacity": 56,
+    "registered": 55,
+    "format": "League"
+  },
+  {
+    "id": 299,
+    "name": "Nashville Tournament 299",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-08-11",
+    "capacity": 48,
+    "registered": 16,
+    "format": "Tournament"
+  },
+  {
+    "id": 300,
+    "name": "Philadelphia Casual 300",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-08-12",
+    "capacity": 40,
+    "registered": 5,
+    "format": "Casual"
+  },
+  {
+    "id": 301,
+    "name": "Phoenix League 301",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-08-13",
+    "capacity": 32,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 302,
+    "name": "Pittsburgh Tournament 302",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-08-14",
+    "capacity": 24,
+    "registered": 1,
+    "format": "Tournament"
+  },
+  {
+    "id": 303,
+    "name": "Raleigh Casual 303",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-08-15",
+    "capacity": 20,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 304,
+    "name": "Sacramento League 304",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-08-16",
+    "capacity": 16,
+    "registered": 8,
+    "format": "League"
+  },
+  {
+    "id": 305,
+    "name": "Salt Lake City Tournament 305",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-08-17",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Tournament"
+  },
+  {
+    "id": 306,
+    "name": "San Diego Casual 306",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-08-18",
+    "capacity": 56,
+    "registered": 45,
+    "format": "Casual"
+  },
+  {
+    "id": 307,
+    "name": "Tampa League 307",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-08-19",
+    "capacity": 48,
+    "registered": 22,
+    "format": "League"
+  },
+  {
+    "id": 308,
+    "name": "Washington Tournament 308",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-08-20",
+    "capacity": 40,
+    "registered": 27,
+    "format": "Tournament"
+  },
+  {
+    "id": 309,
+    "name": "Wichita Casual 309",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-08-21",
+    "capacity": 32,
+    "registered": 24,
+    "format": "Casual"
+  },
+  {
+    "id": 310,
+    "name": "Atlanta League 310",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-08-22",
+    "capacity": 24,
+    "registered": 5,
+    "format": "League"
+  },
+  {
+    "id": 311,
+    "name": "Baltimore Tournament 311",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-08-23",
+    "capacity": 20,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 312,
+    "name": "Charlotte Casual 312",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-08-24",
+    "capacity": 16,
+    "registered": 10,
+    "format": "Casual"
+  },
+  {
+    "id": 313,
+    "name": "Columbus League 313",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-08-25",
+    "capacity": 64,
+    "registered": 39,
+    "format": "League"
+  },
+  {
+    "id": 314,
+    "name": "Dallas Tournament 314",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-08-26",
+    "capacity": 56,
+    "registered": 35,
+    "format": "Tournament"
+  },
+  {
+    "id": 315,
+    "name": "Detroit Casual 315",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-08-27",
+    "capacity": 48,
+    "registered": 28,
+    "format": "Casual"
+  },
+  {
+    "id": 316,
+    "name": "Honolulu League 316",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-08-28",
+    "capacity": 40,
+    "registered": 8,
+    "format": "League"
+  },
+  {
+    "id": 317,
+    "name": "Las Vegas Tournament 317",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-08-29",
+    "capacity": 32,
+    "registered": 29,
+    "format": "Tournament"
+  },
+  {
+    "id": 318,
+    "name": "Minneapolis Casual 318",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-08-30",
+    "capacity": 24,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 319,
+    "name": "Nashville League 319",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-08-31",
+    "capacity": 20,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 320,
+    "name": "Philadelphia Tournament 320",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-09-01",
+    "capacity": 16,
+    "registered": 12,
+    "format": "Tournament"
+  },
+  {
+    "id": 321,
+    "name": "Phoenix Casual 321",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-09-02",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Casual"
+  },
+  {
+    "id": 322,
+    "name": "Pittsburgh League 322",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-09-03",
+    "capacity": 56,
+    "registered": 25,
+    "format": "League"
+  },
+  {
+    "id": 323,
+    "name": "Raleigh Tournament 323",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-09-04",
+    "capacity": 48,
+    "registered": 34,
+    "format": "Tournament"
+  },
+  {
+    "id": 324,
+    "name": "Sacramento Casual 324",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-09-05",
+    "capacity": 40,
+    "registered": 30,
+    "format": "Casual"
+  },
+  {
+    "id": 325,
+    "name": "Salt Lake City League 325",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-09-06",
+    "capacity": 32,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 326,
+    "name": "San Diego Tournament 326",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-09-07",
+    "capacity": 24,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 327,
+    "name": "Tampa Casual 327",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-09-08",
+    "capacity": 20,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 328,
+    "name": "Washington League 328",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-09-09",
+    "capacity": 16,
+    "registered": 14,
+    "format": "League"
+  },
+  {
+    "id": 329,
+    "name": "Wichita Tournament 329",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-09-10",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Tournament"
+  },
+  {
+    "id": 330,
+    "name": "Atlanta Casual 330",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-09-11",
+    "capacity": 56,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 331,
+    "name": "Baltimore League 331",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-09-12",
+    "capacity": 48,
+    "registered": 40,
+    "format": "League"
+  },
+  {
+    "id": 332,
+    "name": "Charlotte Tournament 332",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-09-13",
+    "capacity": 40,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 333,
+    "name": "Columbus Casual 333",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-09-14",
+    "capacity": 32,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 334,
+    "name": "Dallas League 334",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-09-15",
+    "capacity": 24,
+    "registered": 17,
+    "format": "League"
+  },
+  {
+    "id": 335,
+    "name": "Detroit Tournament 335",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-09-16",
+    "capacity": 20,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 336,
+    "name": "Honolulu Casual 336",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-09-17",
+    "capacity": 16,
+    "registered": 16,
+    "format": "Casual"
+  },
+  {
+    "id": 337,
+    "name": "Las Vegas League 337",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-09-18",
+    "capacity": 64,
+    "registered": 26,
+    "format": "League"
+  },
+  {
+    "id": 338,
+    "name": "Minneapolis Tournament 338",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-09-19",
+    "capacity": 56,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 339,
+    "name": "Nashville Casual 339",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-09-20",
+    "capacity": 48,
+    "registered": 46,
+    "format": "Casual"
+  },
+  {
+    "id": 340,
+    "name": "Philadelphia League 340",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-09-21",
+    "capacity": 40,
+    "registered": 33,
+    "format": "League"
+  },
+  {
+    "id": 341,
+    "name": "Phoenix Tournament 341",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-09-22",
+    "capacity": 32,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 342,
+    "name": "Pittsburgh Casual 342",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-09-23",
+    "capacity": 24,
+    "registered": 21,
+    "format": "Casual"
+  },
+  {
+    "id": 343,
+    "name": "Raleigh League 343",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-09-24",
+    "capacity": 20,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 344,
+    "name": "Sacramento Tournament 344",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-09-25",
+    "capacity": 16,
+    "registered": 1,
+    "format": "Tournament"
+  },
+  {
+    "id": 345,
+    "name": "Salt Lake City Casual 345",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-09-26",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 346,
+    "name": "San Diego League 346",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-09-27",
+    "capacity": 56,
+    "registered": 52,
+    "format": "League"
+  },
+  {
+    "id": 347,
+    "name": "Tampa Tournament 347",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-09-28",
+    "capacity": 48,
+    "registered": 3,
+    "format": "Tournament"
+  },
+  {
+    "id": 348,
+    "name": "Washington Casual 348",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-09-29",
+    "capacity": 40,
+    "registered": 14,
+    "format": "Casual"
+  },
+  {
+    "id": 349,
+    "name": "Wichita League 349",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-09-30",
+    "capacity": 32,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 350,
+    "name": "Atlanta Tournament 350",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-10-01",
+    "capacity": 24,
+    "registered": 0,
+    "format": "Tournament"
+  },
+  {
+    "id": 351,
+    "name": "Baltimore Casual 351",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-10-02",
+    "capacity": 20,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 352,
+    "name": "Charlotte League 352",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-10-03",
+    "capacity": 16,
+    "registered": 3,
+    "format": "League"
+  },
+  {
+    "id": 353,
+    "name": "Columbus Tournament 353",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-10-04",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Tournament"
+  },
+  {
+    "id": 354,
+    "name": "Dallas Casual 354",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-10-05",
+    "capacity": 56,
+    "registered": 42,
+    "format": "Casual"
+  },
+  {
+    "id": 355,
+    "name": "Detroit League 355",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-10-06",
+    "capacity": 48,
+    "registered": 9,
+    "format": "League"
+  },
+  {
+    "id": 356,
+    "name": "Honolulu Tournament 356",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-10-07",
+    "capacity": 40,
+    "registered": 36,
+    "format": "Tournament"
+  },
+  {
+    "id": 357,
+    "name": "Las Vegas Casual 357",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-10-08",
+    "capacity": 32,
+    "registered": 21,
+    "format": "Casual"
+  },
+  {
+    "id": 358,
+    "name": "Minneapolis League 358",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-10-09",
+    "capacity": 24,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 359,
+    "name": "Nashville Tournament 359",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-10-10",
+    "capacity": 20,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 360,
+    "name": "Philadelphia Casual 360",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-10-11",
+    "capacity": 16,
+    "registered": 5,
+    "format": "Casual"
+  },
+  {
+    "id": 361,
+    "name": "Phoenix League 361",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-10-12",
+    "capacity": 64,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 362,
+    "name": "Pittsburgh Tournament 362",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-10-13",
+    "capacity": 56,
+    "registered": 32,
+    "format": "Tournament"
+  },
+  {
+    "id": 363,
+    "name": "Raleigh Casual 363",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-10-14",
+    "capacity": 48,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 364,
+    "name": "Sacramento League 364",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-10-15",
+    "capacity": 40,
+    "registered": 17,
+    "format": "League"
+  },
+  {
+    "id": 365,
+    "name": "Salt Lake City Tournament 365",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-10-16",
+    "capacity": 32,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 366,
+    "name": "San Diego Casual 366",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-10-17",
+    "capacity": 24,
+    "registered": 8,
+    "format": "Casual"
+  },
+  {
+    "id": 367,
+    "name": "Tampa League 367",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-10-18",
+    "capacity": 20,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 368,
+    "name": "Washington Tournament 368",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-10-19",
+    "capacity": 16,
+    "registered": 7,
+    "format": "Tournament"
+  },
+  {
+    "id": 369,
+    "name": "Wichita Casual 369",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-10-20",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Casual"
+  },
+  {
+    "id": 370,
+    "name": "Atlanta League 370",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-10-21",
+    "capacity": 56,
+    "registered": 22,
+    "format": "League"
+  },
+  {
+    "id": 371,
+    "name": "Baltimore Tournament 371",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-10-22",
+    "capacity": 48,
+    "registered": 21,
+    "format": "Tournament"
+  },
+  {
+    "id": 372,
+    "name": "Charlotte Casual 372",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-10-23",
+    "capacity": 40,
+    "registered": 39,
+    "format": "Casual"
+  },
+  {
+    "id": 373,
+    "name": "Columbus League 373",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-10-24",
+    "capacity": 32,
+    "registered": 31,
+    "format": "League"
+  },
+  {
+    "id": 374,
+    "name": "Dallas Tournament 374",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-10-25",
+    "capacity": 24,
+    "registered": 12,
+    "format": "Tournament"
+  },
+  {
+    "id": 375,
+    "name": "Detroit Casual 375",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-10-26",
+    "capacity": 20,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 376,
+    "name": "Honolulu League 376",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-10-27",
+    "capacity": 16,
+    "registered": 9,
+    "format": "League"
+  },
+  {
+    "id": 377,
+    "name": "Las Vegas Tournament 377",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-10-28",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 378,
+    "name": "Minneapolis Casual 378",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-10-29",
+    "capacity": 56,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 379,
+    "name": "Nashville League 379",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-10-30",
+    "capacity": 48,
+    "registered": 27,
+    "format": "League"
+  },
+  {
+    "id": 380,
+    "name": "Philadelphia Tournament 380",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-10-31",
+    "capacity": 40,
+    "registered": 20,
+    "format": "Tournament"
+  },
+  {
+    "id": 381,
+    "name": "Phoenix Casual 381",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-11-01",
+    "capacity": 32,
+    "registered": 3,
+    "format": "Casual"
+  },
+  {
+    "id": 382,
+    "name": "Pittsburgh League 382",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-11-02",
+    "capacity": 24,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 383,
+    "name": "Raleigh Tournament 383",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-11-03",
+    "capacity": 20,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 384,
+    "name": "Sacramento Casual 384",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-11-04",
+    "capacity": 16,
+    "registered": 11,
+    "format": "Casual"
+  },
+  {
+    "id": 385,
+    "name": "Salt Lake City League 385",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-11-05",
+    "capacity": 64,
+    "registered": 0,
+    "format": "League"
+  },
+  {
+    "id": 386,
+    "name": "San Diego Tournament 386",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-11-06",
+    "capacity": 56,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 387,
+    "name": "Tampa Casual 387",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-11-07",
+    "capacity": 48,
+    "registered": 33,
+    "format": "Casual"
+  },
+  {
+    "id": 388,
+    "name": "Washington League 388",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-11-08",
+    "capacity": 40,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 389,
+    "name": "Wichita Tournament 389",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-11-09",
+    "capacity": 32,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 390,
+    "name": "Atlanta Casual 390",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-11-10",
+    "capacity": 24,
+    "registered": 20,
+    "format": "Casual"
+  },
+  {
+    "id": 391,
+    "name": "Baltimore League 391",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-11-11",
+    "capacity": 20,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 392,
+    "name": "Charlotte Tournament 392",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-11-12",
+    "capacity": 16,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 393,
+    "name": "Columbus Casual 393",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-11-13",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Casual"
+  },
+  {
+    "id": 394,
+    "name": "Dallas League 394",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-11-14",
+    "capacity": 56,
+    "registered": 49,
+    "format": "League"
+  },
+  {
+    "id": 395,
+    "name": "Detroit Tournament 395",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-11-15",
+    "capacity": 48,
+    "registered": 39,
+    "format": "Tournament"
+  },
+  {
+    "id": 396,
+    "name": "Honolulu Casual 396",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-11-16",
+    "capacity": 40,
+    "registered": 23,
+    "format": "Casual"
+  },
+  {
+    "id": 397,
+    "name": "Las Vegas League 397",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-11-17",
+    "capacity": 32,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 398,
+    "name": "Minneapolis Tournament 398",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-11-18",
+    "capacity": 24,
+    "registered": 24,
+    "format": "Tournament"
+  },
+  {
+    "id": 399,
+    "name": "Nashville Casual 399",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-11-19",
+    "capacity": 20,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 400,
+    "name": "Philadelphia League 400",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-11-20",
+    "capacity": 16,
+    "registered": 15,
+    "format": "League"
+  },
+  {
+    "id": 401,
+    "name": "Phoenix Tournament 401",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-11-21",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 402,
+    "name": "Pittsburgh Casual 402",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-11-22",
+    "capacity": 56,
+    "registered": 39,
+    "format": "Casual"
+  },
+  {
+    "id": 403,
+    "name": "Raleigh League 403",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-11-23",
+    "capacity": 48,
+    "registered": 45,
+    "format": "League"
+  },
+  {
+    "id": 404,
+    "name": "Sacramento Tournament 404",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-11-24",
+    "capacity": 40,
+    "registered": 4,
+    "format": "Tournament"
+  },
+  {
+    "id": 405,
+    "name": "Salt Lake City Casual 405",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-11-25",
+    "capacity": 32,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 406,
+    "name": "San Diego League 406",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-11-26",
+    "capacity": 24,
+    "registered": 3,
+    "format": "League"
+  },
+  {
+    "id": 407,
+    "name": "Tampa Tournament 407",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-11-27",
+    "capacity": 20,
+    "registered": 20,
+    "format": "Tournament"
+  },
+  {
+    "id": 408,
+    "name": "Washington Casual 408",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-11-28",
+    "capacity": 16,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 409,
+    "name": "Wichita League 409",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-11-29",
+    "capacity": 64,
+    "registered": 52,
+    "format": "League"
+  },
+  {
+    "id": 410,
+    "name": "Atlanta Tournament 410",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-11-30",
+    "capacity": 56,
+    "registered": 29,
+    "format": "Tournament"
+  },
+  {
+    "id": 411,
+    "name": "Baltimore Casual 411",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-12-01",
+    "capacity": 48,
+    "registered": 2,
+    "format": "Casual"
+  },
+  {
+    "id": 412,
+    "name": "Charlotte League 412",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-12-02",
+    "capacity": 40,
+    "registered": 26,
+    "format": "League"
+  },
+  {
+    "id": 413,
+    "name": "Columbus Tournament 413",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-12-03",
+    "capacity": 32,
+    "registered": 23,
+    "format": "Tournament"
+  },
+  {
+    "id": 414,
+    "name": "Dallas Casual 414",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-12-04",
+    "capacity": 24,
+    "registered": 7,
+    "format": "Casual"
+  },
+  {
+    "id": 415,
+    "name": "Detroit League 415",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-12-05",
+    "capacity": 20,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 416,
+    "name": "Honolulu Tournament 416",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-12-06",
+    "capacity": 16,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 417,
+    "name": "Las Vegas Casual 417",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-12-07",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Casual"
+  },
+  {
+    "id": 418,
+    "name": "Minneapolis League 418",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-12-08",
+    "capacity": 56,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 419,
+    "name": "Nashville Tournament 419",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-12-09",
+    "capacity": 48,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 420,
+    "name": "Philadelphia Casual 420",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-12-10",
+    "capacity": 40,
+    "registered": 7,
+    "format": "Casual"
+  },
+  {
+    "id": 421,
+    "name": "Phoenix League 421",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-12-11",
+    "capacity": 32,
+    "registered": 28,
+    "format": "League"
+  },
+  {
+    "id": 422,
+    "name": "Pittsburgh Tournament 422",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2027-12-12",
+    "capacity": 24,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 423,
+    "name": "Raleigh Casual 423",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2027-12-13",
+    "capacity": 20,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 424,
+    "name": "Sacramento League 424",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2027-12-14",
+    "capacity": 16,
+    "registered": 4,
+    "format": "League"
+  },
+  {
+    "id": 425,
+    "name": "Salt Lake City Tournament 425",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2027-12-15",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Tournament"
+  },
+  {
+    "id": 426,
+    "name": "San Diego Casual 426",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2027-12-16",
+    "capacity": 56,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 427,
+    "name": "Tampa League 427",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2027-12-17",
+    "capacity": 48,
+    "registered": 14,
+    "format": "League"
+  },
+  {
+    "id": 428,
+    "name": "Washington Tournament 428",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2027-12-18",
+    "capacity": 40,
+    "registered": 29,
+    "format": "Tournament"
+  },
+  {
+    "id": 429,
+    "name": "Wichita Casual 429",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2027-12-19",
+    "capacity": 32,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 430,
+    "name": "Atlanta League 430",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2027-12-20",
+    "capacity": 24,
+    "registered": 15,
+    "format": "League"
+  },
+  {
+    "id": 431,
+    "name": "Baltimore Tournament 431",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2027-12-21",
+    "capacity": 20,
+    "registered": 17,
+    "format": "Tournament"
+  },
+  {
+    "id": 432,
+    "name": "Charlotte Casual 432",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2027-12-22",
+    "capacity": 16,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 433,
+    "name": "Columbus League 433",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2027-12-23",
+    "capacity": 64,
+    "registered": 39,
+    "format": "League"
+  },
+  {
+    "id": 434,
+    "name": "Dallas Tournament 434",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2027-12-24",
+    "capacity": 56,
+    "registered": 56,
+    "format": "Tournament"
+  },
+  {
+    "id": 435,
+    "name": "Detroit Casual 435",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2027-12-25",
+    "capacity": 48,
+    "registered": 20,
+    "format": "Casual"
+  },
+  {
+    "id": 436,
+    "name": "Honolulu League 436",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2027-12-26",
+    "capacity": 40,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 437,
+    "name": "Las Vegas Tournament 437",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2027-12-27",
+    "capacity": 32,
+    "registered": 5,
+    "format": "Tournament"
+  },
+  {
+    "id": 438,
+    "name": "Minneapolis Casual 438",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2027-12-28",
+    "capacity": 24,
+    "registered": 19,
+    "format": "Casual"
+  },
+  {
+    "id": 439,
+    "name": "Nashville League 439",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2027-12-29",
+    "capacity": 20,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 440,
+    "name": "Philadelphia Tournament 440",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2027-12-30",
+    "capacity": 16,
+    "registered": 8,
+    "format": "Tournament"
+  },
+  {
+    "id": 441,
+    "name": "Phoenix Casual 441",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2027-12-31",
+    "capacity": 64,
+    "registered": 13,
+    "format": "Casual"
+  },
+  {
+    "id": 442,
+    "name": "Pittsburgh League 442",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2028-01-01",
+    "capacity": 56,
+    "registered": 46,
+    "format": "League"
+  },
+  {
+    "id": 443,
+    "name": "Raleigh Tournament 443",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2028-01-02",
+    "capacity": 48,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 444,
+    "name": "Sacramento Casual 444",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2028-01-03",
+    "capacity": 40,
+    "registered": 32,
+    "format": "Casual"
+  },
+  {
+    "id": 445,
+    "name": "Salt Lake City League 445",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2028-01-04",
+    "capacity": 32,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 446,
+    "name": "San Diego Tournament 446",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2028-01-05",
+    "capacity": 24,
+    "registered": 23,
+    "format": "Tournament"
+  },
+  {
+    "id": 447,
+    "name": "Tampa Casual 447",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2028-01-06",
+    "capacity": 20,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 448,
+    "name": "Washington League 448",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2028-01-07",
+    "capacity": 16,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 449,
+    "name": "Wichita Tournament 449",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2028-01-08",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Tournament"
+  },
+  {
+    "id": 450,
+    "name": "Atlanta Casual 450",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2028-01-09",
+    "capacity": 56,
+    "registered": 36,
+    "format": "Casual"
+  },
+  {
+    "id": 451,
+    "name": "Baltimore League 451",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2028-01-10",
+    "capacity": 48,
+    "registered": 32,
+    "format": "League"
+  },
+  {
+    "id": 452,
+    "name": "Charlotte Tournament 452",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2028-01-11",
+    "capacity": 40,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 453,
+    "name": "Columbus Casual 453",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2028-01-12",
+    "capacity": 32,
+    "registered": 15,
+    "format": "Casual"
+  },
+  {
+    "id": 454,
+    "name": "Dallas League 454",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2028-01-13",
+    "capacity": 24,
+    "registered": 2,
+    "format": "League"
+  },
+  {
+    "id": 455,
+    "name": "Detroit Tournament 455",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2028-01-14",
+    "capacity": 20,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 456,
+    "name": "Honolulu Casual 456",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2028-01-15",
+    "capacity": 16,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 457,
+    "name": "Las Vegas League 457",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2028-01-16",
+    "capacity": 64,
+    "registered": 26,
+    "format": "League"
+  },
+  {
+    "id": 458,
+    "name": "Minneapolis Tournament 458",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2028-01-17",
+    "capacity": 56,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 459,
+    "name": "Nashville Casual 459",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2028-01-18",
+    "capacity": 48,
+    "registered": 38,
+    "format": "Casual"
+  },
+  {
+    "id": 460,
+    "name": "Philadelphia League 460",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2028-01-19",
+    "capacity": 40,
+    "registered": 35,
+    "format": "League"
+  },
+  {
+    "id": 461,
+    "name": "Phoenix Tournament 461",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2028-01-20",
+    "capacity": 32,
+    "registered": 20,
+    "format": "Tournament"
+  },
+  {
+    "id": 462,
+    "name": "Pittsburgh Casual 462",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2028-01-21",
+    "capacity": 24,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 463,
+    "name": "Raleigh League 463",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2028-01-22",
+    "capacity": 20,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 464,
+    "name": "Sacramento Tournament 464",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2028-01-23",
+    "capacity": 16,
+    "registered": 14,
+    "format": "Tournament"
+  },
+  {
+    "id": 465,
+    "name": "Salt Lake City Casual 465",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2028-01-24",
+    "capacity": 64,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 466,
+    "name": "San Diego League 466",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2028-01-25",
+    "capacity": 56,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 467,
+    "name": "Tampa Tournament 467",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2028-01-26",
+    "capacity": 48,
+    "registered": 44,
+    "format": "Tournament"
+  },
+  {
+    "id": 468,
+    "name": "Washington Casual 468",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2028-01-27",
+    "capacity": 40,
+    "registered": 16,
+    "format": "Casual"
+  },
+  {
+    "id": 469,
+    "name": "Wichita League 469",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2028-01-28",
+    "capacity": 32,
+    "registered": 25,
+    "format": "League"
+  },
+  {
+    "id": 470,
+    "name": "Atlanta Tournament 470",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2028-01-29",
+    "capacity": 24,
+    "registered": 10,
+    "format": "Tournament"
+  },
+  {
+    "id": 471,
+    "name": "Baltimore Casual 471",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2028-01-30",
+    "capacity": 20,
+    "registered": 12,
+    "format": "Casual"
+  },
+  {
+    "id": 472,
+    "name": "Charlotte League 472",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2028-01-31",
+    "capacity": 16,
+    "registered": 16,
+    "format": "League"
+  },
+  {
+    "id": 473,
+    "name": "Columbus Tournament 473",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2028-02-01",
+    "capacity": 64,
+    "registered": 39,
+    "format": "Tournament"
+  },
+  {
+    "id": 474,
+    "name": "Dallas Casual 474",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2028-02-02",
+    "capacity": 56,
+    "registered": 6,
+    "format": "Casual"
+  },
+  {
+    "id": 475,
+    "name": "Detroit League 475",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2028-02-03",
+    "capacity": 48,
+    "registered": 1,
+    "format": "League"
+  },
+  {
+    "id": 476,
+    "name": "Honolulu Tournament 476",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2028-02-04",
+    "capacity": 40,
+    "registered": 38,
+    "format": "Tournament"
+  },
+  {
+    "id": 477,
+    "name": "Las Vegas Casual 477",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2028-02-05",
+    "capacity": 32,
+    "registered": 30,
+    "format": "Casual"
+  },
+  {
+    "id": 478,
+    "name": "Minneapolis League 478",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2028-02-06",
+    "capacity": 24,
+    "registered": 14,
+    "format": "League"
+  },
+  {
+    "id": 479,
+    "name": "Nashville Tournament 479",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2028-02-07",
+    "capacity": 20,
+    "registered": 11,
+    "format": "Tournament"
+  },
+  {
+    "id": 480,
+    "name": "Philadelphia Casual 480",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2028-02-08",
+    "capacity": 16,
+    "registered": 1,
+    "format": "Casual"
+  },
+  {
+    "id": 481,
+    "name": "Phoenix League 481",
+    "city": "Phoenix",
+    "state": "AZ",
+    "date": "2028-02-09",
+    "capacity": 64,
+    "registered": 13,
+    "format": "League"
+  },
+  {
+    "id": 482,
+    "name": "Pittsburgh Tournament 482",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "date": "2028-02-10",
+    "capacity": 56,
+    "registered": 53,
+    "format": "Tournament"
+  },
+  {
+    "id": 483,
+    "name": "Raleigh Casual 483",
+    "city": "Raleigh",
+    "state": "NC",
+    "date": "2028-02-11",
+    "capacity": 48,
+    "registered": 7,
+    "format": "Casual"
+  },
+  {
+    "id": 484,
+    "name": "Sacramento League 484",
+    "city": "Sacramento",
+    "state": "CA",
+    "date": "2028-02-12",
+    "capacity": 40,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 485,
+    "name": "Salt Lake City Tournament 485",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "date": "2028-02-13",
+    "capacity": 32,
+    "registered": 2,
+    "format": "Tournament"
+  },
+  {
+    "id": 486,
+    "name": "San Diego Casual 486",
+    "city": "San Diego",
+    "state": "CA",
+    "date": "2028-02-14",
+    "capacity": 24,
+    "registered": 18,
+    "format": "Casual"
+  },
+  {
+    "id": 487,
+    "name": "Tampa League 487",
+    "city": "Tampa",
+    "state": "FL",
+    "date": "2028-02-15",
+    "capacity": 20,
+    "registered": 10,
+    "format": "League"
+  },
+  {
+    "id": 488,
+    "name": "Washington Tournament 488",
+    "city": "Washington",
+    "state": "DC",
+    "date": "2028-02-16",
+    "capacity": 16,
+    "registered": 3,
+    "format": "Tournament"
+  },
+  {
+    "id": 489,
+    "name": "Wichita Casual 489",
+    "city": "Wichita",
+    "state": "KS",
+    "date": "2028-02-17",
+    "capacity": 64,
+    "registered": 52,
+    "format": "Casual"
+  },
+  {
+    "id": 490,
+    "name": "Atlanta League 490",
+    "city": "Atlanta",
+    "state": "GA",
+    "date": "2028-02-18",
+    "capacity": 56,
+    "registered": 43,
+    "format": "League"
+  },
+  {
+    "id": 491,
+    "name": "Baltimore Tournament 491",
+    "city": "Baltimore",
+    "state": "MD",
+    "date": "2028-02-19",
+    "capacity": 48,
+    "registered": 13,
+    "format": "Tournament"
+  },
+  {
+    "id": 492,
+    "name": "Charlotte Casual 492",
+    "city": "Charlotte",
+    "state": "NC",
+    "date": "2028-02-20",
+    "capacity": 40,
+    "registered": 0,
+    "format": "Casual"
+  },
+  {
+    "id": 493,
+    "name": "Columbus League 493",
+    "city": "Columbus",
+    "state": "OH",
+    "date": "2028-02-21",
+    "capacity": 32,
+    "registered": 7,
+    "format": "League"
+  },
+  {
+    "id": 494,
+    "name": "Dallas Tournament 494",
+    "city": "Dallas",
+    "state": "TX",
+    "date": "2028-02-22",
+    "capacity": 24,
+    "registered": 22,
+    "format": "Tournament"
+  },
+  {
+    "id": 495,
+    "name": "Detroit Casual 495",
+    "city": "Detroit",
+    "state": "MI",
+    "date": "2028-02-23",
+    "capacity": 20,
+    "registered": 9,
+    "format": "Casual"
+  },
+  {
+    "id": 496,
+    "name": "Honolulu League 496",
+    "city": "Honolulu",
+    "state": "HI",
+    "date": "2028-02-24",
+    "capacity": 16,
+    "registered": 5,
+    "format": "League"
+  },
+  {
+    "id": 497,
+    "name": "Las Vegas Tournament 497",
+    "city": "Las Vegas",
+    "state": "NV",
+    "date": "2028-02-25",
+    "capacity": 64,
+    "registered": 26,
+    "format": "Tournament"
+  },
+  {
+    "id": 498,
+    "name": "Minneapolis Casual 498",
+    "city": "Minneapolis",
+    "state": "MN",
+    "date": "2028-02-26",
+    "capacity": 56,
+    "registered": 33,
+    "format": "Casual"
+  },
+  {
+    "id": 499,
+    "name": "Nashville League 499",
+    "city": "Nashville",
+    "state": "TN",
+    "date": "2028-02-27",
+    "capacity": 48,
+    "registered": 19,
+    "format": "League"
+  },
+  {
+    "id": 500,
+    "name": "Philadelphia Tournament 500",
+    "city": "Philadelphia",
+    "state": "PA",
+    "date": "2028-02-28",
+    "capacity": 40,
+    "registered": 22,
+    "format": "Tournament"
   }
 ]

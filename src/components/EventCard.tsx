@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import type { Event, ResultsDensity } from '../types/event';
 import StatusLabels, { getEventStatus } from './StatusLabels';
@@ -50,4 +51,4 @@ function EventCard({ event, density = 'compact' }: EventCardProps) {
   );
 }
 
-export default EventCard;
+export default memo(EventCard);

@@ -61,6 +61,37 @@ This gives the project a realistic product feel while remaining small enough to 
 
 Known limitations: announcements and keyboard focus have not been tested against every browser and screen reader combination. If the originating event is no longer displayed when returning from its details page, focus falls back to the catalog heading.
 
+## Performance
+
+### Dataset
+
+`public/events.json` is a checked-in, deterministic fixture containing 500 events: 167 League, 167 Tournament, and 166 Casual events across 29 locations and 495 dates. Capacity and registration counts vary, including zero-registration and full events. The JSON endpoint and runtime validation remain unchanged. To recreate the fixture, run `npm run generate:events`; the script preserves the original nine events and generates the remaining records without randomness or React-render-time generation.
+
+### Profiling methodology and baseline
+
+Measurements were taken in the Vite development build with React Strict Mode, on the same browser session and 500-event fixture. Each action was repeated five times after the catalog was loaded; searches, filters, and sorts were alternated between comparable values. The initial render measurement starts after the loaded collection is handed to React, so it excludes the `/events.json` request and parsing time. Values below are React Profiler `actualDuration` in milliseconds; each median is calculated from the five listed runs.
+
+The integrated browser did not expose the React DevTools Profiler panel. For reproducibility, temporary React `<Profiler>` boundaries around the application and cards collected render durations, and a temporary development-only counter confirmed `EventCard` function invocations. That instrumentation was removed after profiling. The React Profiler API does not report a separate commit-duration measurement, so these results describe render work, not a DevTools commit-phase breakdown.
+
+| Interaction | Five runs (ms) | Median (ms) | Baseline findings |
+| --- | --- | ---: | --- |
+| Initial catalog rendering | 155.6, 149.6, 171.9, 192.2, 163.0 | 163.0 | All 500 cards mounted. |
+| Search input | 51.5, 49.5, 65.5, 67.3, 34.5 | 51.5 | Alternating `League` and `Tournament` queries showed 167 results; the query and visible collection changed. |
+| Format filtering | 33.7, 167.2, 21.1, 104.4, 12.1 | 33.7 | Alternating all formats and League changed the visible collection between 500 and 167 cards. |
+| Sorting | 64.5, 41.6, 26.9, 94.4, 63.1 | 63.1 | All 500 `EventCard` functions ran even though sorting changed only order and all event props were unchanged. |
+| Editing one event | 191.7, 127.8, 94.8, 80.3, 81.5 | 94.8 | Saving an edit returned to the catalog route, which had unmounted; all 500 cards mounted again. |
+| Catalog → details | 2.1, 1.6, 0.8, 0.9, 0.5 | 0.9 | The details view is small compared with the catalog. |
+| Details → catalog | 194.9, 111.5, 93.4, 81.8, 85.6 | 93.4 | Returning remounted all 500 cards. |
+
+### Findings and decisions
+
+- `DashboardPage` derives its visible events from the reducer-owned `events` array, status, format, search query, and sort option. The React Compiler is enabled in `vite.config.js`; inspection of its development output showed that it already caches this derivation against those inputs. No explicit `useMemo` or duplicate visible-events state was added. Events, query, selected format, status, and sort changes invalidate the cached result; unrelated component updates can reuse it.
+- Sorting was the avoidable cost: 500 cards re-ran even though each card's `event` reference and `density` value were unchanged. `EventCard` now uses `memo`. It has no callback props, and the reducer replaces only the edited event object, so a changed event still invalidates the memo while unchanged event references remain eligible to bail out.
+- With the same sort interaction and five-run method, the memoized build's median `actualDuration` was 42.9 ms (runs: 99.8, 46.4, 23.6, 42.9, 25.3 ms), about 32% below the 63.1 ms baseline. A temporary invocation counter recorded 500 card function calls per sort before memoization (1,000 in development Strict Mode's double render) and zero after memoization. This confirms the card function was skipped; profiler boundaries themselves can still report wrapper commits.
+- Filtering and search necessarily mount cards newly entering the visible result set, and route navigation back to the catalog remounts the catalog because the route is replaced. `memo` does not avoid those mounts; keeping the catalog mounted solely to change this behavior was not justified by the measurements.
+- `EventSummary` still recalculates its totals when the visible collection changes. Sorting alone creates a new ordered collection, but the measured dominant avoidable work was rendering all cards; no extra summary cache was added.
+- This checkout does not contain an `EventProvider`, `useEvents`, or event-operation Context: `App` owns the typed reducer and passes event data and operations through route props. That existing single source of truth and reducer boundary were left intact. Consequently there is no provider-value identity to profile, and adding split contexts would introduce new architecture without evidence of a benefit.
+
 ## Tech stack
 
 - React
