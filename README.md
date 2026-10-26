@@ -138,6 +138,29 @@ npm run dev
 
 3. Open the Vite local URL in your browser to view the application.
 
+## Testing
+
+Run the complete test suite once with:
+
+```bash
+npm test
+```
+
+Run pure reducer/domain unit tests or React component tests independently with:
+
+```bash
+npm run test:unit
+npm run test:components
+```
+
+Run Vitest in watch mode while developing with:
+
+```bash
+npm run test:watch
+```
+
+Vitest discovers both pure TypeScript unit tests (`*.test.ts`) and React component/integration tests (`*.test.tsx`). The unit command tests reducer/domain logic directly; the component command uses React Testing Library and `user-event` in jsdom to exercise accessible controls, user interactions, routing, and loading states without launching a browser or development server. Network-dependent app tests replace `fetch` with controlled responses; no backend or real HTTP request is required.
+
 ## Resume-ready project summary
 
 A strong resume description for this project could be:

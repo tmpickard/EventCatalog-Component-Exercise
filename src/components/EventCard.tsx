@@ -40,6 +40,7 @@ function EventCard({ event, density = 'compact' }: EventCardProps) {
           id={`event-details-link-${event.id}`}
           to={`/events/${event.id}`}
           className="button-link"
+          aria-label={`View details for ${event.name}`}
         >
           View Details
         </Link>

@@ -19,13 +19,17 @@ function EventCatalog({
         Showing {events.length} of {totalCount} events.
       </p>
 
-      {events.map((event) => (
-        <EventCard
-          key={event.id}
-          event={event}
-          density={density}
-        />
-      ))}
+      {events.length === 0 ? (
+        <p>No events match your search or filters.</p>
+      ) : (
+        events.map((event) => (
+          <EventCard
+            key={event.id}
+            event={event}
+            density={density}
+          />
+        ))
+      )}
     </section>
   );
 }

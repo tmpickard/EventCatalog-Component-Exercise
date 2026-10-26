@@ -24,7 +24,10 @@ function buildFormState(event: Event): EventFormValues {
   };
 }
 
-function validateEventForm(values: EventFormValues): EventFormErrors {
+function validateEventForm(
+  values: EventFormValues,
+  registeredParticipants = 0,
+): EventFormErrors {
   const errors: EventFormErrors = {};
 
   if (!values.name.trim()) {
@@ -43,6 +46,9 @@ function validateEventForm(values: EventFormValues): EventFormErrors {
     errors.capacity = 'Enter a capacity.';
   } else if (!Number.isFinite(Number(values.capacity)) || Number(values.capacity) <= 0) {
     errors.capacity = 'Capacity must be greater than zero.';
+  } else if (Number(values.capacity) < registeredParticipants) {
+    errors.capacity =
+      `Capacity cannot be less than the ${registeredParticipants} registered participants.`;
   }
 
   return errors;
@@ -87,14 +93,14 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
     setErrors((currentErrors) =>
       Object.keys(currentErrors).length === 0
         ? currentErrors
-        : validateEventForm(nextFormData),
+        : validateEventForm(nextFormData, editingEvent?.registered),
     );
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const nextErrors = validateEventForm(formData);
+    const nextErrors = validateEventForm(formData, editingEvent?.registered);
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setFocusRequest((request) => request + 1);
@@ -137,7 +143,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
             aria-describedby={errors.name ? 'event-name-error' : undefined}
           />
           {errors.name && (
-            <span className="field-error" id="event-name-error">
+            <span className="field-error" id="event-name-error" role="alert">
               Error: {errors.name}
             </span>
           )}
@@ -160,7 +166,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
             aria-describedby={errors.city ? 'event-city-error' : undefined}
           />
           {errors.city && (
-            <span className="field-error" id="event-city-error">
+            <span className="field-error" id="event-city-error" role="alert">
               Error: {errors.city}
             </span>
           )}
@@ -184,7 +190,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
             aria-describedby={errors.state ? 'event-state-error' : undefined}
           />
           {errors.state && (
-            <span className="field-error" id="event-state-error">
+            <span className="field-error" id="event-state-error" role="alert">
               Error: {errors.state}
             </span>
           )}
@@ -206,7 +212,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
             aria-describedby={errors.date ? 'event-date-error' : undefined}
           />
           {errors.date && (
-            <span className="field-error" id="event-date-error">
+            <span className="field-error" id="event-date-error" role="alert">
               Error: {errors.date}
             </span>
           )}
@@ -229,7 +235,7 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
             aria-describedby={errors.capacity ? 'event-capacity-error' : undefined}
           />
           {errors.capacity && (
-            <span className="field-error" id="event-capacity-error">
+            <span className="field-error" id="event-capacity-error" role="alert">
               Error: {errors.capacity}
             </span>
           )}
