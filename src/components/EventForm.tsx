@@ -7,10 +7,13 @@ import {
   handleEventFormChange,
   toCreateEventInput,
   type EventFormMode,
-  type EventFormField,
-  type EventFormErrors,
   type EventFormValues,
 } from './eventFormUtils';
+import {
+  validateEventForm,
+  type EventFormField,
+  type EventFormErrors,
+} from '../domain/eventValidation';
 
 interface EventFormProps {
   mode: EventFormMode;
@@ -22,30 +25,6 @@ function buildFormState(event: Event): EventFormValues {
     ...event,
     capacity: String(event.capacity),
   };
-}
-
-function validateEventForm(values: EventFormValues): EventFormErrors {
-  const errors: EventFormErrors = {};
-
-  if (!values.name.trim()) {
-    errors.name = 'Enter an event name.';
-  }
-  if (!values.city.trim()) {
-    errors.city = 'Enter a city.';
-  }
-  if (!values.state.trim()) {
-    errors.state = 'Enter a state.';
-  }
-  if (!values.date) {
-    errors.date = 'Choose a date.';
-  }
-  if (!values.capacity.trim()) {
-    errors.capacity = 'Enter a capacity.';
-  } else if (!Number.isFinite(Number(values.capacity)) || Number(values.capacity) <= 0) {
-    errors.capacity = 'Capacity must be greater than zero.';
-  }
-
-  return errors;
 }
 
 const fieldsInFormOrder: EventFormField[] = [
@@ -87,14 +66,17 @@ export default function EventForm({ mode, onSubmit }: EventFormProps) {
     setErrors((currentErrors) =>
       Object.keys(currentErrors).length === 0
         ? currentErrors
-        : validateEventForm(nextFormData),
+        : validateEventForm(nextFormData, editingEvent?.registered ?? 0),
     );
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const nextErrors = validateEventForm(formData);
+    const nextErrors = validateEventForm(
+      formData,
+      editingEvent?.registered ?? 0,
+    );
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setFocusRequest((request) => request + 1);

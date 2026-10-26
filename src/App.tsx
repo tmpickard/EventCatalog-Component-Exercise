@@ -13,14 +13,12 @@ import EditEventForm from './components/EditEventForm';
 import EventCatalog from './components/EventCatalog';
 import EventDetails from './components/EventDetails';
 import EventFilter, {
-  filterEvents,
   statusFilterOptions,
   typeFilterOptions,
 } from './components/EventFilter';
 import EventSummary from './components/EventSummary';
-import SearchAndSortControls, {
-  sortEvents,
-} from './components/SearchAndSortControls';
+import SearchAndSortControls from './components/SearchAndSortControls';
+import { filterEvents, sortEvents } from './domain/eventSelectors';
 import useCatalogPreferences from './hooks/useCatalogPreferences';
 import eventReducer from './state/eventReducer';
 import type { EventState } from './state/eventReducer';

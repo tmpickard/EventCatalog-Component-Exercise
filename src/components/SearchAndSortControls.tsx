@@ -1,4 +1,4 @@
-import type { Event, ResultsDensity, SortOption } from '../types/event';
+import type { ResultsDensity, SortOption } from '../types/event';
 
 export const sortOptions = [
   { value: 'date-asc', label: 'Date - Earliest First' },
@@ -6,31 +6,6 @@ export const sortOptions = [
   { value: 'name-asc', label: 'Name A-Z' },
   { value: 'name-desc', label: 'Name Z-A' },
 ];
-
-export function sortEvents(events: Event[], sortBy: SortOption | 'default' = 'date-asc'): Event[] {
-  if (!Array.isArray(events)) {
-    return [];
-  }
-
-  const normalizedSortOption = sortBy === 'default' ? 'date-asc' : sortBy;
-  const sortedEvents = [...events];
-
-  switch (normalizedSortOption) {
-    case 'name-asc':
-      return sortedEvents.sort((a, b) => a.name.localeCompare(b.name));
-    case 'name-desc':
-      return sortedEvents.sort((a, b) => b.name.localeCompare(a.name));
-    case 'date-desc':
-      return sortedEvents.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-      );
-    case 'date-asc':
-    default:
-      return sortedEvents.sort(
-        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-      );
-  }
-}
 
 interface SearchAndSortControlsProps {
   value: string;
