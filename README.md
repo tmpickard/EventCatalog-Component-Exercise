@@ -31,6 +31,22 @@ The application simulates an event management dashboard where users can:
 
 This gives the project a realistic product feel while remaining small enough to learn from and iterate on quickly.
 
+## Unit tests
+
+Run the unit tests in watch mode while developing:
+
+```bash
+npm run test
+```
+
+Run the complete test suite once and exit with a success or failure status:
+
+```bash
+npm run test:run
+```
+
+Vitest runs the TypeScript tests directly in Node; it does not start the React app, open a browser, or make HTTP requests. The current suite covers event reducer transitions and immutability, form and runtime event validation, and event format filtering, search, and chronological sorting. Tests use small deterministic fixtures.
+
 ## Features
 
 ### Event dashboard
@@ -152,8 +168,7 @@ This project is intentionally designed to grow. Future enhancements could includ
 - Edit and delete event actions
 - Local storage persistence
 - API integration
-- Input validation and error handling
-- Unit and UI testing
+- UI testing
 - More advanced dashboard analytics
 
 ## Summary

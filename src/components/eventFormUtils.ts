@@ -1,16 +1,12 @@
 import type { ChangeEvent } from 'react';
 import type { CreateEventInput, Event, EventFormat } from '../types/event';
+import type { EventFormValues } from '../domain/eventValidation';
+
+export type { EventFormValues } from '../domain/eventValidation';
 
 export type EventFormMode =
   | { type: 'create' }
   | { type: 'edit'; event: Event };
-
-export type EventFormValues = Omit<CreateEventInput, 'capacity'> & {
-  capacity: string;
-};
-
-export type EventFormField = 'name' | 'city' | 'state' | 'date' | 'capacity';
-export type EventFormErrors = Partial<Record<EventFormField, string>>;
 
 export const emptyForm: EventFormValues = {
   name: '',
