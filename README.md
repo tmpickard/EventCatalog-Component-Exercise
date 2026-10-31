@@ -47,6 +47,20 @@ npm run test:run
 
 Vitest runs the TypeScript tests directly in Node; it does not start the React app, open a browser, or make HTTP requests. The current suite covers event reducer transitions and immutability, form and runtime event validation, and event format filtering, search, and chronological sorting. Tests use small deterministic fixtures.
 
+## End-to-End Testing
+
+Run the browser suite with:
+
+```bash
+npm run test:e2e
+```
+
+Playwright automatically starts the Vite development server and runs the TypeScript tests in Chromium, Firefox, and WebKit. Install the browser binaries once on a new machine with `npx playwright install`. The suite reports each test's pass/fail result in the terminal; screenshots and traces are retained for failures in `test-results`.
+
+Every test intercepts the app's initial `/events.json` request and supplies the dedicated five-event dataset in `e2e/fixtures/events.ts`. The production JSON resource and the 500-event performance dataset are not used or modified. Playwright creates a fresh browser context for each test, so cookies, storage, and in-memory event changes are isolated; tests do not depend on execution order or external services.
+
+To type-check the Playwright configuration and E2E tests independently, run `npm run typecheck:e2e`. The existing Vitest commands remain independent: they do not start a browser or development server.
+
 ## Features
 
 ### Event dashboard
