@@ -47,6 +47,39 @@ npm run test:run
 
 Vitest runs the TypeScript tests directly in Node; it does not start the React app, open a browser, or make HTTP requests. The current suite covers event reducer transitions and immutability, form and runtime event validation, and event format filtering, search, and chronological sorting. Tests use small deterministic fixtures.
 
+## Backend API
+
+The independent Node.js/Express backend is in `server/`; it does not import React application state.
+
+### Setup and commands
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+The development command starts the HTTP server on port `3001` by default (override with `PORT`). In a separate terminal, use:
+
+```bash
+npm run build
+npm start
+npm test
+```
+
+`npm run build` compiles the strict TypeScript backend to `server/dist/`. `npm start` executes that compiled JavaScript. `npm test` type-checks and runs the backend HTTP tests without starting the React app or requiring external services.
+
+### Endpoints
+
+| Method and path | Success response | Other status codes |
+| --- | --- | --- |
+| `GET /health` | `200` — `{ "status": "ok" }` | — |
+| `GET /api/events` | `200` — `{ "data": [Event, ...] }` | `400` for an unsupported `format` |
+| `GET /api/events?format=League\|Tournament\|Casual` | `200` — `{ "data": [Event, ...] }` containing matching events | `400` for an unsupported `format` |
+| `GET /api/events/:eventId` | `200` — `{ "data": Event }` | `400` for an invalid ID; `404` when no event exists |
+
+An event has numeric `id`, string `name`, `city`, `state`, and ISO calendar `date`, numeric `capacity` and `registered`, and `format` of `League`, `Tournament`, or `Casual`. API errors use `{ "error": { "code": "...", "message": "..." } }`. Invalid event IDs return `INVALID_EVENT_ID`; missing events return `EVENT_NOT_FOUND`. Unexpected server failures return `500` with `INTERNAL_SERVER_ERROR` and do not expose internal details.
+
 ## End-to-End Testing
 
 Run the browser suite with:
