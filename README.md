@@ -80,10 +80,16 @@ npm test
 | `POST /api/events` | `201` — `{ "data": Event }` and a `Location` header | `400` for invalid event data |
 | `PATCH /api/events/:eventId` | `200` — `{ "data": Event }` containing the complete updated event | `400` for invalid data or ID; `404` when no event exists; `409` if capacity would be below registrations |
 | `DELETE /api/events/:eventId` | `204` — no response body | `400` for an invalid ID; `404` when no event exists |
+| `POST /api/auth/register` | `201` — `{ "data": PublicUser }` | `400` for invalid data; `409` when the normalized email is already registered |
+| `POST /api/auth/login` | `200` — `{ "data": PublicUser }` and an HTTP-only session cookie | `400` for malformed input; `401` for invalid credentials |
+| `GET /api/auth/me` | `200` — `{ "data": PublicUser }` | `401` when the session is missing, invalid, or expired |
+| `POST /api/auth/logout` | `204` — no response body and the session cookie is cleared | `403` for an absent or untrusted Origin on an authenticated request |
 
 An event has numeric `id`, string `name`, `city`, `state`, and ISO calendar `date`, numeric `capacity` and `registered`, and `format` of `League`, `Tournament`, or `Casual`. API errors use `{ "error": { "code": "...", "message": "..." } }`. Invalid event IDs return `INVALID_EVENT_ID`; missing events return `EVENT_NOT_FOUND`. Unexpected server failures return `500` with `INTERNAL_SERVER_ERROR` and do not expose internal details.
 
 Event creation accepts `name`, `city`, `state`, `date`, `capacity`, and `format`; IDs are assigned by the server and registrations start at zero. Updates accept only those editable fields, preserve omitted values, and cannot change IDs or registrations. The in-memory backend uses the same event service for reads and mutations; backend tests create an isolated service for each HTTP test.
+
+Authentication uses independent in-memory user and session services; registration does not log in the new user. Passwords are hashed with Argon2id at 19 MiB memory, two iterations, and parallelism one (the Argon2 library's default variant is Argon2id). These exercise parameters should be benchmarked for production. Sessions use a 24-hour server-enforced lifetime and an HTTP-only, SameSite=Strict cookie. In development the cookie is not Secure; production requires `TRUSTED_ORIGIN` to be an HTTPS origin and enables Secure cookies. Authenticated logout requests require an exact matching `Origin`. The in-memory stores are for this exercise and do not persist across server restarts or multiple server processes.
 
 ## End-to-End Testing
 
