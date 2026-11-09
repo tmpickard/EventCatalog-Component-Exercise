@@ -13,6 +13,10 @@ export interface Event {
   format: EventFormat;
 }
 
+export type NewEvent = Omit<Event, 'id' | 'registered'>;
+
+export type EventChanges = Partial<NewEvent>;
+
 export function isEventFormat(value: unknown): value is EventFormat {
   return typeof value === 'string' && eventFormats.some((format) => format === value);
 }

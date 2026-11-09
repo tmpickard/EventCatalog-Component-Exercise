@@ -77,8 +77,13 @@ npm test
 | `GET /api/events` | `200` — `{ "data": [Event, ...] }` | `400` for an unsupported `format` |
 | `GET /api/events?format=League\|Tournament\|Casual` | `200` — `{ "data": [Event, ...] }` containing matching events | `400` for an unsupported `format` |
 | `GET /api/events/:eventId` | `200` — `{ "data": Event }` | `400` for an invalid ID; `404` when no event exists |
+| `POST /api/events` | `201` — `{ "data": Event }` and a `Location` header | `400` for invalid event data |
+| `PATCH /api/events/:eventId` | `200` — `{ "data": Event }` containing the complete updated event | `400` for invalid data or ID; `404` when no event exists; `409` if capacity would be below registrations |
+| `DELETE /api/events/:eventId` | `204` — no response body | `400` for an invalid ID; `404` when no event exists |
 
 An event has numeric `id`, string `name`, `city`, `state`, and ISO calendar `date`, numeric `capacity` and `registered`, and `format` of `League`, `Tournament`, or `Casual`. API errors use `{ "error": { "code": "...", "message": "..." } }`. Invalid event IDs return `INVALID_EVENT_ID`; missing events return `EVENT_NOT_FOUND`. Unexpected server failures return `500` with `INTERNAL_SERVER_ERROR` and do not expose internal details.
+
+Event creation accepts `name`, `city`, `state`, `date`, `capacity`, and `format`; IDs are assigned by the server and registrations start at zero. Updates accept only those editable fields, preserve omitted values, and cannot change IDs or registrations. The in-memory backend uses the same event service for reads and mutations; backend tests create an isolated service for each HTTP test.
 
 ## End-to-End Testing
 

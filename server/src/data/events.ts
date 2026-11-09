@@ -1,6 +1,6 @@
 import type { Event } from '../types/event.js';
 
-export const events: readonly Event[] = [
+export const initialEvents: readonly Event[] = [
   {
     id: 17,
     name: 'Seattle Trainer League',
