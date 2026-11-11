@@ -10,6 +10,7 @@ export const initialEvents: readonly Event[] = [
     capacity: 32,
     registered: 20,
     format: 'League',
+    organizerId: 'user_alice',
   },
   {
     id: 18,
@@ -20,6 +21,7 @@ export const initialEvents: readonly Event[] = [
     capacity: 64,
     registered: 48,
     format: 'Tournament',
+    organizerId: 'user_bob',
   },
   {
     id: 19,
@@ -30,6 +32,7 @@ export const initialEvents: readonly Event[] = [
     capacity: 24,
     registered: 12,
     format: 'Casual',
+    organizerId: 'user_alice',
   },
   {
     id: 20,
@@ -40,6 +43,7 @@ export const initialEvents: readonly Event[] = [
     capacity: 32,
     registered: 30,
     format: 'Tournament',
+    organizerId: 'user_bob',
   },
   {
     id: 21,
@@ -50,5 +54,6 @@ export const initialEvents: readonly Event[] = [
     capacity: 16,
     registered: 8,
     format: 'League',
+    organizerId: 'user_alice',
   },
 ];

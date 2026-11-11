@@ -8,6 +8,7 @@ import {
   readSessionCookie,
   SESSION_COOKIE_NAME,
 } from '../middleware/authentication.js';
+import { originNotAllowedError } from '../middleware/trustedOrigin.js';
 import { toPublicUser } from '../types/user.js';
 import {
   invalidAuthDataError,
@@ -26,13 +27,6 @@ const sessionRequiredError = {
   error: {
     code: 'AUTHENTICATION_REQUIRED',
     message: 'Authentication is required.',
-  },
-};
-
-const originNotAllowedError = {
-  error: {
-    code: 'ORIGIN_NOT_ALLOWED',
-    message: 'The request origin is not allowed.',
   },
 };
 

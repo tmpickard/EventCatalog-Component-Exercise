@@ -1,4 +1,4 @@
-﻿# Event Catalog React Exercise
+# Event Catalog React Exercise
 
 This project is a growing React.js exercise designed to demonstrate practical front-end development skills in a way that translates cleanly into resume experience. It focuses on component-driven UI design, state management, filtering logic, and user interactions that mirror many real-world dashboard and catalog applications.
 
