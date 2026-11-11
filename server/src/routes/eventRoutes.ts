@@ -1,14 +1,18 @@
 import { Router, type Response } from 'express';
 import type { EventService } from '../services/eventService.js';
+import type { SessionService } from '../services/sessionService.js';
 import { isEventFormat } from '../types/event.js';
+import { createAuthenticationMiddleware } from '../middleware/authentication.js';
+import { createTrustedOriginMiddleware } from '../middleware/trustedOrigin.js';
 import {
   invalidEventDataError,
+  isValidOrganizerId,
   validateEventChanges,
   validateNewEvent,
 } from '../validation/eventValidation.js';
 
-function parseEventId(value: string): number | undefined {
-  if (!/^[0-9]+$/.test(value)) {
+function parseEventId(value: unknown): number | undefined {
+  if (typeof value !== 'string' || !/^[0-9]+$/.test(value)) {
     return undefined;
   }
 
@@ -25,11 +29,26 @@ function sendInvalidEventId(response: Response): void {
   });
 }
 
-export function createEventRoutes(eventService: EventService): Router {
+function sendEventAccessDenied(response: Response): void {
+  response.status(403).json({
+    error: {
+      code: 'EVENT_ACCESS_DENIED',
+      message: 'You do not have permission to modify this event.',
+    },
+  });
+}
+
+export function createEventRoutes(
+  eventService: EventService,
+  sessionService: SessionService,
+  trustedOrigin: string,
+): Router {
   const eventRoutes = Router();
+  const requireAuthentication = createAuthenticationMiddleware(sessionService);
+  const requireTrustedOrigin = createTrustedOriginMiddleware(trustedOrigin);
 
   eventRoutes.get('/', (request, response) => {
-    const { format } = request.query;
+    const { format, organizerId } = request.query;
 
     if (format !== undefined && !isEventFormat(format)) {
       response.status(400).json({
@@ -41,76 +60,154 @@ export function createEventRoutes(eventService: EventService): Router {
       return;
     }
 
-    response.json({ data: eventService.getEvents(format) });
+    if (organizerId !== undefined && !isValidOrganizerId(organizerId)) {
+      response.status(400).json({
+        error: {
+          code: 'INVALID_ORGANIZER_ID',
+          message: 'The organizer ID is invalid.',
+        },
+      });
+      return;
+    }
+
+    response.json({ data: eventService.getEvents(format, organizerId) });
   });
 
-  eventRoutes.post('/', (request, response) => {
+  eventRoutes.post('/', requireAuthentication, requireTrustedOrigin, (request, response) => {
+    const organizerId = request.authenticatedUserId;
+    if (organizerId === undefined) {
+      response.status(401).json({
+        error: {
+          code: 'AUTHENTICATION_REQUIRED',
+          message: 'Authentication is required.',
+        },
+      });
+      return;
+    }
+
     const input = validateNewEvent(request.body);
     if (input === undefined) {
       response.status(400).json(invalidEventDataError);
       return;
     }
 
-    const event = eventService.createEvent(input);
+    const event = eventService.createEvent(input, organizerId);
     response.location(`/api/events/${event.id}`).status(201).json({ data: event });
   });
 
-  eventRoutes.patch('/:eventId', (request, response) => {
-    const id = parseEventId(request.params.eventId);
-    if (id === undefined) {
-      sendInvalidEventId(response);
-      return;
-    }
+  eventRoutes.patch(
+    '/:eventId',
+    requireAuthentication,
+    requireTrustedOrigin,
+    (request, response) => {
+      const organizerId = request.authenticatedUserId;
+      if (organizerId === undefined) {
+        response.status(401).json({
+          error: {
+            code: 'AUTHENTICATION_REQUIRED',
+            message: 'Authentication is required.',
+          },
+        });
+        return;
+      }
 
-    const changes = validateEventChanges(request.body);
-    if (changes === undefined) {
-      response.status(400).json(invalidEventDataError);
-      return;
-    }
+      const id = parseEventId(request.params.eventId);
+      if (id === undefined) {
+        sendInvalidEventId(response);
+        return;
+      }
 
-    const result = eventService.updateEvent(id, changes);
-    if (result.status === 'not-found') {
-      response.status(404).json({
-        error: {
-          code: 'EVENT_NOT_FOUND',
-          message: 'The requested event could not be found.',
-        },
-      });
-      return;
-    }
+      const access = eventService.checkEventOwnership(id, organizerId);
+      if (access === 'not-found') {
+        response.status(404).json({
+          error: {
+            code: 'EVENT_NOT_FOUND',
+            message: 'The requested event could not be found.',
+          },
+        });
+        return;
+      }
+      if (access === 'forbidden') {
+        sendEventAccessDenied(response);
+        return;
+      }
 
-    if (result.status === 'capacity-conflict') {
-      response.status(409).json({
-        error: {
-          code: 'CAPACITY_CONFLICT',
-          message: 'Event capacity cannot be lower than the current registration count.',
-        },
-      });
-      return;
-    }
+      const changes = validateEventChanges(request.body);
+      if (changes === undefined) {
+        response.status(400).json(invalidEventDataError);
+        return;
+      }
 
-    response.json({ data: result.event });
-  });
+      const result = eventService.updateEvent(id, organizerId, changes);
+      if (result.status === 'not-found') {
+        response.status(404).json({
+          error: {
+            code: 'EVENT_NOT_FOUND',
+            message: 'The requested event could not be found.',
+          },
+        });
+        return;
+      }
 
-  eventRoutes.delete('/:eventId', (request, response) => {
-    const id = parseEventId(request.params.eventId);
-    if (id === undefined) {
-      sendInvalidEventId(response);
-      return;
-    }
+      if (result.status === 'forbidden') {
+        sendEventAccessDenied(response);
+        return;
+      }
 
-    if (!eventService.deleteEvent(id)) {
-      response.status(404).json({
-        error: {
-          code: 'EVENT_NOT_FOUND',
-          message: 'The requested event could not be found.',
-        },
-      });
-      return;
-    }
+      if (result.status === 'capacity-conflict') {
+        response.status(409).json({
+          error: {
+            code: 'CAPACITY_CONFLICT',
+            message: 'Event capacity cannot be lower than the current registration count.',
+          },
+        });
+        return;
+      }
 
-    response.status(204).end();
-  });
+      response.json({ data: result.event });
+    },
+  );
+
+  eventRoutes.delete(
+    '/:eventId',
+    requireAuthentication,
+    requireTrustedOrigin,
+    (request, response) => {
+      const organizerId = request.authenticatedUserId;
+      if (organizerId === undefined) {
+        response.status(401).json({
+          error: {
+            code: 'AUTHENTICATION_REQUIRED',
+            message: 'Authentication is required.',
+          },
+        });
+        return;
+      }
+
+      const id = parseEventId(request.params.eventId);
+      if (id === undefined) {
+        sendInvalidEventId(response);
+        return;
+      }
+
+      const result = eventService.deleteEvent(id, organizerId);
+      if (result === 'not-found') {
+        response.status(404).json({
+          error: {
+            code: 'EVENT_NOT_FOUND',
+            message: 'The requested event could not be found.',
+          },
+        });
+        return;
+      }
+      if (result === 'forbidden') {
+        sendEventAccessDenied(response);
+        return;
+      }
+
+      response.status(204).end();
+    },
+  );
 
   eventRoutes.get('/:eventId', (request, response) => {
     const id = parseEventId(request.params.eventId);

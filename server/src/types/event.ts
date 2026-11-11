@@ -11,11 +11,14 @@ export interface Event {
   capacity: number;
   registered: number;
   format: EventFormat;
+  organizerId: string;
 }
 
-export type NewEvent = Omit<Event, 'id' | 'registered'>;
+export type NewEvent = Omit<Event, 'id' | 'registered' | 'organizerId'>;
 
-export type EventChanges = Partial<NewEvent>;
+export type EventChanges = Partial<
+  Pick<NewEvent, 'name' | 'city' | 'state' | 'date' | 'capacity' | 'format'>
+>;
 
 export function isEventFormat(value: unknown): value is EventFormat {
   return typeof value === 'string' && eventFormats.some((format) => format === value);

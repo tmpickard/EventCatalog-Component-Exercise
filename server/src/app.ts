@@ -45,12 +45,13 @@ export function createApp(
     response.json({ status: 'ok' });
   });
 
-  app.use('/api/events', createEventRoutes(eventService));
+  const sessionService = options.sessionService ?? createSessionService();
+  app.use('/api/events', createEventRoutes(eventService, sessionService, trustedOrigin));
   app.use(
     '/api/auth',
     createAuthRoutes(
       options.userService ?? createUserService(),
-      options.sessionService ?? createSessionService(),
+      sessionService,
       { secureCookies, trustedOrigin },
     ),
   );

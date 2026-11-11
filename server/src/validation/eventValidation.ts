@@ -92,6 +92,10 @@ export function validateNewEvent(value: unknown): NewEvent | undefined {
   };
 }
 
+export function isValidOrganizerId(value: unknown): value is string {
+  return typeof value === 'string' && /^user_[A-Za-z0-9_-]{1,128}$/.test(value);
+}
+
 export function validateEventChanges(value: unknown): EventChanges | undefined {
   if (!isRecord(value)) {
     return undefined;
