@@ -91,6 +91,87 @@ Event creation accepts `name`, `city`, `state`, `date`, `capacity`, and `format`
 
 Authentication uses independent in-memory user and session services; registration does not log in the new user. Passwords are hashed with Argon2id at 19 MiB memory, two iterations, and parallelism one (the Argon2 library's default variant is Argon2id). These exercise parameters should be benchmarked for production. Sessions use a 24-hour server-enforced lifetime and an HTTP-only, SameSite=Strict cookie. In development the cookie is not Secure; production requires `TRUSTED_ORIGIN` to be an HTTPS origin and enables Secure cookies. Authenticated logout requests require an exact matching `Origin`. The in-memory stores are for this exercise and do not persist across server restarts or multiple server processes.
 
+## PostgreSQL development database
+
+The database is an independent development environment; the Express application
+continues to use its in-memory services. Use a currently supported PostgreSQL
+release (17 or newer; this workspace has PostgreSQL 18 installed). Docker and
+an ORM are not required.
+
+### Create the development database and roles
+
+Connect as a local PostgreSQL administrator using an interactive password
+prompt. On Windows with the standard PostgreSQL 18 installer:
+
+```powershell
+& 'C:\Program Files\PostgreSQL\18\bin\psql.exe' -U postgres -d postgres
+```
+
+In the `psql` prompt, create a database/schema owner and a separate application
+role. Set passwords interactively with `\password`; do not put real passwords
+in this README, SQL files, or command-line arguments. If the local server is
+configured for passwordless trusted connections, omit the `\password` lines
+and keep that authentication limited to local development.
+
+```sql
+CREATE ROLE trainer_events_owner LOGIN;
+CREATE ROLE trainer_events_app LOGIN;
+\password trainer_events_owner
+\password trainer_events_app
+CREATE DATABASE trainer_events_dev OWNER trainer_events_owner;
+\connect trainer_events_dev
+SELECT current_database(), current_setting('server_version');
+\dt
+\q
+```
+
+The new database should initially have no application tables. `trainer_events_owner`
+owns the schema objects and applies DDL; routine application access uses the
+non-owner `trainer_events_app` role.
+
+From the repository root, apply the schema, deterministic development seed,
+and integrity checks:
+
+```powershell
+$psql = 'C:\Program Files\PostgreSQL\18\bin\psql.exe'
+& $psql -U trainer_events_owner -d trainer_events_dev -v ON_ERROR_STOP=1 -f database/schema.sql
+& $psql -U trainer_events_owner -d trainer_events_dev -v ON_ERROR_STOP=1 -f database/seed.sql
+& $psql -U trainer_events_owner -d trainer_events_dev -v ON_ERROR_STOP=1 -f database/tests/integrity.sql
+```
+
+The connection prompts for the role's password when needed. The integrity
+script prints a `PASS` notice for each check and rolls back all test records.
+For routine application permissions, connect as the database owner and run:
+
+```sql
+GRANT CONNECT ON DATABASE trainer_events_dev TO trainer_events_app;
+GRANT USAGE ON SCHEMA public TO trainer_events_app;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO trainer_events_app;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO trainer_events_app;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+    GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO trainer_events_app;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+    GRANT USAGE, SELECT ON SEQUENCES TO trainer_events_app;
+```
+
+Verify the seeded records and database-generated event IDs with:
+
+```sql
+SELECT (SELECT count(*) FROM users) AS users,
+       (SELECT count(*) FROM events) AS events,
+       (SELECT count(*) FROM event_registrations) AS registrations;
+SELECT id, name, organizer_id FROM events ORDER BY id;
+```
+
+On the current Windows workspace, the PostgreSQL 18 service is running and
+`psql.exe` is installed at the path above. Local administrator and development
+role connections currently use the machine's passwordless local authentication
+configuration; keep it restricted to local development. Do not use the
+superuser for routine app access.
+
+See [database/README.md](./database/README.md) for the relational model,
+constraints, identifier transition, and registration-concurrency design.
+
 ## End-to-End Testing
 
 Run the browser suite with:
