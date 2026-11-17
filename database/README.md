@@ -24,15 +24,26 @@ once.
   (for example, `11111111-1111-4111-8111-111111111111`) and update its
   authentication/session lookups and API contracts. The current Node.js code
   is intentionally unchanged.
-- Event IDs remain numeric to match the current TypeScript `Event.id: number`
-  model. PostgreSQL generates them with a `BIGINT GENERATED ALWAYS AS IDENTITY`
-  column. Consumers should treat the database ID as returned by the insert,
-  never calculate a next ID themselves.
+- Event IDs use PostgreSQL `BIGINT GENERATED ALWAYS AS IDENTITY`. PostgreSQL
+  `BIGINT` spans a wider range than JavaScript's exactly representable integer
+  range, so it must not be assumed to map safely to the current TypeScript
+  `Event.id: number`. Before API integration, choose an explicit contract:
+  constrain IDs to JavaScript's safe-integer range, or expose them as decimal
+  strings (and update frontend/backend types). A PostgreSQL driver may return
+  `BIGINT` values as strings for this reason. Consumers should use the ID
+  returned by the insert and never calculate a next ID themselves.
 - The database `event_date` maps to the current model's ISO calendar-date
-  string `date`. The database `organizer_id` maps to the backend model's
-  `organizerId` after its identifier transitions from the `user_...` format to
-  a UUID string. `created_at` and `updated_at` are persistence metadata not
-  currently represented by the event TypeScript type.
+  string `date`. PostgreSQL `DATE` is a calendar date, not an instant; it
+  should map to an ISO `YYYY-MM-DD` string rather than being shifted by a
+  timezone conversion. The database `organizer_id` maps to the backend
+  model's `organizerId` after its identifier transitions from the `user_...`
+  format to a UUID string. `created_at` and `updated_at` are persistence
+  metadata not currently represented by the event TypeScript type.
+- PostgreSQL aggregate results over integer columns are `BIGINT`; the query
+  layer should preserve them as decimal strings or validate and convert them
+  to safe JavaScript numbers. The queries below explicitly return summary
+  values as `BIGINT`; their future TypeScript response models must make the
+  selected representation clear.
 - The database user columns map to the backend's `UserRecord` fields:
   `display_name` → `displayName`, `password_hash` → `passwordHash`, and
   `created_at` → `createdAt`. The database also stores `updated_at`, which the
@@ -88,15 +99,71 @@ the seed updates the three fixed user records and skips an event when that
 organizer already has an event with the same name. It does not wipe unrelated
 development records or reset existing seeded event values.
 
-`tests/integrity.sql` runs database-level positive and negative checks inside a
-transaction and rolls all test data back. It expects `schema.sql` to have been
-applied; it does not depend on seed data.
+`tests/fixtures/query_testing.sql` defines a separate, deterministic 2026
+dataset for query verification, including the eventless organizer Dana.
+`tests/queries.sql` starts a transaction, temporarily removes existing
+development rows, loads this fixture, executes and asserts query results, then
+rolls back. The fixture supplies fixed identity values so the tests do not
+advance the event ID sequence. Run it against a quiet development/test
+database: its transactional deletes are rolled back, but will contend with
+concurrent work. It expects `schema.sql` to have been applied and does not
+depend on `seed.sql`.
+
+## SQL query definitions
+
+The files in `queries/` define prepared statements. They do not create
+persistent database objects; they are prepared for the current connection and
+can be deallocated when that connection closes.
+
+- `queries/event_catalog.sql` returns one row per event with the event fields,
+  calculated `available_spots`, and only the organizer ID and display name.
+  Its output is `event_id`, `event_name`, `city`, `state`, `event_date`,
+  `format`, `capacity`, `registered`, `available_spots`, `organizer_id`, and
+  `organizer_name`. It excludes credentials and email addresses, keeps full
+  events visible, and sorts by event date, event name, then event ID.
+- `queries/event_discovery.sql` accepts five bind parameters in order:
+  state, format, inclusive start date, inclusive end date, and an
+  available-spots-only boolean. Pass `NULL` for an unused filter; pass `TRUE`
+  for the last parameter to exclude fully booked events. All filters are
+  applied in PostgreSQL, and its result retains the catalog columns and sort.
+  The `PREPARE` wrapper is for psql and SQL test use. A future Node.js query
+  layer can prepare the SELECT body on its connection and bind filter values
+  separately with its PostgreSQL driver's parameterized-query API. If using
+  these named server-prepared statements directly, execute
+  `EXECUTE event_discovery($1, $2, $3, $4, $5)` with the driver's values array.
+  Never interpolate user input into SQL text.
+- `queries/organizer_dashboard.sql` starts from users and left-joins events,
+  grouping by organizer ID and display name. It returns one row per user,
+  including organizers with no events and zero-valued totals. Its output is
+  `organizer_id`, `organizer_name`, `event_count`, `total_capacity`,
+  `total_registered`, and `total_available_spots`.
+- `queries/community_statistics.sql` prepares three summaries: overall
+  community totals (`total_events`, `total_capacity`, `total_registered`,
+  `total_available_spots`, `events_with_remaining_capacity`, and
+  `fully_booked_events`); totals grouped by format (`format`, `event_count`,
+  `total_capacity`, `total_registered`, and `total_available_spots`); and
+  format totals filtered by a minimum available-spots threshold. The threshold
+  is applied with `HAVING` after grouping, rather than filtering events before
+  aggregation. The overall aggregate returns one zero-valued row even when
+  there are no events. A format with no events does not produce a group.
+
+Aggregate queries derive availability from `capacity - registered`, in line
+with the schema's registration-capacity constraint. They do not add stored
+columns, modify ownership relationships, or depend on seed data.
+
+`tests/queries.sql` asserts the catalog, filters, dashboards, empty-table
+behavior, and per-format statistics against the deterministic fixture.
+Assertions raise an error on failure, and transaction rollback prevents test
+data from persisting. Run it with
+`psql -v ON_ERROR_STOP=1 -d trainer_events_dev -f database/tests/queries.sql`;
+continue to run `database/tests/integrity.sql` as well.
 
 ## Create and use a local database
 
 The repository root README documents a PostgreSQL 17+ setup using a
 `trainer_events_owner` schema/database owner and a separate, non-owner
 `trainer_events_app` role. Create the empty `trainer_events_dev` database, then
-apply `schema.sql`, `seed.sql`, and `tests/integrity.sql` as documented there.
+apply `schema.sql` and `seed.sql`, then run both `tests/integrity.sql` and
+`tests/queries.sql` as documented here.
 No ORM, migration framework, Docker, or application database connection is
 introduced in this exercise.
