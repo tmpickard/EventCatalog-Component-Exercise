@@ -237,7 +237,22 @@ BEGIN
 
     INSERT INTO event_registrations (event_id, user_id)
     VALUES (registration_event_id, 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa');
-    RAISE NOTICE 'PASS: 13 - insert valid registration';
+    IF NOT EXISTS (
+        SELECT 1
+        FROM event_registrations
+        WHERE event_id = registration_event_id
+          AND user_id = 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
+          AND id IS NOT NULL
+          AND registered_at IS NOT NULL
+    ) OR NOT EXISTS (
+        SELECT 1
+        FROM events
+        WHERE id = registration_event_id
+          AND registered = 1
+    ) THEN
+        RAISE EXCEPTION 'FAIL: 13 - registration identity, timestamp, or counter was not generated';
+    END IF;
+    RAISE NOTICE 'PASS: 13 - insert valid registration with generated ID, timestamp, and counter';
 
     PERFORM pg_temp.assert_rejected(
         '14 - duplicate registration',
@@ -247,7 +262,7 @@ BEGIN
             'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa'
         ),
         '23505',
-        'event_registrations_pkey'
+        'event_registrations_event_id_user_id_key'
     );
 
     PERFORM pg_temp.assert_rejected(

@@ -39,14 +39,63 @@ CREATE TABLE events (
 );
 
 CREATE TABLE event_registrations (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     event_id BIGINT NOT NULL,
     user_id UUID NOT NULL,
     registered_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT event_registrations_pkey PRIMARY KEY (event_id, user_id),
+    CONSTRAINT event_registrations_event_id_user_id_key UNIQUE (event_id, user_id),
     CONSTRAINT event_registrations_event_id_fkey
         FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE RESTRICT,
     CONSTRAINT event_registrations_user_id_fkey
         FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE RESTRICT
 );
+
+CREATE FUNCTION maintain_event_registration_count()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        PERFORM 1
+        FROM events
+        WHERE id = NEW.event_id
+        FOR UPDATE;
+
+        IF NOT FOUND THEN
+            RETURN NEW;
+        END IF;
+
+        UPDATE events
+        SET registered = registered + 1
+        WHERE id = NEW.event_id
+          AND registered < capacity;
+
+        IF NOT FOUND THEN
+            RAISE EXCEPTION USING
+                ERRCODE = 'P0001',
+                MESSAGE = 'event capacity reached',
+                DETAIL = 'EVENT_FULL';
+        END IF;
+
+        RETURN NEW;
+    END IF;
+
+    UPDATE events
+    SET registered = registered - 1
+    WHERE id = OLD.event_id
+      AND registered > 0;
+
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'registration counter is inconsistent for event %', OLD.event_id;
+    END IF;
+
+    RETURN OLD;
+END;
+$$;
+
+CREATE TRIGGER event_registrations_maintain_count
+AFTER INSERT OR DELETE ON event_registrations
+FOR EACH ROW
+EXECUTE FUNCTION maintain_event_registration_count();
 
 COMMIT;
