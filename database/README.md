@@ -12,9 +12,9 @@ users (1) ──< (many) event_registrations (many) >── (1) events
 ```
 
 Each event has exactly one existing organizer. A user and an event can each
-have many registration rows; the composite key on `event_registrations
-(event_id, user_id)` permits a user to register for a particular event only
-once.
+have many registration rows. `event_registrations.id` is the generated
+database key, while a unique constraint on `(event_id, user_id)` permits a
+user to register for a particular event only once.
 
 ## Identifiers and TypeScript
 
@@ -79,35 +79,103 @@ once.
 
 ### `event_registrations`
 
-- The composite primary key prevents duplicate registrations for the same
-  event/user pair.
+- `id` is a database-generated `BIGINT` primary key.
+- Both `event_id` and `user_id` are required foreign keys to existing events
+  and users. `registered_at` is required and defaults to the current
+  transaction timestamp.
+- The unique constraint on `(event_id, user_id)` prevents duplicate
+  registrations even when callers bypass the registration function.
 - Both foreign keys require an existing event and user and restrict deletion
   while a registration references either record.
-- Capacity enforcement is deliberately not implemented. With concurrent
-  requests, two transactions can both observe one remaining spot before either
-  inserts its registration. Correct enforcement will need a concurrency-safe
-  operation (for example, an atomic conditional capacity update or appropriate
-  locking in a transaction), rather than a simple check followed by insert.
+- An `AFTER INSERT OR DELETE` trigger updates `events.registered` in the same
+  transaction as the registration row. Its conditional update refuses inserts
+  when capacity is exhausted; a failed trigger rolls back the insert. This
+  keeps direct registration inserts and deletes from silently drifting the
+  counter. Registration changes must still go through normal database
+  constraints; manually changing `events.registered` is not a supported
+  operation.
+
+## Registration transaction and concurrency
+
+Apply `transactions/register_for_event.sql` after `schema.sql`. Call the
+function inside the caller's transaction:
+
+```sql
+BEGIN;
+SELECT register_for_event(42, '11111111-1111-4111-8111-111111111111');
+COMMIT;
+```
+
+Commit only after the function returns `registered`. The function verifies the
+user, locks the event row with `SELECT ... FOR UPDATE`, then checks for an
+existing registration and remaining capacity before inserting one row. The
+registration trigger increments the stored counter in that same transaction.
+Any SQL error aborts the transaction; roll it back rather than committing.
+Returned business outcomes do not mutate data:
+
+| Result | Meaning |
+| --- | --- |
+| `registered` | One registration and one counter increment were made. |
+| `already_registered` | This user already has a row for this event; no change. |
+| `event_full` | No capacity remains; no change. |
+| `user_not_found` | The requested user does not exist; no change. |
+| `event_not_found` | The requested event does not exist; no change. |
+
+`already_registered` and `event_full` are intentionally distinct so callers
+can map them to different outcomes later. A direct insert that exceeds capacity
+is rejected with SQLSTATE `P0001` and detail `EVENT_FULL`; the function handles
+capacity as the `event_full` result.
+
+The event row lock is the primary concurrency-control strategy. Requests for
+the same event serialize before checking duplicates or capacity. At PostgreSQL's
+default `READ COMMITTED` isolation level, the duplicate check is a later SQL
+statement and sees a registration committed by a request that held the lock
+first. Thus a repeated request returns `already_registered`, while a different
+user competing for the last spot returns `event_full`. The unique constraint,
+capacity check constraint, and conditional trigger update are additional
+database guards; the `CHECK (registered <= capacity)` constraint alone would
+not synchronize rows and counters.
+
+At `REPEATABLE READ` or `SERIALIZABLE`, a transaction whose snapshot conflicts
+with a concurrent event update can fail with SQLSTATE `40001`. Deadlocks fail
+with `40P01`. These are retryable only by rolling back and retrying the entire
+transaction (including the function call and all prior reads), because the
+failed transaction's snapshot and locks cannot safely be reused. A duplicate,
+full event, missing user/event, foreign-key violation, or other constraint
+failure is a permanent business/data outcome and should not be retried as
+contention.
+
+For an application-level retry, cap attempts at three total. On `40001` or
+`40P01`, roll back the entire transaction and wait with exponential backoff
+plus jitter (for example, 50–200 ms before the second attempt and
+100–400 ms before the third). Do not immediately repeat only the final SQL
+statement: the earlier checks and their transaction snapshot may already be
+stale, and PostgreSQL marks serialization/deadlock-failed transactions aborted.
+Do not retry non-retryable SQLSTATEs or the returned business outcomes.
 
 ## Development data
 
-`seed.sql` uses fixed UUIDs for its three fictional organizers and six
-Pokémon-inspired community events. Its password hash values are generated from
-discarded random bytes with Argon2id; there are no corresponding plaintext
-passwords, so these development-only hashes cannot be used to log in. Rerunning
-the seed updates the three fixed user records and skips an event when that
-organizer already has an event with the same name. It does not wipe unrelated
-development records or reset existing seeded event values.
+`seed.sql` uses fixed UUIDs for its three fictional organizers, 51 fictional
+participants, and six Pokémon-inspired community events. It inserts actual
+registration rows for the displayed `registered` counts; the trigger keeps
+each seeded counter equal to its rows. Its organizer password hash values are
+generated from discarded random bytes with Argon2id; there are no corresponding
+plaintext passwords, so these development-only hashes cannot be used to log
+in. Rerunning the seed skips existing event names, creates participant rows if
+needed, and only initializes registrations for a seeded event that has no
+registration rows. It does not wipe unrelated development records.
 
 `tests/fixtures/query_testing.sql` defines a separate, deterministic 2026
-dataset for query verification, including the eventless organizer Dana.
+dataset for query verification, including the eventless organizer Dana and 48
+registration participants. Its event counters are built by inserting matching
+registration rows.
 `tests/queries.sql` starts a transaction, temporarily removes existing
 development rows, loads this fixture, executes and asserts query results, then
 rolls back. The fixture supplies fixed identity values so the tests do not
 advance the event ID sequence. Run it against a quiet development/test
 database: its transactional deletes are rolled back, but will contend with
-concurrent work. It expects `schema.sql` to have been applied and does not
-depend on `seed.sql`.
+concurrent work. It expects `schema.sql` and the registration counter trigger
+to have been applied and does not depend on `seed.sql`.
 
 ## SQL query definitions
 
@@ -158,12 +226,39 @@ data from persisting. Run it with
 `psql -v ON_ERROR_STOP=1 -d trainer_events_dev -f database/tests/queries.sql`;
 continue to run `database/tests/integrity.sql` as well.
 
+`tests/registration_transactions.sql` verifies the registration function's
+success and failure outcomes, counter synchronization, rollback behavior,
+foreign keys, and concurrent competing/duplicate requests. The concurrency
+cases use PostgreSQL `dblink` asynchronous queries, which open genuinely
+separate database connections. Install `dblink` once in the disposable
+database as a PostgreSQL administrator (the extension may require elevated
+privileges). Run the harness itself as a PostgreSQL administrator too:
+`dblink` requires a password or delegated credentials for non-superuser remote
+connections, and the harness intentionally avoids embedding credentials. Keep
+this elevated test connection confined to the disposable database.
+Run this script only against a disposable database because it commits
+temporary fixtures so the independent connections can see them. On success
+the fixture rows are deleted. For example:
+
+```powershell
+& $psql -U postgres -d trainer_events_registration_test -v ON_ERROR_STOP=1 -c "CREATE EXTENSION dblink"
+& $psql -U trainer_events_owner -d trainer_events_registration_test -v ON_ERROR_STOP=1 -f database/schema.sql
+& $psql -U trainer_events_owner -d trainer_events_registration_test -v ON_ERROR_STOP=1 -f database/transactions/register_for_event.sql
+& $psql -U postgres -d trainer_events_registration_test -v ON_ERROR_STOP=1 -f database/tests/registration_transactions.sql
+```
+
+Create `trainer_events_registration_test` as a disposable database owned by
+`trainer_events_owner` before running these commands. The test script contains
+more than twelve assertions, including ten repeated two-connection races.
+Its retry classifier recognizes SQLSTATE `40001` and `40P01` and excludes a
+unique-constraint violation as a permanent business/data failure.
+
 ## Create and use a local database
 
 The repository root README documents a PostgreSQL 17+ setup using a
 `trainer_events_owner` schema/database owner and a separate, non-owner
 `trainer_events_app` role. Create the empty `trainer_events_dev` database, then
-apply `schema.sql` and `seed.sql`, then run both `tests/integrity.sql` and
-`tests/queries.sql` as documented here.
+apply `schema.sql`, `transactions/register_for_event.sql`, and `seed.sql`,
+then run `tests/integrity.sql` and `tests/queries.sql` as documented here.
 No ORM, migration framework, Docker, or application database connection is
 introduced in this exercise.

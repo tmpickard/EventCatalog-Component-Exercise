@@ -139,8 +139,15 @@ CREATE TEMP TABLE actual_organizers ON COMMIT DROP AS
 EXECUTE organizer_dashboard;
 
 SELECT pg_temp.assert_true(
-    'organizer dashboard contains one row for each of the four fixture users',
-    (SELECT COUNT(*) = 4 FROM actual_organizers)
+    'organizer dashboard contains four named accounts and 48 registered participants',
+    (SELECT COUNT(*) = 52 FROM actual_organizers)
+);
+
+SELECT pg_temp.assert_true(
+    'organizer dashboard retains all four named account fixtures',
+    (SELECT COUNT(*) = 4
+     FROM actual_organizers
+     WHERE organizer_name IN ('Alice', 'Bob', 'Charlie', 'Dana'))
 );
 
 SELECT pg_temp.assert_true(
@@ -250,6 +257,7 @@ SELECT pg_temp.assert_true(
      FROM actual_formats_above_threshold)
 );
 
+DELETE FROM event_registrations;
 DELETE FROM events;
 
 CREATE TEMP TABLE actual_empty_community ON COMMIT DROP AS

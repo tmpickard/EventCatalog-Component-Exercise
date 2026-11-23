@@ -135,12 +135,28 @@ and integrity checks:
 ```powershell
 $psql = 'C:\Program Files\PostgreSQL\18\bin\psql.exe'
 & $psql -U trainer_events_owner -d trainer_events_dev -v ON_ERROR_STOP=1 -f database/schema.sql
+& $psql -U trainer_events_owner -d trainer_events_dev -v ON_ERROR_STOP=1 -f database/transactions/register_for_event.sql
 & $psql -U trainer_events_owner -d trainer_events_dev -v ON_ERROR_STOP=1 -f database/seed.sql
 & $psql -U trainer_events_owner -d trainer_events_dev -v ON_ERROR_STOP=1 -f database/tests/integrity.sql
 ```
 
 The connection prompts for the role's password when needed. The integrity
 script prints a `PASS` notice for each check and rolls back all test records.
+Run `database/tests/queries.sql` as well; it rolls back its fixture. The
+registration concurrency test must use a separate disposable database because
+its separate `dblink` sessions need committed fixture rows:
+
+```sql
+CREATE DATABASE trainer_events_registration_test OWNER trainer_events_owner;
+```
+
+Apply the schema and registration function to that database, then run
+`database/tests/registration_transactions.sql` as described in
+[database/README.md](./database/README.md). It exercises real concurrent
+connections and removes its fixtures on success. Install PostgreSQL's `dblink`
+extension in that disposable database first, and run the test harness as an
+administrator there; its independent connections require this to avoid
+embedding passwords in the test script.
 For routine application permissions, connect as the database owner and run:
 
 ```sql
