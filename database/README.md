@@ -262,3 +262,12 @@ apply `schema.sql`, `transactions/register_for_event.sql`, and `seed.sql`,
 then run `tests/integrity.sql` and `tests/queries.sql` as documented here.
 No ORM, migration framework, Docker, or application database connection is
 introduced in this exercise.
+
+## Index performance benchmark
+
+The disposable, deterministic 100,000-event fixture, before/after
+`EXPLAIN (ANALYZE, BUFFERS)` captures, retained index definitions, write-cost
+measurement, and correctness suite are documented in
+[`benchmarks/README.md`](benchmarks/README.md). Run those scripts only against
+a dedicated benchmark database: the generator replaces all rows in the three
+application tables.
